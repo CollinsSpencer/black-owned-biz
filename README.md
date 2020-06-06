@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5eaae8ea-80f4-4ea3-a2ba-a3c242d6167b/deploy-status)](https://app.netlify.com/sites/black-owned-biz/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
