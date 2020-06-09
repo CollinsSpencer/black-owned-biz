@@ -24,6 +24,9 @@ export const Category = () => {
       <h4>{business.name}</h4>
       <p>{business.description}</p>
       <div>{business.address}</div>
+      <div>{business.phone}</div>
+      <div>{business.email}</div>
+      <a href={business.website}>{business.website}</a>
       <a href={business.facebook}>Facebook</a>
     </div>
   ));

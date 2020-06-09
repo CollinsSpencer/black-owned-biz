@@ -10,7 +10,7 @@ if (window.location.hostname === 'localhost') {
 const businesses = db.collection('businesses');
 
 export const saveBusiness = async (business) => {
-  // name, description, address, city, state, facebook, category
+  // name, description, address, city, state, phone, email, facebook, website, category
   const payload = {
     category_key: business.category.toLowerCase(),
     city_key: business.city.toLowerCase(),

@@ -2,24 +2,30 @@ import React, { useState } from 'react';
 import { saveBusiness } from '../helpers/db';
 
 export const AddBizForm = () => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
   const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [facebook, setFacebook] = useState('');
   const [category, setCategory] = useState('');
+  const [city, setCity] = useState('');
+  const [description, setDescription] = useState('');
+  const [email, setEmail] = useState('');
+  const [facebook, setFacebook] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [state, setState] = useState('');
+  const [website, setWebsite] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const business = {
-      name,
-      description,
       address,
-      city,
-      state,
-      facebook,
       category,
+      city,
+      description,
+      email,
+      facebook,
+      name,
+      phone,
+      state,
+      website,
     };
     saveBusiness(business);
   };
@@ -86,6 +92,28 @@ export const AddBizForm = () => {
         </label>
 
         <label>
+          Phone:
+          <input
+            placeholder='Phone'
+            name='phone'
+            type='text'
+            onChange={(e) => setPhone(e.target.value)}
+            value={phone}
+          ></input>
+        </label>
+
+        <label>
+          Email:
+          <input
+            placeholder='Email'
+            name='email'
+            type='text'
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          ></input>
+        </label>
+
+        <label>
           Facebook URL:
           <input
             placeholder='Facebook URL'
@@ -93,6 +121,17 @@ export const AddBizForm = () => {
             type='text'
             onChange={(e) => setFacebook(e.target.value)}
             value={facebook}
+          ></input>
+        </label>
+
+        <label>
+          Website URL:
+          <input
+            placeholder='Website URL'
+            name='website'
+            type='text'
+            onChange={(e) => setWebsite(e.target.value)}
+            value={website}
           ></input>
         </label>
 
