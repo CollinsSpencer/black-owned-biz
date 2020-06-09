@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { UnitedStatesMap } from '../components';
 
 export const Home = () => {
@@ -12,6 +12,12 @@ export const Home = () => {
   return (
     <div>
       <h2>Home</h2>
+      <div>
+        <Link to={`/add`}>Add a listing</Link>
+      </div>
+      <div>
+        <Link to={`/signin`}>Sign in</Link>
+      </div>
       <UnitedStatesMap onClick={mapHandler} />
     </div>
   );
