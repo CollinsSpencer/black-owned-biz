@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "black-owned-biz"
+    "default": "black-owned-biz",
+    "staging": "black-owned-biz-staging"
   }
 }
