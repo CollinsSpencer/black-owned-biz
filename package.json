@@ -18,8 +18,9 @@
   },
   "scripts": {
     "start": "run-p --race start:firebase start:react",
-    "start:firebase": "firebase use default && firebase emulators:start --import=./data --only hosting,firestore",
+    "start:firebase": "firebase emulators:start --import=./data --only firestore",
     "start:react": "react-scripts start",
+    "start:staging": "env-cmd -f .env.staging npm run start:react",
     "deploy": "firebase use default && npm run build && firebase deploy",
     "deploy:staging": "firebase use staging && npm run build:staging && firebase deploy",
     "build": "react-scripts build",
