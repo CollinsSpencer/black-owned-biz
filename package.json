@@ -6,15 +6,26 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "env-cmd": "^10.1.0",
+    "firebase": "^7.15.0",
+    "http-proxy-middleware": "^1.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-firebaseui": "^4.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-usa-map": "^1.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "run-p --race start:firebase start:react",
+    "start:firebase": "firebase emulators:start --import=./data --only firestore",
+    "start:react": "react-scripts start",
+    "start:staging": "env-cmd -f .env.staging npm run start:react",
+    "deploy": "firebase use default && npm run build && firebase deploy",
+    "deploy:staging": "firebase use staging && npm run build:staging && firebase deploy",
     "build": "react-scripts build",
+    "build:staging": "env-cmd -f .env.staging npm run build",
+    "export": "firebase emulators:export ./data/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -32,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }
