@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { PrivateRoute, PublicRoute } from './components';
 import {
   AddBizForm,
   Category,
@@ -64,31 +60,3 @@ function App() {
 }
 
 export default App;
-
-const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        authenticated === true ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: '/signin', state: { from: props.location } }}
-          />
-        )
-      }
-    />
-  );
-};
-
-const PublicRoute = ({ component: Component, authenticated, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        authenticated === false ? <Component {...props} /> : <Redirect to='/' />
-      }
-    />
-  );
-};

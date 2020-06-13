@@ -23,10 +23,17 @@ export const firebaseConfig = {
 };
 
 // Configure FirebaseUI.
+// Documentation: https://github.com/firebase/firebaseui-web#configuration
 export const uiConfig = {
+  callbacks: {
+    signInSuccessWithAuthResult: (authResult, redirectUrl) => {
+      return false;
+    },
+  },
   // Popup signin flow rather than redirect flow.
   signInFlow: 'popup',
-  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+  // Redirect will be handled elsewhere.
+  // If callbacks.signInSuccessWithAuthResult is changed to return true, then redirect to /.
   signInSuccessUrl: '/',
   // We will display Google and Facebook as auth providers.
   signInOptions: [
