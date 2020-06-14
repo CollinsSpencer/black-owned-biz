@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { heatwood } from './fonts/Heatwood';
 
 // A custom theme for this app
 const theme = {
@@ -14,6 +15,14 @@ const theme = {
     },
     secondary: {
       main: '#053834',
+    },
+  },
+  typography: { h1: { fontFamily: 'Heatwood', lineHeight: 2 } },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '@font-face': [heatwood],
+      },
     },
   },
 };
