@@ -5,5 +5,6 @@ module.exports = {
     '@react-theming/storybook-addon',
     '@storybook/addon-actions',
     '@storybook/addon-links',
+    '@storybook/addon-viewport',
   ],
 };

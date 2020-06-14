@@ -53,6 +53,7 @@
     "@react-theming/storybook-addon": "^1.0.2",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
+    "@storybook/addon-viewport": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.0.1",
     "@storybook/react": "^5.3.19",
