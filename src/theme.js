@@ -1,5 +1,6 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { heatwood } from './fonts/Heatwood';
+import { geosansLight } from './fonts/GeosansLight';
 
 // A custom theme for this app
 const theme = {
@@ -17,23 +18,32 @@ const theme = {
       main: '#053834',
     },
   },
-  typography: { h1: { fontFamily: 'Heatwood', lineHeight: 2 } },
+  typography: {
+    h1: { fontFamily: 'Heatwood', fontSize: '4rem', lineHeight: 2 },
+    h2: { fontFamily: 'Geosans Light' },
+    h3: { fontFamily: 'Geosans Light' },
+    h4: { fontFamily: 'Geosans Light' },
+    h5: { fontFamily: 'Geosans Light' },
+    h6: { fontFamily: 'Geosans Light' },
+  },
   overrides: {
     MuiCssBaseline: {
       '@global': {
-        '@font-face': [heatwood],
+        '@font-face': [heatwood, geosansLight],
       },
     },
   },
 };
 
-export const darkTheme = createMuiTheme({
-  ...theme,
-  name: 'Dark Theme',
-  palette: {
-    ...theme.palette,
-    type: 'dark',
-  },
-});
+export const darkTheme = responsiveFontSizes(
+  createMuiTheme({
+    ...theme,
+    name: 'Dark Theme',
+    palette: {
+      ...theme.palette,
+      type: 'dark',
+    },
+  })
+);
 
-export const lightTheme = createMuiTheme(theme);
+export const lightTheme = responsiveFontSizes(createMuiTheme(theme));
