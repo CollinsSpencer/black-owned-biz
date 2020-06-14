@@ -6,6 +6,7 @@ import { addDecorator, addParameters } from '@storybook/react';
 import { withThemes } from '@react-theming/storybook-addon';
 
 import { darkTheme, lightTheme } from '../src/theme';
+import StoryRouter from 'storybook-react-router';
 
 const providerFn = ({ theme, children }) => {
   const serialTheme = JSON.parse(JSON.stringify(theme));
@@ -18,6 +19,7 @@ const providerFn = ({ theme, children }) => {
   );
 };
 
+addDecorator(StoryRouter());
 addDecorator(withThemes(null, [lightTheme, darkTheme], { providerFn }));
 addParameters({
   options: {
