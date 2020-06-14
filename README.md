@@ -33,6 +33,11 @@ This will connect to the staging Firebase project.
 Data accesses via Firebase will come from the staging server.  
 Auth is also supported through the staging server.
 
+### `npm run storybook`
+
+Launches the component storybook app in interactive watch mode.  
+Open [http://localhost:9009](http://localhost:9009) to view it in the browser.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.  
