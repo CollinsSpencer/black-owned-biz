@@ -12,7 +12,7 @@ const business = {
   city: 'Lincoln',
   state: 'NE',
   facebook: 'https://www.facebook.com/72Select-Barber-Shop-328759440541034',
-  category: 'beauty',
+  category: 'Service',
   lastUpdated: 'timestamp',
   created: 'timestamp',
   phone: '4027300703',
