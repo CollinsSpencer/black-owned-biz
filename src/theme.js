@@ -1,6 +1,7 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { heatwood } from './fonts/Heatwood';
 import { geosansLight } from './fonts/GeosansLight';
+import 'fontsource-roboto';
 
 // A custom theme for this app
 const theme = {
