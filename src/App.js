@@ -15,20 +15,12 @@ import {
   // State,
   VerifySubmittedBiz,
 } from './containers';
-import { auth } from './services/firebase';
+import { auth, useAuthenticated } from './helpers/auth';
 
 import './App.css';
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() =>
-    auth.onAuthStateChanged((user) => {
-      setAuthenticated(!!user);
-      setLoading(false);
-    })
-  );
+  const { authenticated, loading } = useAuthenticated();
 
   return loading === true ? (
     <div className='App'>
