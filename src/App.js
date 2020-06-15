@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Redirect,
   BrowserRouter as Router,
@@ -15,12 +15,10 @@ import {
   // State,
   VerifySubmittedBiz,
 } from './containers';
-import { auth, useAuthenticated } from './helpers/auth';
-
-import './App.css';
+import { useAuthenticated } from './helpers/auth';
 
 function App() {
-  const { authenticated, loading } = useAuthenticated();
+  const { loading } = useAuthenticated();
 
   return loading === true ? (
     <div className='App'>
@@ -28,11 +26,6 @@ function App() {
     </div>
   ) : (
     <div className='App'>
-      {authenticated && (
-        <div>
-          <button onClick={() => auth.signOut()}>Sign-out</button>
-        </div>
-      )}
       <Router>
         <Switch>
           <Route
@@ -43,14 +36,9 @@ function App() {
           <Route path='/add' component={AddBizForm}></Route>
           <PrivateRoute
             path='/verify'
-            authenticated={authenticated}
             component={VerifySubmittedBiz}
           ></PrivateRoute>
-          <PublicRoute
-            path='/signin'
-            authenticated={authenticated}
-            component={SignIn}
-          ></PublicRoute>
+          <PublicRoute path='/signin' component={SignIn}></PublicRoute>
           <Route path='/:state/:city/:category' component={Category}></Route>
           <Route path='/:state/:city' component={City}></Route>
           <Route

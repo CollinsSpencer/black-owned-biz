@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Link } from '@material-ui/core';
-import { auth, useAuthenticated } from '../../helpers/auth';
+import { auth, useAuthenticated } from '../helpers/auth';
 
 export const AuthActions = () => {
   const { authenticated } = useAuthenticated();
