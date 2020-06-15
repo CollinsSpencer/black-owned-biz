@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  Redirect,
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { PrivateRoute, PublicRoute } from './components';
 import {
   AddBizForm,
   Category,
   City,
-  Home,
+  // Home,
   SignIn,
-  State,
+  // State,
   VerifySubmittedBiz,
 } from './containers';
-import { auth } from './services/firebase';
+import { auth, useAuthenticated } from './helpers/auth';
 
 import './App.css';
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() =>
-    auth.onAuthStateChanged((user) => {
-      setAuthenticated(!!user);
-      setLoading(false);
-    })
-  );
+  const { authenticated, loading } = useAuthenticated();
 
   return loading === true ? (
     <div className='App'>
@@ -38,7 +35,11 @@ function App() {
       )}
       <Router>
         <Switch>
-          <Route exact path='/' component={Home}></Route>
+          <Route
+            exact
+            path='/'
+            component={() => <Redirect to={'/NE/Lincoln'} />}
+          ></Route>
           <Route path='/add' component={AddBizForm}></Route>
           <PrivateRoute
             path='/verify'
@@ -52,7 +53,10 @@ function App() {
           ></PublicRoute>
           <Route path='/:state/:city/:category' component={Category}></Route>
           <Route path='/:state/:city' component={City}></Route>
-          <Route path='/:state' component={State}></Route>
+          <Route
+            path='/:state'
+            component={() => <Redirect to={'/NE/Lincoln'} />}
+          ></Route>
         </Switch>
       </Router>
     </div>
