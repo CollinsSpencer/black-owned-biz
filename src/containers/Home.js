@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { UnitedStatesMap } from '../components';
+import { UnitedStatesMap, Page } from '../components';
 
 export const Home = () => {
   const history = useHistory();
@@ -10,7 +10,7 @@ export const Home = () => {
     history.push(`${state}`);
   };
   return (
-    <div>
+    <Page>
       <h2>Home</h2>
       <div>
         <Link to={`/add`}>Add a listing</Link>
@@ -19,6 +19,6 @@ export const Home = () => {
         <Link to={`/signin`}>Sign in</Link>
       </div>
       <UnitedStatesMap onClick={mapHandler} />
-    </div>
+    </Page>
   );
 };

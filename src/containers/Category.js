@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getBusinessesInStateCityAndCategory } from '../helpers/db';
+import { Page } from '../components';
 
 export const Category = () => {
   const { state, city, category } = useParams();
@@ -31,18 +32,5 @@ export const Category = () => {
     </div>
   ));
 
-  return (
-    <div>
-      <h2>State</h2>
-      <div>{state}</div>
-      <h2>City</h2>
-      <div>{city}</div>
-      <h2>Category</h2>
-      <div>{category}</div>
-
-      <hr />
-
-      {BusinessesList}
-    </div>
-  );
+  return <Page>{BusinessesList}</Page>;
 };

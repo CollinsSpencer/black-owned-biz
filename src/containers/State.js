@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
 import { getBusinessesInState } from '../helpers/db';
+import { Page } from '../components';
 
 export const State = () => {
   const { state } = useParams();
@@ -34,14 +35,5 @@ export const State = () => {
       </div>
     );
 
-  return (
-    <div>
-      <h2>State</h2>
-      <div>{state}</div>
-
-      <hr />
-
-      {CitiesList}
-    </div>
-  );
+  return <Page>{CitiesList}</Page>;
 };

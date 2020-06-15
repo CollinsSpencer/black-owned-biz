@@ -9,7 +9,7 @@ import {
   Link,
   Box,
 } from '@material-ui/core';
-import { AuthActions } from '../Auth';
+import { AuthActions } from '../AuthActions';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -18,9 +18,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Navigation = ({ location = {} }) => {
+export const Navigation = ({ state, city, category }) => {
   const classes = useStyles();
-  const { state, city, category } = location;
 
   let StateBreadcrumb,
     CityBreadcrumb,
@@ -46,7 +45,7 @@ export const Navigation = ({ location = {} }) => {
   }
 
   return (
-    <AppBar color='transparent'>
+    <AppBar color='transparent' position='static' elevation={0}>
       <Toolbar>
         <Breadcrumbs>
           <Link component={RouterLink} to='/'>
