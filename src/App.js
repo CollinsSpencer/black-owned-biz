@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Redirect,
   BrowserRouter as Router,
@@ -8,6 +8,7 @@ import {
 import { PrivateRoute, PublicRoute } from './components';
 import {
   AddBizForm,
+  Admin,
   Category,
   City,
   // Home,
@@ -41,6 +42,11 @@ function App() {
             component={() => <Redirect to={'/NE/Lincoln'} />}
           ></Route>
           <Route path='/add' component={AddBizForm}></Route>
+          <PrivateRoute
+            path='/admin'
+            authenticated={authenticated}
+            component={Admin}
+          ></PrivateRoute>
           <PrivateRoute
             path='/verify'
             authenticated={authenticated}

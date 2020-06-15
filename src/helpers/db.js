@@ -37,6 +37,7 @@ export const getBusinessesInStateAndCity = async (state, city) => {
     .then((snapshot) => snapshot.docs.map((x) => ({ id: x.id, ...x.data() })));
 };
 
+// TODO Remove this. Get all businesses for state and filter on client.
 export const getBusinessesInStateCityAndCategory = async (
   state,
   city,
@@ -48,4 +49,27 @@ export const getBusinessesInStateCityAndCategory = async (
     .where('category_key', '==', category.toLowerCase())
     .get()
     .then((snapshot) => snapshot.docs.map((x) => ({ id: x.id, ...x.data() })));
+};
+
+export const bulkUpdateCategory = async (
+  oldCategoryKey,
+  newCategoryKey,
+  newCategory
+) => {
+  // see https://firebase.google.com/docs/firestore/quotas#writes_and_transactions
+  const writeBatchLimit = 500;
+  var batch = db.batch();
+  businesses
+    .where('category_key', '==', oldCategoryKey)
+    .limit(writeBatchLimit)
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) =>
+        batch.update(doc.ref, {
+          category_key: newCategoryKey,
+          category: newCategory,
+        })
+      );
+      batch.commit();
+    });
 };
