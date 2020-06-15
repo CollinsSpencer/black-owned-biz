@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
 import { Box, Grid, Link, Typography } from '@material-ui/core';
-import { categories } from '../../helpers/consts';
+import { categories } from '../../helpers/constants';
 import { SquareButton } from '../SquareButton';
 
-export const CategorySelector = ({ availableCategories = [] }) => {
+export const CategorySelector = ({ availableCategories }) => {
   let { url } = useRouteMatch();
 
   const categoriesList =
