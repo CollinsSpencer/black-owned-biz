@@ -17,12 +17,6 @@ export const City = () => {
     fetchData();
   }, [state, city]);
 
-  // const CategoriesList = categories.map((category) => (
-  //   <div>
-  //     <Link to={`${url}/${category}`}>{category}</Link>
-  //   </div>
-  // ));
-
   return (
     <Page>
       <Box my={12}>
@@ -34,8 +28,6 @@ export const City = () => {
         </Typography>
       </Box>
       <CategorySelector availableCategories={categories} />
-
-      {/* {CategoriesList} */}
     </Page>
   );
 };
