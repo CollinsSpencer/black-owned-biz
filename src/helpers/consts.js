@@ -9,12 +9,12 @@ import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
 export const categories = {
   FOOD_AND_DRINK: {
     name: 'Food and Drink',
-    key: 'Food_and_Drink',
+    key: 'food_and_drink',
     Icon: (props) => <LocalDiningIcon {...props} />,
   },
   NON_PROFITS: {
     name: 'Nonprofits',
-    key: 'Nonprofits',
+    key: 'nonprofits',
     Icon: (props) => (
       <SvgIcon {...props}>
         <FontAwesomeIcon icon={faHandHoldingHeart} />
@@ -23,12 +23,12 @@ export const categories = {
   },
   RETAIL: {
     name: 'Retail',
-    key: 'Retail',
+    key: 'retail',
     Icon: (props) => <LocalOfferIcon {...props} />,
   },
   SERVICES: {
     name: 'Services',
-    key: 'Services',
+    key: 'services',
     Icon: (props) => <EmojiPeopleIcon {...props} />,
   },
 };
