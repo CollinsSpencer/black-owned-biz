@@ -10,6 +10,7 @@ import {
   Box,
 } from '@material-ui/core';
 import { AuthActions } from '../AuthActions';
+import { Contact } from '../Contact';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -58,6 +59,7 @@ export const Navigation = ({ state, city, category }) => {
           {CategoryBreadcrumb}
         </Breadcrumbs>
         <Box flexGrow={1}></Box>
+        <Contact />
         <AuthActions />
       </Toolbar>
     </AppBar>
