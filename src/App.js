@@ -10,9 +10,9 @@ import {
   AddBizForm,
   Category,
   City,
+  Contact,
   // Home,
   SignIn,
-  Contact,
   // State,
   VerifySubmittedBiz,
 } from './containers';
