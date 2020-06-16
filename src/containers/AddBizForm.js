@@ -1,7 +1,23 @@
 import React, { useState } from 'react';
-import { saveBusiness } from '../helpers/db';
+import { useAddBusiness } from '../helpers/db';
 
 export const AddBizForm = () => {
+  const { addBusiness } = useAddBusiness();
+  const saveBusiness = () => {
+    const business = {
+      address,
+      category,
+      city,
+      description,
+      email,
+      facebook,
+      name,
+      phone,
+      state,
+      website,
+    };
+    addBusiness(business);
+  };
   const [address, setAddress] = useState('');
   const [category, setCategory] = useState('');
   const [city, setCity] = useState('');
@@ -15,19 +31,7 @@ export const AddBizForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const business = {
-      address,
-      category,
-      city,
-      description,
-      email,
-      facebook,
-      name,
-      phone,
-      state,
-      website,
-    };
-    saveBusiness(business);
+    saveBusiness();
   };
 
   return (

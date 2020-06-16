@@ -1,24 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import { getBusinessesInStateCityAndCategory } from '../helpers/db';
+import { useBusinessesInStateCityAndCategory } from '../helpers/db';
 import { Page } from '../components';
 
 export const Category = () => {
   const { state, city, category } = useParams();
-  const [businesses, setBusinesses] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const results = await getBusinessesInStateCityAndCategory(
-        state,
-        city,
-        category
-      );
-      setBusinesses([...results]);
-    };
-
-    fetchData();
-  }, [state, city, category]);
+  const { businesses } = useBusinessesInStateCityAndCategory(
+    state,
+    city,
+    category
+  );
 
   const BusinessesList = businesses.map((business) => (
     <div>

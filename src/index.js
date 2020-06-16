@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -7,20 +7,21 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { darkTheme, lightTheme } from './theme';
+import { AuthProvider } from './services/firebase';
 
 const Index = () => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  const theme = React.useMemo(
-    () => (prefersDarkMode ? darkTheme : lightTheme),
-    [prefersDarkMode]
-  );
+  const theme = useMemo(() => (prefersDarkMode ? darkTheme : lightTheme), [
+    prefersDarkMode,
+  ]);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <React.StrictMode>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </React.StrictMode>
     </ThemeProvider>
   );

@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getBusinessesInStateAndCity } from '../helpers/db';
-import { CategorySelector, Page } from '../components';
 import { Box, Typography } from '@material-ui/core';
+import { useBusinessesInStateAndCity } from '../helpers/db';
+import { CategorySelector, Page } from '../components';
 
 export const City = () => {
   const { state, city } = useParams();
   const [categories, setCategories] = useState([]);
+  const { businesses, loading } = useBusinessesInStateAndCity(state, city);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const results = await getBusinessesInStateAndCity(state, city);
-      setCategories([...new Set(results.map((r) => r.category_key))]);
-    };
-
-    fetchData();
-  }, [state, city]);
+    if (!loading) {
+      setCategories([...new Set(businesses.map((r) => r.category_key))]);
+    }
+  }, [businesses, loading]);
 
   return (
     <Page>
