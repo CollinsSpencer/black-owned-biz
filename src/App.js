@@ -12,6 +12,7 @@ import {
   City,
   // Home,
   SignIn,
+  Contact,
   // State,
   VerifySubmittedBiz,
 } from './containers';
@@ -39,6 +40,7 @@ function App() {
             component={VerifySubmittedBiz}
           ></PrivateRoute>
           <PublicRoute path='/signin' component={SignIn}></PublicRoute>
+          <PublicRoute path='/contact' component={Contact}></PublicRoute>
           <Route path='/:state/:city/:category' component={Category}></Route>
           <Route path='/:state/:city' component={City}></Route>
           <Route
