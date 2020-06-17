@@ -13,6 +13,7 @@ import {
 import { Page } from '../components';
 import { useBulkUpdateCategory } from '../helpers/db';
 import { categories } from '../helpers/constants';
+import { categoryToDisplayName } from '../helpers/utils';
 
 export const Admin = () => {
   const [oldCategoryKey, setOldCategoryKey] = useState('');
@@ -22,9 +23,7 @@ export const Admin = () => {
   console.log('bulk loading', loading);
 
   const handleSubmit = () => {
-    const newCategory = Object.values(categories).find(
-      (cat) => cat.key === newCategoryKey
-    ).name;
+    const newCategory = categoryToDisplayName(newCategoryKey);
     bulkUpdateCategory(oldCategoryKey, newCategoryKey, newCategory);
     setOldCategoryKey('');
     setNewCategoryKey('');

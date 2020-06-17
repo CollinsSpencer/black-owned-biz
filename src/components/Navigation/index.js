@@ -11,6 +11,11 @@ import {
 } from '@material-ui/core';
 import { AuthActions } from './AuthActions';
 import { ContactButton } from './ContactButton';
+import {
+  toDisplayName,
+  stateToDisplayName,
+  categoryToDisplayName,
+} from '../../helpers/utils';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -26,7 +31,7 @@ export const Navigation = ({ state, city, category }) => {
     CityBreadcrumb,
     CategoryBreadcrumb = null;
   if (state) {
-    StateBreadcrumb = <Typography>{state}</Typography>;
+    StateBreadcrumb = <Typography>{stateToDisplayName(state)}</Typography>;
   }
   if (city) {
     StateBreadcrumb = (
@@ -34,7 +39,7 @@ export const Navigation = ({ state, city, category }) => {
         {StateBreadcrumb}
       </Link>
     );
-    CityBreadcrumb = <Typography>{city}</Typography>;
+    CityBreadcrumb = <Typography>{toDisplayName(city)}</Typography>;
   }
   if (category) {
     CityBreadcrumb = (
@@ -42,7 +47,9 @@ export const Navigation = ({ state, city, category }) => {
         {CityBreadcrumb}
       </Link>
     );
-    CategoryBreadcrumb = <Typography>{category}</Typography>;
+    CategoryBreadcrumb = (
+      <Typography>{categoryToDisplayName(category)}</Typography>
+    );
   }
 
   return (
