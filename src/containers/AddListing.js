@@ -45,7 +45,7 @@ export const AddListing = () => {
   };
 
   const handleChange = (key) => (event) =>
-    setBusiness({ ...business, [key]: event.target.value.trim() });
+    setBusiness({ ...business, [key]: event.target.value });
   const handleAutocompleteChange = (key) => (event, newValue) =>
     setBusiness({ ...business, [key]: newValue });
 
