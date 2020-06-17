@@ -2,7 +2,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Link } from '@material-ui/core';
 
-export const Contact = () => {
+export const ContactButton = () => {
   return (
     <Button color='inherit'>
       <Link
