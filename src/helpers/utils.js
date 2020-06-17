@@ -16,7 +16,8 @@ export const toDisplayName = (key) => {
 
 export const stateToDisplayName = (stateAbbreviation) => {
   const abbreviation = stateAbbreviation.toUpperCase();
-  return abbreviation in states ? states[abbreviation] : abbreviation;
+  const state = states.find((s) => s.abbreviation === abbreviation);
+  return state ? state.name : abbreviation;
 };
 
 export const categoryToDisplayName = (categoryKey) => {

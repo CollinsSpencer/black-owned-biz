@@ -20,7 +20,7 @@ export const useBusinessesInState = (state) => {
         setLoading(true);
         await db
           .collection('businesses')
-          .where('state_key', '==', toKeyValue(state))
+          .where('state_key', '==', state.toLowerCase())
           .get()
           .then((snapshot) => {
             setBusinesses(
@@ -38,13 +38,15 @@ export const useBusinessesInState = (state) => {
 export const useBusinessesInStateAndCity = (state, city) => {
   const [loading, setLoading] = useState(false);
   const [businesses, setBusinesses] = useState([]);
+  console.log(state, city, toKeyValue(state), toKeyValue(city));
+
   useEffect(() => {
     const fetchData = async () => {
       if (state && city) {
         setLoading(true);
         await db
           .collection('businesses')
-          .where('state_key', '==', toKeyValue(state))
+          .where('state_key', '==', state.toLowerCase())
           .where('city_key', '==', toKeyValue(city))
           .get()
           .then((snapshot) => {
@@ -69,7 +71,7 @@ export const useBusinessesInStateCityAndCategory = (state, city, category) => {
         setLoading(true);
         await db
           .collection('businesses')
-          .where('state_key', '==', toKeyValue(state))
+          .where('state_key', '==', state.toLowerCase())
           .where('city_key', '==', toKeyValue(city))
           .where('category_key', '==', toKeyValue(category))
           .get()
@@ -88,9 +90,7 @@ export const useBusinessesInStateCityAndCategory = (state, city, category) => {
 
 export const useAddBusiness = () => {
   const [loading, setLoading] = useState(false);
-  console.log('add business hook');
   const addBusiness = useCallback(async (business) => {
-    console.log('add business callback', business);
     if (business) {
       setLoading(true);
       // name, description, address, city, state, phone, email, facebook, website, category
