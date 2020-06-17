@@ -55,7 +55,7 @@ export const Navigation = ({ state, city, category }) => {
   return (
     <AppBar color='transparent' position='static' elevation={0}>
       <Toolbar>
-        <Breadcrumbs>
+        <Breadcrumbs separator='&bull;' aria-label='breadcrumb'>
           <Link component={RouterLink} to='/'>
             <Typography variant='h5' className={classes.title} noWrap>
               BlackOwned.in
