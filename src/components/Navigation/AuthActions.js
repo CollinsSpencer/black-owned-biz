@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Link } from '@material-ui/core';
-import { auth, useAuthenticated } from '../helpers/auth';
+import { useAuth } from '../../helpers/auth';
 
 export const AuthActions = () => {
-  const { authenticated } = useAuthenticated();
+  const { signout, user } = useAuth();
 
-  if (authenticated) {
+  if (!!user) {
     return (
-      <Button onClick={() => auth.signOut()} underline='none'>
+      <Button onClick={() => signout()} underline='none'>
         Sign-out
       </Button>
     );

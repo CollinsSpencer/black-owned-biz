@@ -4,9 +4,11 @@ import { Container, ThemeProvider } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withThemes } from '@react-theming/storybook-addon';
-
-import { darkTheme, lightTheme } from '../src/theme';
 import StoryRouter from 'storybook-react-router';
+import { withKnobs } from '@storybook/addon-knobs';
+
+import { FakeAuthProvider } from './fake-firebase';
+import { darkTheme, lightTheme } from '../src/theme';
 
 const providerFn = ({ theme, children }) => {
   const serialTheme = JSON.parse(JSON.stringify(theme));
@@ -19,8 +21,14 @@ const providerFn = ({ theme, children }) => {
   );
 };
 
+const withAuth = () => (storyFn) => (
+  <FakeAuthProvider>{storyFn()}</FakeAuthProvider>
+);
+
 addDecorator(StoryRouter());
+addDecorator(withAuth());
 addDecorator(withThemes(null, [lightTheme, darkTheme], { providerFn }));
+addDecorator(withKnobs());
 addParameters({
   options: {
     panelPosition: 'right',

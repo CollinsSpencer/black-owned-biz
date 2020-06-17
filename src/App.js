@@ -8,6 +8,7 @@ import {
 import { PrivateRoute, PublicRoute } from './components';
 import {
   AddBizForm,
+  Admin,
   Category,
   City,
   Contact,
@@ -16,40 +17,43 @@ import {
   // State,
   VerifySubmittedBiz,
 } from './containers';
-import { useAuthenticated } from './helpers/auth';
+import { useAuth } from './helpers/auth';
+import { Box, CircularProgress, Typography } from '@material-ui/core';
 
 function App() {
-  const { loading } = useAuthenticated();
+  const { isAuthLoading } = useAuth();
 
-  return loading === true ? (
-    <div className='App'>
-      <h2>Loading...</h2>
-    </div>
+  return isAuthLoading ? (
+    <Box display='flex' justifyContent='center' alignItems='center' m={12}>
+      <Box mr={3}>
+        <CircularProgress />
+      </Box>
+      <Typography variant='h2'>Loading...</Typography>
+    </Box>
   ) : (
-    <div className='App'>
-      <Router>
-        <Switch>
-          <Route
-            exact
-            path='/'
-            component={() => <Redirect to={'/NE/Lincoln'} />}
-          ></Route>
-          <Route path='/add' component={AddBizForm}></Route>
-          <PrivateRoute
-            path='/verify'
-            component={VerifySubmittedBiz}
-          ></PrivateRoute>
-          <PublicRoute path='/signin' component={SignIn}></PublicRoute>
-          <PublicRoute path='/contact' component={Contact}></PublicRoute>
-          <Route path='/:state/:city/:category' component={Category}></Route>
-          <Route path='/:state/:city' component={City}></Route>
-          <Route
-            path='/:state'
-            component={() => <Redirect to={'/NE/Lincoln'} />}
-          ></Route>
-        </Switch>
-      </Router>
-    </div>
+    <Router>
+      <Switch>
+        <Route
+          exact
+          path='/'
+          component={() => <Redirect to={'/NE/Lincoln'} />}
+        ></Route>
+        <Route path='/add' component={AddBizForm}></Route>
+        <PrivateRoute path='/admin' component={Admin}></PrivateRoute>
+        <PrivateRoute
+          path='/verify'
+          component={VerifySubmittedBiz}
+        ></PrivateRoute>
+        <PublicRoute path='/signin' component={SignIn}></PublicRoute>
+        <Route path='/contact' component={Contact}></Route>
+        <Route path='/:state/:city/:category' component={Category}></Route>
+        <Route path='/:state/:city' component={City}></Route>
+        <Route
+          path='/:state'
+          component={() => <Redirect to={'/NE/Lincoln'} />}
+        ></Route>
+      </Switch>
+    </Router>
   );
 }
 

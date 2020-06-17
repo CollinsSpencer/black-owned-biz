@@ -1,6 +1,7 @@
 import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { auth, uiConfig } from '../helpers/auth';
+import { firebase } from '../services/firebase';
+import { uiConfig } from '../services/firebaseConfig';
 import { Page } from '../components';
 
 export const SignIn = () => {
@@ -8,7 +9,7 @@ export const SignIn = () => {
     <Page>
       <h2>Sign In to Add a Listing or Verify Black-Owned Businesses</h2>
 
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
     </Page>
   );
 };
