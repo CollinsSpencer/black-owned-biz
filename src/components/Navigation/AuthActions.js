@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
-import { Button, Link, Box } from '@material-ui/core';
+import { Box, Button, Link, ListItem, ListItemText } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { useAuth } from '../../helpers/auth';
+import { ListItemLink } from './ListItemLink';
 
-export const AuthActions = () => {
+export const AuthActionsButton = () => {
   const { signout, user } = useAuth();
   const { url } = useRouteMatch();
 
@@ -35,5 +36,24 @@ export const AuthActions = () => {
         </Button>
       </Box>
     );
+  }
+};
+
+export const AuthActionsListItem = () => {
+  const { signout, user } = useAuth();
+  const { url } = useRouteMatch();
+
+  if (url === '/signin') {
+    return null;
+  }
+
+  if (!!user) {
+    return (
+      <ListItem button onClick={() => signout()}>
+        <ListItemText primary='Sign out' />
+      </ListItem>
+    );
+  } else {
+    return <ListItemLink to='/signin' primary='Sign in' />;
   }
 };

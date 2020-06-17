@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Box, Typography } from '@material-ui/core';
 import { useBusinessesInStateAndCity } from '../helpers/db';
 import { CategorySelector, Page } from '../components';
+import { toDisplayName } from '../helpers/utils';
 
 export const City = () => {
   const { state, city } = useParams();
@@ -22,7 +23,7 @@ export const City = () => {
           Discover
         </Typography>
         <Typography variant='h3'>
-          Black-Owned Businesses in {city}, {state}
+          Black-Owned Businesses in {toDisplayName(city)}, {state.toUpperCase()}
         </Typography>
       </Box>
       <CategorySelector availableCategories={categories} />

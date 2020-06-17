@@ -20,7 +20,7 @@ import {
 import { useAuth } from './helpers/auth';
 import { Box, CircularProgress, Typography } from '@material-ui/core';
 
-function App() {
+const App = () => {
   const { isAuthLoading } = useAuth();
 
   return isAuthLoading ? (
@@ -55,6 +55,6 @@ function App() {
       </Switch>
     </Router>
   );
-}
+};
 
 export default App;

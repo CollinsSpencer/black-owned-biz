@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState, useMemo } from 'react';
 import { firebase } from '../services/firebase';
+import { toKeyValue } from './utils';
 
 const db = firebase.firestore();
 if (window.location.hostname === 'localhost') {
@@ -37,6 +38,7 @@ export const useBusinessesInState = (state) => {
 export const useBusinessesInStateAndCity = (state, city) => {
   const [loading, setLoading] = useState(false);
   const [businesses, setBusinesses] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       if (state && city) {
@@ -44,7 +46,7 @@ export const useBusinessesInStateAndCity = (state, city) => {
         await db
           .collection('businesses')
           .where('state_key', '==', state.toLowerCase())
-          .where('city_key', '==', city.toLowerCase())
+          .where('city_key', '==', toKeyValue(city))
           .get()
           .then((snapshot) => {
             setBusinesses(
@@ -69,8 +71,8 @@ export const useBusinessesInStateCityAndCategory = (state, city, category) => {
         await db
           .collection('businesses')
           .where('state_key', '==', state.toLowerCase())
-          .where('city_key', '==', city.toLowerCase())
-          .where('category_key', '==', category.toLowerCase())
+          .where('city_key', '==', toKeyValue(city))
+          .where('category_key', '==', toKeyValue(category))
           .get()
           .then((snapshot) => {
             setBusinesses(
@@ -92,11 +94,11 @@ export const useAddBusiness = () => {
       setLoading(true);
       // name, description, address, city, state, phone, email, facebook, website, category
       const payload = {
-        category_key: business.category.toLowerCase(),
-        city_key: business.city.toLowerCase(),
+        category_key: toKeyValue(business.category),
+        city_key: toKeyValue(business.city),
         created: timestamp.now(),
         lastUpdated: timestamp.now(),
-        state_key: business.state.toLowerCase(),
+        state_key: toKeyValue(business.state),
         ...business,
       };
       await db
@@ -119,13 +121,13 @@ export const useBulkUpdateCategory = () => {
           const writeBatchLimit = 500;
           var batch = db.batch();
           db.collection('businesses')
-            .where('category_key', '==', oldCategoryKey)
+            .where('category_key', '==', toKeyValue(oldCategoryKey))
             .limit(writeBatchLimit)
             .get()
             .then((snapshot) => {
               snapshot.docs.forEach((doc) =>
                 batch.update(doc.ref, {
-                  category_key: newCategoryKey,
+                  category_key: toKeyValue(newCategoryKey),
                   category: newCategory,
                 })
               );
