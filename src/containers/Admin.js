@@ -20,8 +20,6 @@ export const Admin = () => {
   const [newCategoryKey, setNewCategoryKey] = useState();
   const { bulkUpdateCategory, loading } = useBulkUpdateCategory();
 
-  console.log('bulk loading', loading);
-
   const handleSubmit = () => {
     const newCategory = categoryToDisplayName(newCategoryKey);
     bulkUpdateCategory(oldCategoryKey, newCategoryKey, newCategory);

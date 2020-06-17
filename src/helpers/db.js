@@ -38,7 +38,6 @@ export const useBusinessesInState = (state) => {
 export const useBusinessesInStateAndCity = (state, city) => {
   const [loading, setLoading] = useState(false);
   const [businesses, setBusinesses] = useState([]);
-  console.log(state, city, toKeyValue(state), toKeyValue(city));
 
   useEffect(() => {
     const fetchData = async () => {
