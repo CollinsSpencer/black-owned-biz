@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar,
-  Toolbar,
-  Breadcrumbs,
-  Typography,
-  Link,
   Box,
+  Hidden,
+  Link,
+  Toolbar,
+  Typography,
+  IconButton,
+  SwipeableDrawer,
+  List,
+  ListItem,
+  Divider,
 } from '@material-ui/core';
-import { AuthActions } from './AuthActions';
-import { ContactButton } from './ContactButton';
-
+import MenuIcon from '@material-ui/icons/Menu';
+import { AuthActionsButton, AuthActionsListItem } from './AuthActions';
+import { ContactButton, ContactListItem } from './Contact';
+import { RouteBreadcrumbs, RouteBreadcrumbListItems } from './RouteBreadcrumbs';
 const useStyles = makeStyles((theme) => ({
   title: {
     fontFamily: 'Heatwood',
@@ -21,47 +27,71 @@ const useStyles = makeStyles((theme) => ({
 
 export const Navigation = ({ state, city, category }) => {
   const classes = useStyles();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  let StateBreadcrumb,
-    CityBreadcrumb,
-    CategoryBreadcrumb = null;
-  if (state) {
-    StateBreadcrumb = <Typography>{state}</Typography>;
-  }
-  if (city) {
-    StateBreadcrumb = (
-      <Link component={RouterLink} to={`/${state}`}>
-        {StateBreadcrumb}
-      </Link>
-    );
-    CityBreadcrumb = <Typography>{city}</Typography>;
-  }
-  if (category) {
-    CityBreadcrumb = (
-      <Link component={RouterLink} to={`/${state}/${city}`}>
-        {CityBreadcrumb}
-      </Link>
-    );
-    CategoryBreadcrumb = <Typography>{category}</Typography>;
-  }
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   return (
-    <AppBar color='transparent' position='static' elevation={0}>
-      <Toolbar>
-        <Breadcrumbs>
+    <>
+      <AppBar color='transparent' position='static' elevation={0}>
+        <Toolbar>
           <Link component={RouterLink} to='/'>
             <Typography variant='h5' className={classes.title} noWrap>
               BlackOwned.in
             </Typography>
           </Link>
-          {StateBreadcrumb}
-          {CityBreadcrumb}
-          {CategoryBreadcrumb}
-        </Breadcrumbs>
-        <Box flexGrow={1}></Box>
-        <ContactButton />
-        <AuthActions />
-      </Toolbar>
-    </AppBar>
+          <Hidden smDown>
+            <Box ml={3}>
+              <RouteBreadcrumbs state={state} city={city} category={category} />
+            </Box>
+          </Hidden>
+          <Box flexGrow={1}></Box>
+          <Hidden smDown>
+            <ContactButton />
+            <AuthActionsButton />
+          </Hidden>
+          <Hidden mdUp>
+            <IconButton
+              color='inherit'
+              aria-label='open drawer'
+              edge='start'
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
+        </Toolbar>
+      </AppBar>
+      <Hidden mdUp>
+        <SwipeableDrawer
+          anchor={'right'}
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+        >
+          <Box width={240}>
+            <List>
+              <ListItem>
+                <Typography variant='h6'>BlackOwned.in</Typography>
+              </ListItem>
+              <Divider />
+              <RouteBreadcrumbListItems
+                state={state}
+                city={city}
+                category={category}
+              />
+              <Divider />
+              <ContactListItem />
+              <AuthActionsListItem />
+            </List>
+          </Box>
+        </SwipeableDrawer>
+      </Hidden>
+    </>
   );
 };

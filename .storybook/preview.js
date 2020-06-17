@@ -1,6 +1,6 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { Container, ThemeProvider } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withThemes } from '@react-theming/storybook-addon';
@@ -16,7 +16,7 @@ const providerFn = ({ theme, children }) => {
   return (
     <ThemeProvider theme={muTheme}>
       <CssBaseline />
-      <Container maxWidth='sm'>{children}</Container>
+      {children}
     </ThemeProvider>
   );
 };

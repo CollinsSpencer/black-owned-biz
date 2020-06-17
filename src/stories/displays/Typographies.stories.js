@@ -1,10 +1,10 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, Container } from '@material-ui/core';
 
 export default { title: 'Material-UI/Displays' };
 
 export const Typographies = () => (
-  <>
+  <Container maxWidth='sm'>
     <Typography variant='h1' component='h2' gutterBottom>
       h1. Heading
     </Typography>
@@ -52,5 +52,5 @@ export const Typographies = () => (
     <Typography variant='overline' display='block' gutterBottom>
       overline text
     </Typography>
-  </>
+  </Container>
 );
