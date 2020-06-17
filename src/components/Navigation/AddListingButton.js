@@ -1,24 +1,29 @@
 import React from 'react';
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
 import { Button, Link, Box } from '@material-ui/core';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-export const ContactButton = () => {
+export const AddListingButton = () => {
   const { url } = useRouteMatch();
 
-  if (url === '/contact') {
+  if (url === '/add') {
     return null;
   }
 
   return (
-    <Box ml={2}>
-      <Button color='inherit'>
+    <Box ml={3}>
+      <Button
+        variant='contained'
+        color='primary'
+        endIcon={<ChevronRightIcon />}
+      >
         <Link
           component={RouterLink}
-          to={`/contact`}
+          to={`/add`}
           color='inherit'
           underline='none'
         >
-          Contact
+          Add Listing
         </Link>
       </Button>
     </Box>

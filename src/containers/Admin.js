@@ -19,8 +19,6 @@ export const Admin = () => {
   const [newCategoryKey, setNewCategoryKey] = useState();
   const { bulkUpdateCategory, loading } = useBulkUpdateCategory();
 
-  console.log('bulk loading', loading);
-
   const handleSubmit = () => {
     const newCategory = Object.values(categories).find(
       (cat) => cat.key === newCategoryKey
@@ -61,7 +59,9 @@ export const Admin = () => {
               >
                 {categories &&
                   Object.values(categories).map((cat) => (
-                    <MenuItem value={cat.key}>{cat.name}</MenuItem>
+                    <MenuItem value={cat.key} key={cat.key}>
+                      {cat.name}
+                    </MenuItem>
                   ))}
               </Select>
             </Grid>

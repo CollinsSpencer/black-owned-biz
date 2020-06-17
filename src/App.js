@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { PrivateRoute, PublicRoute } from './components';
 import {
-  AddBizForm,
+  AddListing,
   Admin,
   Category,
   City,
@@ -38,7 +38,7 @@ function App() {
           path='/'
           component={() => <Redirect to={'/NE/Lincoln'} />}
         ></Route>
-        <Route path='/add' component={AddBizForm}></Route>
+        <Route path='/add' component={AddListing}></Route>
         <PrivateRoute path='/admin' component={Admin}></PrivateRoute>
         <PrivateRoute
           path='/verify'

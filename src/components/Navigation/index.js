@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import { AuthActions } from './AuthActions';
 import { ContactButton } from './ContactButton';
+import { AddListingButton } from './AddListingButton';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -61,6 +62,7 @@ export const Navigation = ({ state, city, category }) => {
         <Box flexGrow={1}></Box>
         <ContactButton />
         <AuthActions />
+        <AddListingButton />
       </Toolbar>
     </AppBar>
   );

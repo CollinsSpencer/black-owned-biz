@@ -87,9 +87,7 @@ export const useBusinessesInStateCityAndCategory = (state, city, category) => {
 
 export const useAddBusiness = () => {
   const [loading, setLoading] = useState(false);
-  console.log('add business hook');
   const addBusiness = useCallback(async (business) => {
-    console.log('add business callback', business);
     if (business) {
       setLoading(true);
       // name, description, address, city, state, phone, email, facebook, website, category

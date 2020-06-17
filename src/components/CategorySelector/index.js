@@ -17,7 +17,7 @@ export const CategorySelector = ({ availableCategories }) => {
   return (
     <Grid container spacing={1}>
       {categoriesList.map(({ Icon, key, name }) => (
-        <Grid item>
+        <Grid item key={key}>
           <Link component={RouterLink} to={`${url}/${key}`}>
             <SquareButton variant='contained' color='secondary'>
               <Box m={3} mb={1}>
