@@ -1,7 +1,6 @@
 import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import { firebase } from '../services/firebase';
 import { uiConfig } from '../services/firebaseConfig';
 import { Page } from '../components';
 

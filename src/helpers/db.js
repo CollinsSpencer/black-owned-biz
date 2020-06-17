@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import { firebase } from '../services/firebase';
 
 const db = firebase.firestore();
 if (window.location.hostname === 'localhost') {

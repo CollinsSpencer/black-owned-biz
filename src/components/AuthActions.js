@@ -4,11 +4,11 @@ import { Button, Link } from '@material-ui/core';
 import { useAuth } from '../helpers/auth';
 
 export const AuthActions = () => {
-  const { auth, user } = useAuth();
+  const { signout, user } = useAuth();
 
   if (!!user) {
     return (
-      <Button onClick={() => auth.signOut()} underline='none'>
+      <Button onClick={() => signout()} underline='none'>
         Sign-out
       </Button>
     );
