@@ -1,4 +1,4 @@
-import { AddBizForm } from './AddBizForm';
+import { AddListing } from './AddListing';
 import { Admin } from './Admin';
 import { Category } from './Category';
 import { City } from './City';
@@ -9,7 +9,7 @@ import { Contact } from './Contact';
 import { VerifySubmittedBiz } from './VerifySubmittedBiz';
 
 export {
-  AddBizForm,
+  AddListing,
   Admin,
   Category,
   City,

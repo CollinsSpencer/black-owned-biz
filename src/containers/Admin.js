@@ -58,7 +58,9 @@ export const Admin = () => {
               >
                 {categories &&
                   Object.values(categories).map((cat) => (
-                    <MenuItem value={cat.key}>{cat.name}</MenuItem>
+                    <MenuItem value={cat.key} key={cat.key}>
+                      {cat.name}
+                    </MenuItem>
                   ))}
               </Select>
             </Grid>

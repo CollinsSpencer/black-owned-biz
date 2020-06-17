@@ -9,15 +9,16 @@ import {
   Toolbar,
   Typography,
   IconButton,
-  SwipeableDrawer,
   List,
   ListItem,
   Divider,
+  Drawer,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { AuthActionsButton, AuthActionsListItem } from './AuthActions';
 import { ContactButton, ContactListItem } from './Contact';
 import { RouteBreadcrumbs, RouteBreadcrumbListItems } from './RouteBreadcrumbs';
+import { AddListingButton } from './AddListingButton';
 const useStyles = makeStyles((theme) => ({
   title: {
     fontFamily: 'Heatwood',
@@ -51,6 +52,7 @@ export const Navigation = ({ state, city, category }) => {
           <Hidden smDown>
             <ContactButton />
             <AuthActionsButton />
+            <AddListingButton ml={3} />
           </Hidden>
           <Hidden mdUp>
             <IconButton
@@ -66,7 +68,7 @@ export const Navigation = ({ state, city, category }) => {
         </Toolbar>
       </AppBar>
       <Hidden mdUp>
-        <SwipeableDrawer
+        <Drawer
           anchor={'right'}
           open={mobileOpen}
           onClose={handleDrawerToggle}
@@ -88,9 +90,12 @@ export const Navigation = ({ state, city, category }) => {
               <Divider />
               <ContactListItem />
               <AuthActionsListItem />
+              <ListItem>
+                <AddListingButton width={1} />
+              </ListItem>
             </List>
           </Box>
-        </SwipeableDrawer>
+        </Drawer>
       </Hidden>
     </>
   );

@@ -1,34 +1,51 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { Button, ListItem, ListItemText } from '@material-ui/core';
+import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
+import { Box, Button, Link, ListItem, ListItemText } from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { useAuth } from '../../helpers/auth';
 import { ListItemLink } from './ListItemLink';
 
 export const AuthActionsButton = () => {
   const { signout, user } = useAuth();
+  const { url } = useRouteMatch();
+
+  if (url === '/signin') {
+    return null;
+  }
 
   if (!!user) {
     return (
-      <Button onClick={() => signout()} underline='none'>
-        Sign-out
-      </Button>
+      <Box ml={2}>
+        <Button onClick={() => signout()} underline='none'>
+          Sign-out
+        </Button>
+      </Box>
     );
   } else {
     return (
-      <Button
-        component={RouterLink}
-        to={`/signin`}
-        color='inherit'
-        underline='none'
-      >
-        Sign in
-      </Button>
+      <Box ml={2}>
+        <Button color='inherit' startIcon={<AccountCircleIcon />}>
+          <Link
+            component={RouterLink}
+            to={`/signin`}
+            color='inherit'
+            underline='none'
+          >
+            Sign in
+          </Link>
+        </Button>
+      </Box>
     );
   }
 };
 
 export const AuthActionsListItem = () => {
   const { signout, user } = useAuth();
+  const { url } = useRouteMatch();
+
+  if (url === '/signin') {
+    return null;
+  }
 
   if (!!user) {
     return (

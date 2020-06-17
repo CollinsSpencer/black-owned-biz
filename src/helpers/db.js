@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useState, useMemo } from 'react';
 import { firebase } from '../services/firebase';
-import { toKeyValue } from './utils';
+import {
+  categoryToDisplayName,
+  stateToDisplayName,
+  toDisplayName,
+  toKeyValue,
+} from './utils';
 
 const db = firebase.firestore();
 if (window.location.hostname === 'localhost') {
@@ -94,11 +99,15 @@ export const useAddBusiness = () => {
       setLoading(true);
       // name, description, address, city, state, phone, email, facebook, website, category
       const payload = {
+        category: categoryToDisplayName(business.category),
         category_key: toKeyValue(business.category),
+        city: toDisplayName(business.city),
         city_key: toKeyValue(business.city),
         created: timestamp.now(),
         lastUpdated: timestamp.now(),
-        state_key: toKeyValue(business.state),
+        state: stateToDisplayName(business.state),
+        state_key: business.state.toLowerCase(),
+
         ...business,
       };
       await db
