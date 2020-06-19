@@ -12,13 +12,13 @@ export const categories = {
   food_and_drink: {
     name: 'Food and Drink',
     key: 'food_and_drink',
-    imagePath: Assets.categoryBeauty,
+    imagePath: Assets.categoryRestaurants,
     Icon: (props) => <LocalDiningIcon {...props} />,
   },
   nonprofits: {
     name: 'Nonprofits',
     key: 'nonprofits',
-    imagePath: Assets.categoryBeauty,
+    imagePath: Assets.categoryNonprofits,
     Icon: (props) => (
       <SvgIcon {...props}>
         <FontAwesomeIcon icon={faHandHoldingHeart} />
@@ -28,13 +28,13 @@ export const categories = {
   retail: {
     name: 'Retail',
     key: 'retail',
-    imagePath: Assets.categoryBeauty,
+    imagePath: Assets.categoryRetail,
     Icon: (props) => <LocalOfferIcon {...props} />,
   },
   services: {
     name: 'Services',
     key: 'services',
-    imagePath: Assets.categoryBeauty,
+    imagePath: Assets.categoryServices,
     Icon: (props) => <EmojiPeopleIcon {...props} />,
   },
 };
