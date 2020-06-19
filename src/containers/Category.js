@@ -12,11 +12,13 @@ export const Category = () => {
     category
   );
 
-  const BusinessesList = businesses.map((business) => (
-    <Box m={4}>
-      <BusinessInfoCard business={business} />
-    </Box>
-  ));
+  const BusinessesList = businesses
+    .sort((a, b) => (a.name > b.name ? 1 : -1))
+    .map((business) => (
+      <Box m={4}>
+        <BusinessInfoCard business={business} />
+      </Box>
+    ));
 
   return <Page>{BusinessesList}</Page>;
 };
