@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Grid } from '@material-ui/core';
 import { Page } from '../components';
-import Picture from '../maryellens.jpg';
+import Assets from '../assets';
 
 export const Contact = () => {
   return (
@@ -16,7 +16,7 @@ export const Contact = () => {
           </Grid>
           <Grid item xs={12} sm={7}>
             <img
-              src={Picture}
+              src={Assets.contactBanner}
               alt="Mary Ellen's Food Truck"
               style={{ width: '100%' }}
             />
