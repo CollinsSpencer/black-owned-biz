@@ -13,6 +13,8 @@
     border-radius: 10px 10px 0 0;
     background: pink;
     color: white;
+    background-size: cover;
+    background-position: center;
 }
 
 /* TODO: Standardize color scheme */

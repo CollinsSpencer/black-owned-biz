@@ -5,17 +5,20 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
+import Assets from '../assets';
 
 // NOTE: category index and category.key must be identical
 export const categories = {
   food_and_drink: {
     name: 'Food and Drink',
     key: 'food_and_drink',
+    imagePath: Assets.categoryBeauty,
     Icon: (props) => <LocalDiningIcon {...props} />,
   },
   nonprofits: {
     name: 'Nonprofits',
     key: 'nonprofits',
+    imagePath: Assets.categoryBeauty,
     Icon: (props) => (
       <SvgIcon {...props}>
         <FontAwesomeIcon icon={faHandHoldingHeart} />
@@ -25,11 +28,13 @@ export const categories = {
   retail: {
     name: 'Retail',
     key: 'retail',
+    imagePath: Assets.categoryBeauty,
     Icon: (props) => <LocalOfferIcon {...props} />,
   },
   services: {
     name: 'Services',
     key: 'services',
+    imagePath: Assets.categoryBeauty,
     Icon: (props) => <EmojiPeopleIcon {...props} />,
   },
 };

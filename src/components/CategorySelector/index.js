@@ -7,11 +7,11 @@ import { CategoryButton } from '../CategoryButton/index';
 
 export const CategorySelector = ({ availableCategories }) => {
   const { url } = useRouteMatch();
-  const categoriesList = availableCategories.map(name => categories[name]);
+  const categoriesList = availableCategories.sort().map(name => categories[name]);
 
   return (
     <Grid container spacing={1}>
-      {categoriesList.map(({ Icon, key, name }) => (
+      {categoriesList.map(({ Icon, key, name, imagePath }) => (
         <Grid item key={key}>
           <Link component={RouterLink} to={`${url}/${key}`}>
             {/* TODO: Replace SquareButton with CategoryButton */}
@@ -22,7 +22,7 @@ export const CategorySelector = ({ availableCategories }) => {
               <Typography variant='h6'>{name}</Typography>
             </SquareButton> */}
 
-            <CategoryButton IconComponent={Icon} name={name} />
+            <CategoryButton IconComponent={Icon} name={name} imagePath={imagePath} />
           </Link>
         </Grid>
       ))}
