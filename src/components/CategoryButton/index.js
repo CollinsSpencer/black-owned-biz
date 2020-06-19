@@ -2,7 +2,7 @@ import React from 'react';
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
 import { Link, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     categoryButton: {
         display: 'flex',
         flexDirection: 'column',
@@ -15,8 +15,8 @@ const useStyles = makeStyles(() => ({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: '10px 10px 0 0',
-        background: '#231F20',
-        color: 'white',
+        background: theme.palette.common.black,
+        color: theme.palette.common.white,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundImage: props => `url('${props.imagePath}')`
@@ -29,8 +29,8 @@ const useStyles = makeStyles(() => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        background: '#231F20',
-        color: '#FDF7EB',
+        background: theme.palette.common.black,
+        color: theme.palette.common.white,
         borderRadius: '0 0 10px 10px',
         fontSize: '16px'
     }
