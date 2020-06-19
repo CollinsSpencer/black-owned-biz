@@ -18,7 +18,11 @@ export const AuthProvider = ({ children }) => {
 
 export const AnalyticsProvider = ({ children }) => {
   const log = useAnalytics();
-  return <AnalyticsContext.Provider value={log}>{children}</AnalyticsContext.Provider>;
+  return (
+    <AnalyticsContext.Provider value={log}>
+      {children}
+    </AnalyticsContext.Provider>
+  );
 };
 
 // adapted from https://usehooks.com/useAuth/
@@ -64,7 +68,7 @@ function useProvideAuth() {
 function useAnalytics() {
   const logEvent = (eventName) => {
     firebase.analytics().logEvent(eventName);
-  }
+  };
 
   return { logEvent };
 }
