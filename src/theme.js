@@ -36,6 +36,7 @@ const theme = {
   },
 };
 
+// TODO: Make a dark theme
 export const darkTheme = responsiveFontSizes(
   createMuiTheme({
     ...theme,

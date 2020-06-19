@@ -1,20 +1,54 @@
 import React from 'react';
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
-import { Link } from '@material-ui/core';
-import './style.css';
+import { Link, makeStyles } from '@material-ui/core';
 
-// TODO: Figure out if Button can be incorporated here
+const useStyles = makeStyles(() => ({
+    categoryButton: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '512px',
+        height: '256px'
+    },
+    categoryButtonImage: {
+        height: '192px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: '10px 10px 0 0',
+        background: '#231F20',
+        color: 'white',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundImage: props => `url('${props.imagePath}')`
+    },
+    categoryButtonIcon: {
+        fontSize: '96px'
+    },
+    categoryButtonLabel: {
+        height: '64px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: '#231F20',
+        color: '#FDF7EB',
+        borderRadius: '0 0 10px 10px',
+        fontSize: '16px'
+    }
+}));
+
+// TODO: Add hover styles
 export const CategoryButton = (props) => {
-    const { IconComponent, name, imagePath, code } = props;
+    const { IconComponent, name, code } = props;
+    const style = useStyles(props);
     const { url } = useRouteMatch();
 
     return (
         <Link component={RouterLink} to={`${url}/${code}`}>
-            <div className='category-button'>
-                <div className='category-button-image' style={{ backgroundImage: `url('${imagePath}')` }}>
-                    <IconComponent style={{ fontSize: 96 }} />
+            <div className={style.categoryButton}>
+                <div className={style.categoryButtonImage}>
+                    <IconComponent className={style.categoryButtonIcon} />
                 </div>
-                <div className='category-button-label'>
+                <div className={style.categoryButtonLabel}>
                     {name.toUpperCase()}
                 </div>
             </div>
