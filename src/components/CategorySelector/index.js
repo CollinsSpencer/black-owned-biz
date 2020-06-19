@@ -14,14 +14,6 @@ export const CategorySelector = ({ availableCategories }) => {
       {categoriesList.map(({ Icon, key, name, imagePath }) => (
         <Grid item key={key}>
           <Link component={RouterLink} to={`${url}/${key}`}>
-            {/* TODO: Replace SquareButton with CategoryButton */}
-            {/* <SquareButton variant='contained' color='secondary'>
-              <Box m={3} mb={1}>
-                <Icon style={{ fontSize: 50 }} />
-              </Box>
-              <Typography variant='h6'>{name}</Typography>
-            </SquareButton> */}
-
             <CategoryButton IconComponent={Icon} name={name} imagePath={imagePath} />
           </Link>
         </Grid>
