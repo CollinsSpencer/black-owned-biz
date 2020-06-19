@@ -1,20 +1,13 @@
 import React from 'react';
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
-import { Box, Grid, Link, Typography } from '@material-ui/core';
+import { Grid, Link } from '@material-ui/core';
 import { categories } from '../../helpers/constants';
-import { SquareButton } from '../SquareButton';
 // TODO: Figure out how to better import CategoryButton
 import { CategoryButton } from '../CategoryButton/index';
 
 export const CategorySelector = ({ availableCategories }) => {
-  let { url } = useRouteMatch();
-
-  const categoriesList =
-    !!availableCategories && Array.isArray(availableCategories)
-      ? Object.values(categories).filter((c) =>
-          availableCategories.includes(c.key)
-        )
-      : Object.values(categories);
+  const { url } = useRouteMatch();
+  const categoriesList = availableCategories.map(name => categories[name]);
 
   return (
     <Grid container spacing={1}>

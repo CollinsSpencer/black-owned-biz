@@ -6,13 +6,14 @@ import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
 
+// NOTE: category index and category.key must be identical
 export const categories = {
-  FOOD_AND_DRINK: {
+  food_and_drink: {
     name: 'Food and Drink',
     key: 'food_and_drink',
     Icon: (props) => <LocalDiningIcon {...props} />,
   },
-  NON_PROFITS: {
+  nonprofits: {
     name: 'Nonprofits',
     key: 'nonprofits',
     Icon: (props) => (
@@ -21,12 +22,12 @@ export const categories = {
       </SvgIcon>
     ),
   },
-  RETAIL: {
+  retail: {
     name: 'Retail',
     key: 'retail',
     Icon: (props) => <LocalOfferIcon {...props} />,
   },
-  SERVICES: {
+  services: {
     name: 'Services',
     key: 'services',
     Icon: (props) => <EmojiPeopleIcon {...props} />,
