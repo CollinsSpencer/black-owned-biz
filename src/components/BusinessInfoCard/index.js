@@ -42,6 +42,7 @@ export const BusinessInfoCard = ({ business }) => {
             href={googleMapsSearchUrl}
             color='inherit'
             startIcon={<BusinessIcon />}
+            target='_blank'
           >
             {fullAddress}
           </Button>
@@ -58,6 +59,7 @@ export const BusinessInfoCard = ({ business }) => {
             href={phoneLink}
             color='inherit'
             startIcon={<PhoneIcon />}
+            target='_blank'
           >
             {phone}
           </Button>
@@ -74,6 +76,7 @@ export const BusinessInfoCard = ({ business }) => {
             href={emailLink}
             color='inherit'
             startIcon={<EmailIcon />}
+            target='_blank'
           >
             {email}
           </Button>
@@ -88,6 +91,7 @@ export const BusinessInfoCard = ({ business }) => {
           href={facebook}
           color='inherit'
           startIcon={<FacebookIcon />}
+          target='_blank'
         >
           Facebook
         </Button>
@@ -101,6 +105,7 @@ export const BusinessInfoCard = ({ business }) => {
           href={website}
           color='inherit'
           startIcon={<LinkIcon />}
+          target='_blank'
         >
           Website
         </Button>

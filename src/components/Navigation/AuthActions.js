@@ -22,20 +22,19 @@ export const AuthActionsButton = () => {
       </Box>
     );
   } else {
-    return (
-      <Box ml={2}>
-        <Button color='inherit' startIcon={<AccountCircleIcon />}>
-          <Link
-            component={RouterLink}
-            to={`/signin`}
-            color='inherit'
-            underline='none'
-          >
-            Sign in
-          </Link>
-        </Button>
-      </Box>
-    );
+    return null;
+    // <Box ml={2}>
+    //   <Button color='inherit' startIcon={<AccountCircleIcon />}>
+    //     <Link
+    //       component={RouterLink}
+    //       to={`/signin`}
+    //       color='inherit'
+    //       underline='none'
+    //     >
+    //       Sign in
+    //     </Link>
+    //   </Button>
+    // </Box>
   }
 };
 
@@ -54,6 +53,7 @@ export const AuthActionsListItem = () => {
       </ListItem>
     );
   } else {
-    return <ListItemLink to='/signin' primary='Sign in' />;
+    return null;
+    // return <ListItemLink to='/signin' primary='Sign in' />;
   }
 };

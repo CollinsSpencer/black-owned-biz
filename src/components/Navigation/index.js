@@ -52,7 +52,7 @@ export const Navigation = ({ state, city, category }) => {
           <Hidden smDown>
             <ContactButton />
             <AuthActionsButton />
-            <AddListingButton ml={3} />
+            {/* <AddListingButton ml={3} /> */}
           </Hidden>
           <Hidden mdUp>
             <IconButton
@@ -90,9 +90,9 @@ export const Navigation = ({ state, city, category }) => {
               <Divider />
               <ContactListItem />
               <AuthActionsListItem />
-              <ListItem>
+              {/* <ListItem>
                 <AddListingButton width={1} />
-              </ListItem>
+              </ListItem> */}
             </List>
           </Box>
         </Drawer>

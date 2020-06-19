@@ -39,7 +39,7 @@ const App = () => {
           component={() => <Redirect to={'/NE/Lincoln'} />}
         ></Route>
         <Route path='/add' component={AddListing}></Route>
-        <PrivateRoute path='/admin' component={Admin}></PrivateRoute>
+        {/* <PrivateRoute path='/admin' component={Admin}></PrivateRoute> */}
         <PrivateRoute
           path='/verify'
           component={VerifySubmittedBiz}
