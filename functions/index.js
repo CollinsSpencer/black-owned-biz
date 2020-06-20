@@ -6,7 +6,7 @@ global.db = admin.firestore();
 global.uuid = require('uuid');
 
 const businesses = require('./groups/businesses');
-const changes = require('');
+const changes = require('./groups/changes');
 
 const testAdd = 'Test';
 
