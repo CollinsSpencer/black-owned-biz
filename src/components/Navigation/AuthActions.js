@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
-import { Box, Button, Link, ListItem, ListItemText } from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { useRouteMatch } from 'react-router-dom';
+import { Box, Button, ListItem, ListItemText } from '@material-ui/core';
+// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { useAuth } from '../../helpers/auth';
-import { ListItemLink } from './ListItemLink';
+// import { ListItemLink } from './ListItemLink';
 
 export const AuthActionsButton = () => {
   const { signout, user } = useAuth();
