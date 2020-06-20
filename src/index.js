@@ -7,7 +7,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { darkTheme, lightTheme } from './theme';
-import { AuthProvider } from './services/firebase';
+import { AuthProvider, AnalyticsProvider } from './services/firebase';
 
 const Index = () => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -19,9 +19,11 @@ const Index = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <React.StrictMode>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
+        <AnalyticsProvider>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </AnalyticsProvider>
       </React.StrictMode>
     </ThemeProvider>
   );
