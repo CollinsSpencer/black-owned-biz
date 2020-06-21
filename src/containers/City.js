@@ -15,7 +15,7 @@ export const City = () => {
     }
   }, [businesses, loading]);
 
-  const title = `Explore ${toDisplayName(city)}, ${state.toUpperCase()}`;
+  const title = `Explore ${toDisplayName(city)}`;
   const subtitle = 'Check out black owned businesses near you';
   return (
     <DiscoveryPage title={title} subtitle={subtitle}>

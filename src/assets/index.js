@@ -4,6 +4,7 @@ import categoryServices from './boy-sitting-trimmed-by-man-holding-scissor-20907
 import categoryNonprofits from './group-of-people-standing-on-street-3607345.jpg';
 import categoryRetail from './photo-of-black-clothes-on-hangers-1036856.jpg';
 import contactBanner from './maryellens.jpg';
+import discoveryPageTitleBanner from './Discovery Title Graphic.svg';
 
 // TODO: Source images from remote source potentially maybe
 export default {
@@ -12,5 +13,6 @@ export default {
     categoryServices,
     categoryNonprofits,
     categoryRetail,
-    contactBanner
+    contactBanner,
+    discoveryPageTitleBanner
 };
