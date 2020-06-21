@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Typography } from '@material-ui/core';
 import { useBusinessesInStateAndCity } from '../helpers/db';
-import { CategorySelector, Page } from '../components';
+import { CategorySelector, DiscoveryPage } from '../components';
 import { toDisplayName } from '../helpers/utils';
 
 export const City = () => {
@@ -16,12 +15,11 @@ export const City = () => {
     }
   }, [businesses, loading]);
 
+  const title = `Explore ${toDisplayName(city)}, ${state.toUpperCase()}`;
+  const subtitle = 'Check out black owned businesses near you';
   return (
-    <Page>
-      <Box my={12}>
-        <Typography variant='h2'>Explore {toDisplayName(city)}, {state.toUpperCase()}</Typography>
-      </Box>
+    <DiscoveryPage title={title} subtitle={subtitle}>
       <CategorySelector availableCategories={categories} />
-    </Page>
+    </DiscoveryPage>
   );
 };

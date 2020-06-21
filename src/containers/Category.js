@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useBusinessesInStateCityAndCategory } from '../helpers/db';
-import { Page, BusinessInfoCard } from '../components';
-import { Grid, Typography } from '@material-ui/core';
+import { DiscoveryPage, BusinessInfoCard } from '../components';
+import { Grid } from '@material-ui/core';
 
 export const Category = () => {
   const { state, city, category } = useParams();
@@ -13,14 +13,15 @@ export const Category = () => {
   );
   const businessList = businesses.sort((a, b) => (a.name > b.name ? 1 : -1));;
 
+  const title = 'Explore Restaurants';
+  const subtitle = 'From food trucks to five stars, check out what’s cooking in your area';
   return (
-    <Page>
+    <DiscoveryPage title={title} subtitle={subtitle}>
       <Grid container spacing={8}>
-        <Grid item><Typography variant='h2'>Explore Restaurants</Typography></Grid>
         {businessList.map(business => (
           <Grid item key={business.id}><BusinessInfoCard business={business} /></Grid>
         ))}
       </Grid>
-    </Page>
+    </DiscoveryPage>
   );
 };
