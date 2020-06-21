@@ -4,7 +4,6 @@ import { Link, makeStyles, Box, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     categoryButton: {
-        width: '512px',
         height: '256px'
     },
     categoryButtonImage: {

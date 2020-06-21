@@ -1,16 +1,15 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import { categories } from '../../helpers/constants';
-// TODO: Figure out how to better import CategoryButton
-import { CategoryButton } from '../CategoryButton/index';
+import { CategoryButton } from '../CategoryButton';
 
 export const CategorySelector = ({ availableCategories }) => {
   const categoriesList = availableCategories.sort().map(name => categories[name]);
 
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={2}>
       {categoriesList.map(({ Icon, name, imagePath, key }) => (
-        <Grid item key={key}>
+        <Grid item key={key} xs={12} sm={6} md={4}>
           <CategoryButton IconComponent={Icon} name={name} imagePath={imagePath} code={key} />
         </Grid>
       ))}

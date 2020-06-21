@@ -26,7 +26,7 @@ export const DiscoveryPage = (props) => {
     return (
         <>
             <Navigation {...params} />
-            <Container disableGutters>
+            <Container>
                 <Box my={12} className={style.discoveryPageTitle}>
                     <Typography variant='h1' align='center'>{props.title}</Typography>
                     <Typography variant='h6' align='center'>{props.subtitle}</Typography>
