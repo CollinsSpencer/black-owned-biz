@@ -1,19 +1,14 @@
 import React from 'react';
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
-import { Link, makeStyles } from '@material-ui/core';
+import { Link, makeStyles, Box, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     categoryButton: {
-        display: 'flex',
-        flexDirection: 'column',
         width: '512px',
         height: '256px'
     },
     categoryButtonImage: {
         height: '192px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         borderRadius: '10px 10px 0 0',
         background: theme.palette.common.black,
         color: theme.palette.common.white,
@@ -26,13 +21,9 @@ const useStyles = makeStyles((theme) => ({
     },
     categoryButtonLabel: {
         height: '64px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         background: theme.palette.common.black,
         color: theme.palette.common.white,
-        borderRadius: '0 0 10px 10px',
-        fontSize: '16px'
+        borderRadius: '0 0 10px 10px'
     }
 }));
 
@@ -42,16 +33,20 @@ export const CategoryButton = (props) => {
     const style = useStyles(props);
     const { url } = useRouteMatch();
 
+    // TODO: Incorporate these into a larger design system possibly maybe
+    const flexCol = { display: 'flex', flexDirection: 'column' };
+    const flexRowCC = { display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' };
+
     return (
         <Link component={RouterLink} to={`${url}/${code}`}>
-            <div className={style.categoryButton}>
-                <div className={style.categoryButtonImage}>
+            <Box { ...flexCol } className={style.categoryButton}>
+                <Box { ...flexRowCC } className={style.categoryButtonImage}>
                     <IconComponent className={style.categoryButtonIcon} />
-                </div>
-                <div className={style.categoryButtonLabel}>
-                    {name.toUpperCase()}
-                </div>
-            </div>
+                </Box>
+                <Box { ...flexRowCC } className={style.categoryButtonLabel}>
+                    <Typography variant='h6'>{name.toUpperCase()}</Typography>
+                </Box>
+            </Box>
         </Link>
     );
 };

@@ -25,7 +25,7 @@ const theme = {
     h3: { fontFamily: 'Geosans Light' },
     h4: { fontFamily: 'Geosans Light' },
     h5: { fontFamily: 'Geosans Light' },
-    h6: { fontFamily: 'Geosans Light' },
+    h6: { fontFamily: 'Geosans Light' }
   },
   overrides: {
     MuiCssBaseline: {

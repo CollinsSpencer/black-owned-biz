@@ -1,17 +1,10 @@
 import React from 'react';
-import { Button, Grid, Link, makeStyles } from '@material-ui/core';
+import { Button, Grid, Link, Typography } from '@material-ui/core';
 import BusinessIcon from '@material-ui/icons/Business';
 import EmailIcon from '@material-ui/icons/Email';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkIcon from '@material-ui/icons/Link';
 import PhoneIcon from '@material-ui/icons/Phone';
-
-const useStyles = makeStyles((theme) => ({
-  businessCardTitle: {
-    fontSize: '48px',
-    fontWeight: 'bold'
-  }
-}));
 
 export const BusinessInfoCard = (props) => {
   const {
@@ -25,7 +18,6 @@ export const BusinessInfoCard = (props) => {
     state,
     website,
   } = props.business;
-  const style = useStyles(props);
 
   const AddressButton = () => {
     const fullAddress = `${address} ${city}, ${state}`;
@@ -72,8 +64,8 @@ export const BusinessInfoCard = (props) => {
 
   return (
     <Grid container>
-      <Grid item className={style.businessCardTitle}>
-        {name}
+      <Grid item>
+        <Typography variant='h1'>{name}</Typography>
       </Grid>
       <Grid item container>
         <Grid item sm={6} xs={12}><AddressButton /></Grid>

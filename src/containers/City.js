@@ -19,12 +19,7 @@ export const City = () => {
   return (
     <Page>
       <Box my={12}>
-        <Typography variant='h2' style={{ fontWeight: 'bold' }}>
-          Discover
-        </Typography>
-        <Typography variant='h3'>
-          Black-Owned Businesses in {toDisplayName(city)}, {state.toUpperCase()}
-        </Typography>
+        <Typography variant='h2'>Explore {toDisplayName(city)}, {state.toUpperCase()}</Typography>
       </Box>
       <CategorySelector availableCategories={categories} />
     </Page>
