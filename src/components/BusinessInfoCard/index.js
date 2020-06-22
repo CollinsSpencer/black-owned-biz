@@ -17,7 +17,10 @@ export const BusinessInfoCard = (props) => {
     phone,
     state,
     website,
+    lastUpdated
   } = props.business;
+
+  console.log(new Date(props.business.lastUpdated.seconds * 1000).toLocaleDateString());
 
   const AddressButton = () => {
     const fullAddress = `${address} ${city}, ${state}`;
@@ -63,7 +66,10 @@ export const BusinessInfoCard = (props) => {
   );
 
   return (
-    <Grid container>
+    <Grid container direction='column'>
+      <Grid item>
+        <Typography variant='subtitle2'>Last Updated: {new Date(lastUpdated.seconds * 1000).toLocaleDateString()}</Typography>
+      </Grid>
       <Grid item>
         <Typography variant='h3'>{name}</Typography>
       </Grid>

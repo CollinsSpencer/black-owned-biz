@@ -44,6 +44,10 @@ const theme = {
       fontFamily: 'Roboto',
       fontWeight: 'bold'
     },
+    subtitle2: {
+      fontFamily: 'Roboto',
+      fontStyle: 'italic'
+    },
     body1: {
       fontFamily: 'Roboto'
     }
