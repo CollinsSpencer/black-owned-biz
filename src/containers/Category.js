@@ -14,10 +14,8 @@ export const Category = () => {
   );
   const businessList = businesses.sort((a, b) => (a.name > b.name ? 1 : -1));
 
-  const title = categories[category].name;
-  const subtitle = 'From food trucks to five stars, check out what’s cooking in your area';
   return (
-    <DiscoveryPage title={title} subtitle={subtitle}>
+    <DiscoveryPage title={categories[category].name} subtitle={categories[category].description}>
       <Grid container spacing={8}>
         {businessList.map(business => (
           <Grid item key={business.id}><BusinessInfoCard business={business} /></Grid>
