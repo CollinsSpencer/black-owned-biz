@@ -20,12 +20,33 @@ const theme = {
     },
   },
   typography: {
-    h1: { fontFamily: 'Heatwood', fontSize: '4rem', lineHeight: 2 },
-    h2: { fontFamily: 'Geosans Light' },
-    h3: { fontFamily: 'Geosans Light' },
-    h4: { fontFamily: 'Geosans Light' },
-    h5: { fontFamily: 'Geosans Light' },
-    h6: { fontFamily: 'Geosans Light' }
+    h1: {
+      fontFamily: 'Heatwood',
+      lineHeight: 2
+    },
+    h2: {
+      fontFamily: 'Heatwood',
+      lineHeight: 2
+    },
+    h3: {
+      fontFamily: 'Geosans Light'
+    },
+    h4: {
+      fontFamily: 'Geosans Light'
+    },
+    h5: {
+      fontFamily: 'Geosans Light'
+    },
+    h6: {
+      fontFamily: 'Geosans Light'
+    },
+    subtitle1: {
+      fontFamily: 'Roboto',
+      fontWeight: 'bold'
+    },
+    body1: {
+      fontFamily: 'Roboto'
+    }
   },
   overrides: {
     MuiCssBaseline: {

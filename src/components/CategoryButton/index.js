@@ -36,6 +36,7 @@ export const CategoryButton = (props) => {
     const flexCol = { display: 'flex', flexDirection: 'column' };
     const flexRowCC = { display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' };
 
+    // TODO: Look into making this a button element
     return (
         <Link component={RouterLink} to={`${url}/${code}`}>
             <Box { ...flexCol } className={style.categoryButton}>
@@ -43,7 +44,7 @@ export const CategoryButton = (props) => {
                     <IconComponent className={style.categoryButtonIcon} />
                 </Box>
                 <Box { ...flexRowCC } className={style.categoryButtonLabel}>
-                    <Typography variant='h6'>{name.toUpperCase()}</Typography>
+                    <Typography variant='button'>{name.toUpperCase()}</Typography>
                 </Box>
             </Box>
         </Link>

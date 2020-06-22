@@ -65,7 +65,7 @@ export const BusinessInfoCard = (props) => {
   return (
     <Grid container>
       <Grid item>
-        <Typography variant='h1'>{name}</Typography>
+        <Typography variant='h3'>{name}</Typography>
       </Grid>
       <Grid item container>
         <Grid item sm={6} xs={12}><AddressButton /></Grid>
@@ -75,7 +75,7 @@ export const BusinessInfoCard = (props) => {
         <Grid item sm={6} xs={12}><WebsiteButton /></Grid>
       </Grid>
       <Grid item>
-        {description ? description : 'No description provided'}
+        <Typography variant='body1'>{description ? description : 'No description provided'}</Typography>
       </Grid>
     </Grid>
   )

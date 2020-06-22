@@ -28,8 +28,8 @@ export const DiscoveryPage = (props) => {
             <Navigation {...params} />
             <Container>
                 <Box my={12} className={style.discoveryPageTitle}>
-                    <Typography variant='h1' align='center'>{props.title}</Typography>
-                    <Typography variant='h6' align='center'>{props.subtitle}</Typography>
+                    <Typography variant='h2' align='center'>{props.title}</Typography>
+                    <Typography variant='subtitle1' align='center'>{props.subtitle}</Typography>
                 </Box>
                 {props.children}
             </Container>
