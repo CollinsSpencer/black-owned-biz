@@ -1,22 +1,17 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { darkTheme, lightTheme } from './theme';
+import { lightTheme } from './theme';
 import { AuthProvider, AnalyticsProvider } from './services/firebase';
 
 const Index = () => {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const theme = useMemo(() => (prefersDarkMode ? darkTheme : lightTheme), [
-    prefersDarkMode,
-  ]);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={lightTheme}>
       <CssBaseline />
       <React.StrictMode>
         <AnalyticsProvider>

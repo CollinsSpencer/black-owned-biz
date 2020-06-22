@@ -20,8 +20,6 @@ export const BusinessInfoCard = (props) => {
     lastUpdated
   } = props.business;
 
-  console.log(new Date(props.business.lastUpdated.seconds * 1000).toLocaleDateString());
-
   const AddressButton = () => {
     const fullAddress = `${address} ${city}, ${state}`;
     const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`;
@@ -48,7 +46,7 @@ export const BusinessInfoCard = (props) => {
 
     return (
       <Button component={Link} href={emailLink} startIcon={<EmailIcon />} target='_blank' disabled={!email}>
-        {email ? email : 'No email provided'}
+        {email ? 'Email' : 'No email provided'}
       </Button>
     );
   };
@@ -61,7 +59,7 @@ export const BusinessInfoCard = (props) => {
 
   const WebsiteButton = () => (
     <Button component={Link} href={website} startIcon={<LinkIcon />} target='_blank' disabled={!website}>
-      {website ? website : 'No website provided'}
+      {website ? 'Website' : 'No website provided'}
     </Button>
   );
 

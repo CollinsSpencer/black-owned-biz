@@ -16,7 +16,7 @@ export const City = () => {
   }, [businesses, loading]);
 
   const title = `Explore ${toDisplayName(city)}`;
-  const subtitle = 'Check out black owned businesses near you';
+  const subtitle = 'Check out Black-owned businesses near you';
   return (
     <DiscoveryPage title={title} subtitle={subtitle}>
       <CategorySelector availableCategories={categories} />
