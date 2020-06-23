@@ -16,7 +16,7 @@ const theme = {
       main: '#B6862C',
     },
     secondary: {
-      main: '#053834',
+      main: '#231F20',
     },
   },
   typography: {
@@ -51,6 +51,9 @@ const theme = {
     body1: {
       fontFamily: 'Roboto'
     }
+  },
+  shape: {
+    borderRadius: 8
   },
   overrides: {
     MuiCssBaseline: {

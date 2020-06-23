@@ -1,32 +1,22 @@
 import React from 'react';
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
-import { Link, makeStyles, Box, Typography } from '@material-ui/core';
+import { makeStyles, Box, Typography, Button } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     categoryButton: {
-        height: '256px'
+        padding: 0,
+        overflow: 'hidden'
     },
     categoryButtonImage: {
-        height: '192px',
-        borderRadius: '10px 10px 0 0',
-        background: theme.palette.common.black,
-        color: theme.palette.common.white,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundImage: props => `url('${props.imagePath}')`
     },
     categoryButtonIcon: {
-        fontSize: '96px'
-    },
-    categoryButtonLabel: {
-        height: '64px',
-        background: theme.palette.common.black,
-        color: theme.palette.common.white,
-        borderRadius: '0 0 10px 10px'
+        fontSize: '6rem'
     }
 }));
 
-// TODO: Add hover styles
 export const CategoryButton = (props) => {
     const { IconComponent, name, code } = props;
     const style = useStyles(props);
@@ -37,15 +27,15 @@ export const CategoryButton = (props) => {
     const flexRowCC = { display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' };
 
     return (
-        <Link component={RouterLink} to={`${url}/${code}`}>
-            <Box { ...flexCol } className={style.categoryButton}>
-                <Box { ...flexRowCC } className={style.categoryButtonImage}>
+        <Button component={RouterLink} to={`${url}/${code}`} fullWidth variant='contained' color='secondary' className={style.categoryButton}>
+            <Box { ...flexCol } flexGrow={1} overflow='hidden' height='256px'>
+                <Box { ...flexRowCC } flexGrow={3} className={style.categoryButtonImage}>
                     <IconComponent className={style.categoryButtonIcon} />
                 </Box>
-                <Box { ...flexRowCC } className={style.categoryButtonLabel}>
+                <Box { ...flexRowCC } flexGrow={1}>
                     <Typography variant='button'>{name.toUpperCase()}</Typography>
                 </Box>
             </Box>
-        </Link>
+        </Button>
     );
 };

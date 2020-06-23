@@ -7,7 +7,7 @@ export const CategorySelector = ({ availableCategories }) => {
   const categoriesList = availableCategories.sort().map(name => categories[name]);
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={1}>
       {categoriesList.map(({ Icon, name, imagePath, key }) => (
         <Grid item key={key} xs={12} sm={6} md={4}>
           <CategoryButton IconComponent={Icon} name={name} imagePath={imagePath} code={key} />
