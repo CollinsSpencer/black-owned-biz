@@ -12,7 +12,7 @@ export const Category = () => {
     city,
     category
   );
-  const businessList = businesses.sort((a, b) => (a.name > b.name ? 1 : -1));
+  const businessList = businesses.sort((a, b) => a.name < b.name ? -1 : 1);
 
   return (
     <DiscoveryPage title={categories[category].name} subtitle={categories[category].description}>

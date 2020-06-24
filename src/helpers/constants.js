@@ -13,7 +13,7 @@ export const categories = {
     name: 'Food and Drink',
     key: 'food_and_drink',
     imagePath: Assets.categoryRestaurants,
-    decsription: 'From food trucks to five stars, check out what\'s cooking in your area',
+    description: 'From food trucks to five stars, check out what\'s cooking in your area',
     Icon: (props) => <LocalDiningIcon {...props} />,
   },
   nonprofits: {

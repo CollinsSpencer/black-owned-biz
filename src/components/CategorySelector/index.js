@@ -4,7 +4,7 @@ import { categories } from '../../helpers/constants';
 import { CategoryButton } from '../CategoryButton';
 
 export const CategorySelector = ({ availableCategories }) => {
-  const categoriesList = availableCategories.sort().map(name => categories[name]);
+  const categoriesList = (availableCategories ?? []).sort().map(name => categories[name]);
 
   return (
     <Grid container spacing={1}>

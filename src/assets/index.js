@@ -8,11 +8,11 @@ import discoveryPageTitleBanner from './Discovery Title Graphic.svg';
 
 // TODO: Source images from remote source potentially maybe
 export default {
-    categoryBeauty,
-    categoryRestaurants,
-    categoryServices,
-    categoryNonprofits,
-    categoryRetail,
-    contactBanner,
-    discoveryPageTitleBanner
+  categoryBeauty,
+  categoryRestaurants,
+  categoryServices,
+  categoryNonprofits,
+  categoryRetail,
+  contactBanner,
+  discoveryPageTitleBanner
 };
