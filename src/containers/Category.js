@@ -18,7 +18,7 @@ export const Category = () => {
     <DiscoveryPage title={categories[category].name} subtitle={categories[category].description}>
       <Grid container spacing={8}>
         {businessList.map(business => (
-          <Grid item key={business.id}><BusinessInfoCard business={business} /></Grid>
+          <Grid item key={business.id} xs={12} md={6}><BusinessInfoCard business={business} /></Grid>
         ))}
       </Grid>
     </DiscoveryPage>

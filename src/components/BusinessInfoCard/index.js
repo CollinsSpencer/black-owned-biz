@@ -24,44 +24,35 @@ export const BusinessInfoCard = (props) => {
     const fullAddress = `${address} ${city}, ${state}`;
     const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`;
 
-    return (
-      <Button component={Link} href={url} startIcon={<BusinessIcon />} target='_blank' disabled={!address}>
-        {address ? fullAddress : 'No address provided'}
-      </Button>
-    );
+    return address
+      ? <Button component={Link} href={url} startIcon={<BusinessIcon />} target='_blank'>{address}</Button>
+      : <></>;
   };
 
   const PhoneButton = () => {
     const phoneLink = `tel:${phone}`;
-
-    return (
-      <Button component={Link} href={phoneLink} startIcon={<PhoneIcon />} target='_blank' disabled={!phone}>
-        {phone ? phone : 'No phone number provided'}
-      </Button>
-    );
+    return phone
+      ? <Button component={Link} href={phoneLink} startIcon={<PhoneIcon />} target='_blank'>{phone}</Button>
+      : <></>;
   };
 
   const EmailButton = () => {
-    const emailLink = `mailto:${email}`;
-
-    return (
-      <Button component={Link} href={emailLink} startIcon={<EmailIcon />} target='_blank' disabled={!email}>
-        {email ? 'Email' : 'No email provided'}
-      </Button>
-    );
+    return email
+      ? <Button component={Link} href={`mailto:${email}`} startIcon={<EmailIcon />} target='_blank'>Email</Button>
+      : <></>;
   };
 
-  const FacebookButton = () => (
-    <Button component={Link} href={facebook} startIcon={<FacebookIcon />} target='_blank' disabled={!facebook}>
-      {facebook ? 'Facebook profile' : 'No Facebook profile provided'}
-    </Button>
-  );
+  const FacebookButton = () => {
+    return facebook
+      ? <Button component={Link} href={facebook} startIcon={<FacebookIcon />} target='_blank'>Facebook profile</Button>
+      : <></>;
+  };
 
-  const WebsiteButton = () => (
-    <Button component={Link} href={website} startIcon={<LinkIcon />} target='_blank' disabled={!website}>
-      {website ? 'Website' : 'No website provided'}
-    </Button>
-  );
+  const WebsiteButton = () => {
+    return website
+      ? <Button component={Link} href={website} startIcon={<LinkIcon />} target='_blank'>Website</Button>
+      : <></>;
+  };
 
   return (
     <Grid container direction='column'>
@@ -72,15 +63,15 @@ export const BusinessInfoCard = (props) => {
         <Typography variant='h3'>{name}</Typography>
       </Grid>
       <Grid item container>
-        <Grid item sm={6} xs={12}><AddressButton /></Grid>
-        <Grid item sm={6} xs={12}><PhoneButton /></Grid>
-        <Grid item sm={6} xs={12}><EmailButton /></Grid>
-        <Grid item sm={6} xs={12}><FacebookButton /></Grid>
-        <Grid item sm={6} xs={12}><WebsiteButton /></Grid>
+        <Grid item xs={12}><AddressButton /></Grid>
+        <Grid item xs={12}><PhoneButton /></Grid>
+        <Grid item xs={12}><EmailButton /></Grid>
+        <Grid item xs={12}><FacebookButton /></Grid>
+        <Grid item xs={12}><WebsiteButton /></Grid>
       </Grid>
-      <Grid item>
-        <Typography variant='body1'>{description ? description : 'No description provided'}</Typography>
-      </Grid>
+      {description && <Grid item>
+        <Typography variant='body1'>{description}</Typography>
+      </Grid>}
     </Grid>
   )
 };
