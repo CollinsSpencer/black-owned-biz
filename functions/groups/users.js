@@ -5,6 +5,7 @@
  *  cities: [city1, city2] -> Shows what cities they can moderate. Most granulate
  *  states: [NE, IA] -> Shows what states they can moderate. Can do whole state if this is listed
  *  change_history: Future link to all their change approves and deletes.
+ *  other_info: We might want to add other info, like name etc, but that isn't necessary to start
  * }
  */
 
