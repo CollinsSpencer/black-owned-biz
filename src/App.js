@@ -8,7 +8,7 @@ import {
 import { PrivateRoute, PublicRoute } from './components';
 import {
   AddListing,
-  Admin,
+  // Admin,
   Category,
   City,
   Contact,

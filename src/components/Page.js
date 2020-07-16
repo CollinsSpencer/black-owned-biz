@@ -9,7 +9,7 @@ export const Page = ({ children }) => {
   return (
     <>
       <Navigation {...params} />
-      <Container>{children}</Container>
+      <Container disableGutters>{children}</Container>
       {/* footer */}
     </>
   );

@@ -5,30 +5,40 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
+import Assets from '../assets';
 
+// NOTE: category index and category.key must be identical
 export const categories = {
-  FOOD_AND_DRINK: {
+  food_and_drink: {
     name: 'Food and Drink',
     key: 'food_and_drink',
+    imagePath: Assets.categoryRestaurants,
+    description: 'From food trucks to five stars, check out what\'s cooking in your area',
     Icon: (props) => <LocalDiningIcon {...props} />,
   },
-  NON_PROFITS: {
+  nonprofits: {
     name: 'Nonprofits',
     key: 'nonprofits',
+    imagePath: Assets.categoryNonprofits,
+    description: 'Give back to your community through service and outreach',
     Icon: (props) => (
       <SvgIcon {...props}>
         <FontAwesomeIcon icon={faHandHoldingHeart} />
       </SvgIcon>
     ),
   },
-  RETAIL: {
+  retail: {
     name: 'Retail',
     key: 'retail',
+    imagePath: Assets.categoryRetail,
+    description: 'Find the best places to shop within a few blocks',
     Icon: (props) => <LocalOfferIcon {...props} />,
   },
-  SERVICES: {
+  services: {
     name: 'Services',
     key: 'services',
+    imagePath: Assets.categoryServices,
+    description: 'Whether you need a haircut, an oil change, or financial consulting, we are at your service',
     Icon: (props) => <EmojiPeopleIcon {...props} />,
   },
 };

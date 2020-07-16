@@ -7,6 +7,7 @@ import { Page } from './Page';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import { UnitedStatesMap } from './UnitedStatesMap';
+import { DiscoveryPage } from './DiscoveryPage';
 
 export {
   AddListingForm,
@@ -18,4 +19,5 @@ export {
   PrivateRoute,
   PublicRoute,
   UnitedStatesMap,
+  DiscoveryPage
 };

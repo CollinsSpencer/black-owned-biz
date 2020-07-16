@@ -1,31 +1,16 @@
 import React from 'react';
-import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
-import { Box, Grid, Link, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { categories } from '../../helpers/constants';
-import { SquareButton } from '../SquareButton';
+import { CategoryButton } from '../CategoryButton';
 
 export const CategorySelector = ({ availableCategories }) => {
-  let { url } = useRouteMatch();
-
-  const categoriesList =
-    !!availableCategories && Array.isArray(availableCategories)
-      ? Object.values(categories).filter((c) =>
-          availableCategories.includes(c.key)
-        )
-      : Object.values(categories);
+  const categoriesList = (availableCategories ?? []).sort().map(name => categories[name]);
 
   return (
     <Grid container spacing={1}>
-      {categoriesList.map(({ Icon, key, name }) => (
-        <Grid item key={key}>
-          <Link component={RouterLink} to={`${url}/${key}`}>
-            <SquareButton variant='contained' color='secondary'>
-              <Box m={3} mb={1}>
-                <Icon style={{ fontSize: 50 }} />
-              </Box>
-              <Typography variant='h6'>{name}</Typography>
-            </SquareButton>
-          </Link>
+      {categoriesList.map(({ Icon, name, imagePath, key }) => (
+        <Grid item key={key} xs={12} sm={6} md={4}>
+          <CategoryButton IconComponent={Icon} name={name} imagePath={imagePath} code={key} />
         </Grid>
       ))}
     </Grid>
