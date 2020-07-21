@@ -9,7 +9,6 @@ import { lightTheme } from './theme';
 import { AuthProvider, AnalyticsProvider } from './services/firebase';
 
 const Index = () => {
-
   return (
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />

@@ -26,7 +26,7 @@ export const firebaseConfig = {
 // Documentation: https://github.com/firebase/firebaseui-web#configuration
 export const uiConfig = {
   callbacks: {
-    signInSuccessWithAuthResult: (authResult, redirectUrl) => {
+    signInSuccessWithAuthResult: () => {
       return false;
     },
   },

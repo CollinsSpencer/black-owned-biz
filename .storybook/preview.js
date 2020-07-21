@@ -7,7 +7,7 @@ import { withThemes } from '@react-theming/storybook-addon';
 import StoryRouter from 'storybook-react-router';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import { FakeAuthProvider } from './fake-firebase';
+import FakeAuthProvider from './fake-firebase';
 import { darkTheme, lightTheme } from '../src/theme';
 
 const providerFn = ({ theme, children }) => {

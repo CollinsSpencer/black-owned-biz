@@ -1,25 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 import {
-  Typography,
-  Link,
   Breadcrumbs,
+  Link,
   ListItem,
-  ListItemText,
   ListItemIcon,
+  ListItemText,
+  Typography,
 } from '@material-ui/core';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+
 import {
+  categoryToDisplayName,
   stateToDisplayName,
   toDisplayName,
-  categoryToDisplayName,
 } from '../../helpers/utils';
-import { ListItemLink } from './ListItemLink';
+import ListItemLink from './ListItemLink';
 
-export const RouteBreadcrumbs = ({ state, city, category }) => {
-  let StateBreadcrumb,
-    CityBreadcrumb,
-    CategoryBreadcrumb = null;
+const RouteBreadcrumbs = ({ state, city, category }) => {
+  let StateBreadcrumb;
+  let CityBreadcrumb;
+  let CategoryBreadcrumb = null;
   if (state) {
     StateBreadcrumb = <Typography>{stateToDisplayName(state)}</Typography>;
   }
@@ -43,7 +45,7 @@ export const RouteBreadcrumbs = ({ state, city, category }) => {
   }
 
   return (
-    <Breadcrumbs separator='&bull;' aria-label='breadcrumb'>
+    <Breadcrumbs separator="&bull;" aria-label="breadcrumb">
       {StateBreadcrumb}
       {CityBreadcrumb}
       {CategoryBreadcrumb}
@@ -51,10 +53,21 @@ export const RouteBreadcrumbs = ({ state, city, category }) => {
   );
 };
 
-export const RouteBreadcrumbListItems = ({ state, city, category }) => {
-  let StateListItem,
-    CityListItem,
-    CategoryListItem = null;
+RouteBreadcrumbs.propTypes = {
+  category: PropTypes.string,
+  city: PropTypes.string,
+  state: PropTypes.string,
+};
+RouteBreadcrumbs.defaultProps = {
+  category: null,
+  city: null,
+  state: null,
+};
+
+const RouteBreadcrumbListItems = ({ state, city, category }) => {
+  let StateListItem;
+  let CityListItem;
+  let CategoryListItem = null;
   if (state && !city) {
     StateListItem = (
       <ListItem>
@@ -101,3 +114,16 @@ export const RouteBreadcrumbListItems = ({ state, city, category }) => {
     </>
   );
 };
+
+RouteBreadcrumbListItems.propTypes = {
+  state: PropTypes.string,
+  city: PropTypes.string,
+  category: PropTypes.string,
+};
+RouteBreadcrumbListItems.defaultProps = {
+  state: null,
+  city: null,
+  category: null,
+};
+
+export { RouteBreadcrumbs, RouteBreadcrumbListItems };

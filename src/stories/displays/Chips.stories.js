@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
@@ -31,53 +32,53 @@ const NormalChips = () => {
 
   return (
     <div className={classes.root}>
-      <Chip label='Basic' />
-      <Chip label='Disabled' disabled />
+      <Chip label="Basic" />
+      <Chip label="Disabled" disabled />
       <Chip
         avatar={<Avatar>M</Avatar>}
-        label='Clickable'
+        label="Clickable"
         onClick={handleClick}
       />
       <Chip
-        avatar={<Avatar alt='Natacha' src='/static/images/avatar/1.jpg' />}
-        label='Deletable'
+        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
+        label="Deletable"
         onDelete={handleDelete}
       />
       <Chip
         icon={<FaceIcon />}
-        label='Clickable deletable'
+        label="Clickable deletable"
         onClick={handleClick}
         onDelete={handleDelete}
       />
       <Chip
-        label='Custom delete icon'
+        label="Custom delete icon"
         onClick={handleClick}
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
-      <Chip label='Clickable Link' component='a' href='#chip' clickable />
+      <Chip label="Clickable Link" component="a" href="#chip" clickable />
       <Chip
         avatar={<Avatar>M</Avatar>}
-        label='Primary clickable'
+        label="Primary clickable"
         clickable
-        color='primary'
+        color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
       <Chip
         icon={<FaceIcon />}
-        label='Primary clickable'
+        label="Primary clickable"
         clickable
-        color='primary'
+        color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
-      <Chip label='Deletable primary' onDelete={handleDelete} color='primary' />
+      <Chip label="Deletable primary" onDelete={handleDelete} color="primary" />
       <Chip
         icon={<FaceIcon />}
-        label='Deletable secondary'
+        label="Deletable secondary"
         onDelete={handleDelete}
-        color='secondary'
+        color="secondary"
       />
     </div>
   );
@@ -96,71 +97,71 @@ const OutlinedChips = () => {
 
   return (
     <div className={classes.root}>
-      <Chip label='Basic' variant='outlined' />
-      <Chip label='Disabled' disabled variant='outlined' />
+      <Chip label="Basic" variant="outlined" />
+      <Chip label="Disabled" disabled variant="outlined" />
       <Chip
         avatar={<Avatar>M</Avatar>}
-        label='Clickable'
+        label="Clickable"
         onClick={handleClick}
-        variant='outlined'
+        variant="outlined"
       />
       <Chip
-        avatar={<Avatar alt='Natacha' src='/static/images/avatar/1.jpg' />}
-        label='Deletable'
+        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
+        label="Deletable"
         onDelete={handleDelete}
-        variant='outlined'
+        variant="outlined"
       />
       <Chip
         icon={<FaceIcon />}
-        label='Clickable deletable'
+        label="Clickable deletable"
         onClick={handleClick}
         onDelete={handleDelete}
-        variant='outlined'
+        variant="outlined"
       />
       <Chip
-        label='Custom delete icon'
+        label="Custom delete icon"
         onClick={handleClick}
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
-        variant='outlined'
+        variant="outlined"
       />
       <Chip
-        label='Clickable link'
-        component='a'
-        href='#chip'
+        label="Clickable link"
+        component="a"
+        href="#chip"
         clickable
-        variant='outlined'
+        variant="outlined"
       />
       <Chip
         avatar={<Avatar>M</Avatar>}
-        label='Primary clickable'
+        label="Primary clickable"
         clickable
-        color='primary'
+        color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
-        variant='outlined'
+        variant="outlined"
       />
       <Chip
         icon={<FaceIcon />}
-        label='Primary clickable'
+        label="Primary clickable"
         clickable
-        color='primary'
+        color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
-        variant='outlined'
+        variant="outlined"
       />
       <Chip
-        label='Deletable primary'
+        label="Deletable primary"
         onDelete={handleDelete}
-        color='primary'
-        variant='outlined'
+        color="primary"
+        variant="outlined"
       />
       <Chip
         icon={<FaceIcon />}
-        label='Deletable secondary'
+        label="Deletable secondary"
         onDelete={handleDelete}
-        color='secondary'
-        variant='outlined'
+        color="secondary"
+        variant="outlined"
       />
     </div>
   );
@@ -179,70 +180,70 @@ const SmallChips = () => {
 
   return (
     <div className={classes.root}>
-      <Chip size='small' label='Basic' />
+      <Chip size="small" label="Basic" />
       <Chip
-        size='small'
+        size="small"
         avatar={<Avatar>M</Avatar>}
-        label='Clickable'
+        label="Clickable"
         onClick={handleClick}
       />
       <Chip
-        size='small'
-        avatar={<Avatar alt='Natacha' src='/static/images/avatar/1.jpg' />}
-        label='Deletable'
+        size="small"
+        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
+        label="Deletable"
         onDelete={handleDelete}
       />
       <Chip
-        size='small'
+        size="small"
         icon={<FaceIcon />}
-        label='Clickable Deletable'
+        label="Clickable Deletable"
         onClick={handleClick}
         onDelete={handleDelete}
       />
       <Chip
-        size='small'
-        label='Custom delete icon'
+        size="small"
+        label="Custom delete icon"
         onClick={handleClick}
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
       <Chip
-        size='small'
-        label='Clickable Link'
-        component='a'
-        href='#chip'
+        size="small"
+        label="Clickable Link"
+        component="a"
+        href="#chip"
         clickable
       />
       <Chip
-        size='small'
+        size="small"
         avatar={<Avatar>M</Avatar>}
-        label='Primary Clickable'
+        label="Primary Clickable"
         clickable
-        color='primary'
+        color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
       <Chip
-        size='small'
+        size="small"
         icon={<FaceIcon />}
-        label='Primary Clickable'
+        label="Primary Clickable"
         clickable
-        color='primary'
+        color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
       <Chip
-        size='small'
-        label='Deletable Primary'
+        size="small"
+        label="Deletable Primary"
         onDelete={handleDelete}
-        color='primary'
+        color="primary"
       />
       <Chip
-        size='small'
+        size="small"
         icon={<FaceIcon />}
-        label='Deletable Secondary'
+        label="Deletable Secondary"
         onDelete={handleDelete}
-        color='secondary'
+        color="secondary"
       />
     </div>
   );
@@ -261,79 +262,79 @@ const SmallOutlinedChips = () => {
 
   return (
     <div className={classes.root}>
-      <Chip variant='outlined' size='small' label='Basic' />
+      <Chip variant="outlined" size="small" label="Basic" />
       <Chip
-        variant='outlined'
-        size='small'
+        variant="outlined"
+        size="small"
         avatar={<Avatar>M</Avatar>}
-        label='Clickable'
+        label="Clickable"
         onClick={handleClick}
       />
       <Chip
-        variant='outlined'
-        size='small'
-        avatar={<Avatar alt='Natacha' src='/static/images/avatar/1.jpg' />}
-        label='Deletable'
+        variant="outlined"
+        size="small"
+        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
+        label="Deletable"
         onDelete={handleDelete}
       />
       <Chip
-        variant='outlined'
-        size='small'
+        variant="outlined"
+        size="small"
         icon={<FaceIcon />}
-        label='Clickable deletable'
+        label="Clickable deletable"
         onClick={handleClick}
         onDelete={handleDelete}
       />
       <Chip
-        variant='outlined'
-        size='small'
-        label='Custom delete icon'
+        variant="outlined"
+        size="small"
+        label="Custom delete icon"
         onClick={handleClick}
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
       <Chip
-        variant='outlined'
-        size='small'
-        label='Clickable link'
-        component='a'
-        href='#chip'
+        variant="outlined"
+        size="small"
+        label="Clickable link"
+        component="a"
+        href="#chip"
         clickable
       />
       <Chip
-        variant='outlined'
-        size='small'
+        variant="outlined"
+        size="small"
         avatar={<Avatar>M</Avatar>}
-        label='Primary clickable'
+        label="Primary clickable"
         clickable
-        color='primary'
+        color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
       <Chip
-        variant='outlined'
-        size='small'
+        variant="outlined"
+        size="small"
         icon={<FaceIcon />}
-        label='Primary clickable'
+        label="Primary clickable"
         clickable
-        color='primary'
+        color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
       <Chip
-        variant='outlined'
-        size='small'
-        label='Deletable primary'
+        variant="outlined"
+        size="small"
+        label="Deletable primary"
         onDelete={handleDelete}
-        color='primary'
+        color="primary"
       />
       <Chip
-        variant='outlined'
-        size='small'
+        variant="outlined"
+        size="small"
         icon={<FaceIcon />}
-        label='Deletable secondary'
+        label="Deletable secondary"
         onDelete={handleDelete}
-        color='secondary'
+        color="secondary"
       />
     </div>
   );

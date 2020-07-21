@@ -1,15 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, Typography, Link, Button } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+
 import { toKeyValue } from '../helpers/utils';
 
-export const AddListingFormSubmittedDialog = ({
-  state,
-  city,
+const AddListingFormSubmittedDialog = ({
   category,
+  city,
   name,
   resetForm,
+  state,
 }) => {
   const newListingPath =
     state && city && category
@@ -18,8 +20,8 @@ export const AddListingFormSubmittedDialog = ({
   return (
     <>
       <Box mt={12}>
-        <Typography variant='h2'>Thank you!</Typography>
-        <Typography variant='subtitle1'>
+        <Typography variant="h2">Thank you!</Typography>
+        <Typography variant="subtitle1">
           Your listing {name ? `for ${name.trim()} ` : ''}has been submitted and
           will be reviewed shortly.
         </Typography>
@@ -45,3 +47,17 @@ export const AddListingFormSubmittedDialog = ({
     </>
   );
 };
+
+AddListingFormSubmittedDialog.propTypes = {
+  category: PropTypes.shape({
+    key: PropTypes.string,
+  }).isRequired,
+  city: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  resetForm: PropTypes.func.isRequired,
+  state: PropTypes.shape({
+    abbreviation: PropTypes.string,
+  }).isRequired,
+};
+
+export default AddListingFormSubmittedDialog;

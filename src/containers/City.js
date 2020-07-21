@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useBusinessesInStateAndCity } from '../helpers/db';
+
 import { CategorySelector, DiscoveryPage } from '../components';
 import { toDisplayName } from '../helpers/utils';
+import { useBusinessesInStateAndCity } from '../helpers/db';
 
-export const City = () => {
+const City = () => {
   const { state, city } = useParams();
   const [categories, setCategories] = useState([]);
   const { businesses, loading } = useBusinessesInStateAndCity(state, city);
@@ -23,3 +24,5 @@ export const City = () => {
     </DiscoveryPage>
   );
 };
+
+export default City;

@@ -1,29 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
 import 'firebase/analytics';
 import 'firebase/auth';
 import 'firebase/firestore';
 
 import { firebaseConfig } from './firebaseConfig';
-import { AuthContext } from './authContext';
-import { AnalyticsContext } from './analyticsContext';
+import AuthContext from './authContext';
+import AnalyticsContext from './analyticsContext';
 
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-export { firebase };
-export const AuthProvider = ({ children }) => {
-  const auth = useProvideAuth();
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
-};
-
-export const AnalyticsProvider = ({ children }) => {
-  const log = useAnalytics();
-  return (
-    <AnalyticsContext.Provider value={log}>
-      {children}
-    </AnalyticsContext.Provider>
-  );
-};
 
 // adapted from https://usehooks.com/useAuth/
 function useProvideAuth() {
@@ -44,9 +31,9 @@ function useProvideAuth() {
   // ... component that utilizes this hook to re-render with the ...
   // ... latest auth object.
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
+    const unsubscribe = firebase.auth().onAuthStateChanged((newUser) => {
+      if (newUser) {
+        setUser(newUser);
       } else {
         setUser(false);
       }
@@ -72,3 +59,25 @@ function useAnalytics() {
 
   return { logEvent };
 }
+
+const AuthProvider = ({ children }) => {
+  const auth = useProvideAuth();
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
+};
+AuthProvider.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+const AnalyticsProvider = ({ children }) => {
+  const log = useAnalytics();
+  return (
+    <AnalyticsContext.Provider value={log}>
+      {children}
+    </AnalyticsContext.Provider>
+  );
+};
+AnalyticsProvider.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export { firebase, AuthProvider, AnalyticsProvider };

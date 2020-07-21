@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState, useMemo } from 'react';
+
 import { firebase } from '../services/firebase';
 import {
   categoryToDisplayName,
@@ -29,7 +30,7 @@ export const useBusinessesInState = (state) => {
           .get()
           .then((snapshot) => {
             setBusinesses(
-              snapshot.docs.map((x) => ({ id: x.id, ...x.data() }))
+              snapshot.docs.map((x) => ({ id: x.id, ...x.data() })),
             );
             setLoading(false);
           });
@@ -55,7 +56,7 @@ export const useBusinessesInStateAndCity = (state, city) => {
           .get()
           .then((snapshot) => {
             setBusinesses(
-              snapshot.docs.map((x) => ({ id: x.id, ...x.data() }))
+              snapshot.docs.map((x) => ({ id: x.id, ...x.data() })),
             );
             setLoading(false);
           });
@@ -81,7 +82,7 @@ export const useBusinessesInStateCityAndCategory = (state, city, category) => {
           .get()
           .then((snapshot) => {
             setBusinesses(
-              snapshot.docs.map((x) => ({ id: x.id, ...x.data() }))
+              snapshot.docs.map((x) => ({ id: x.id, ...x.data() })),
             );
             setLoading(false);
           });
@@ -99,14 +100,14 @@ export const useAddBusiness = () => {
       setLoading(true);
       // name, description, address, city, state, phone, email, facebook, website, category
       const payload = {
-        category: categoryToDisplayName(business.category),
         category_key: toKeyValue(business.category),
-        city: toDisplayName(business.city),
+        category: categoryToDisplayName(business.category),
         city_key: toKeyValue(business.city),
+        city: toDisplayName(business.city),
         created: timestamp.now(),
         lastUpdated: timestamp.now(),
-        state: stateToDisplayName(business.state),
         state_key: business.state.toLowerCase(),
+        state: stateToDisplayName(business.state),
 
         ...business,
       };
@@ -128,7 +129,7 @@ export const useBulkUpdateCategory = () => {
           setLoading(true);
           // see https://firebase.google.com/docs/firestore/quotas#writes_and_transactions
           const writeBatchLimit = 500;
-          var batch = db.batch();
+          const batch = db.batch();
           db.collection('businesses')
             .where('category_key', '==', toKeyValue(oldCategoryKey))
             .limit(writeBatchLimit)
@@ -138,7 +139,7 @@ export const useBulkUpdateCategory = () => {
                 batch.update(doc.ref, {
                   category_key: toKeyValue(newCategoryKey),
                   category: newCategory,
-                })
+                }),
               );
               batch.commit().then(() => setLoading(false));
             });
@@ -146,7 +147,7 @@ export const useBulkUpdateCategory = () => {
       };
       sendData();
     },
-    []
+    [],
   );
   return useMemo(() => ({ loading, bulkUpdateCategory }), [
     loading,
