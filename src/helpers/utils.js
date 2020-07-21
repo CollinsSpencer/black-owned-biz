@@ -20,9 +20,7 @@ export const stateToDisplayName = (stateAbbreviation) => {
   return state ? state.name : abbreviation;
 };
 
-export const categoryToDisplayName = (categoryKey) => {
-  const category = Object.values(categories).find(
-    (cat) => cat.key === categoryKey
-  );
-  return category ? category.name : toDisplayName(categoryKey);
+export const categoryToDisplayName = (key) => {
+  const category = categories[key];
+  return category ? category.name : toDisplayName(key);
 };

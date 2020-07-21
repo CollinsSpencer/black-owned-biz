@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar,
   Box,
@@ -18,16 +17,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { AuthActionsButton, AuthActionsListItem } from './AuthActions';
 import { ContactButton, ContactListItem } from './Contact';
 import { RouteBreadcrumbs, RouteBreadcrumbListItems } from './RouteBreadcrumbs';
-import { AddListingButton } from './AddListingButton';
-const useStyles = makeStyles((theme) => ({
-  title: {
-    fontFamily: 'Heatwood',
-    lineHeight: 2,
-  },
-}));
+// import { AddListingButton } from './AddListingButton';
 
 export const Navigation = ({ state, city, category }) => {
-  const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -39,7 +31,7 @@ export const Navigation = ({ state, city, category }) => {
       <AppBar color='transparent' position='static' elevation={0}>
         <Toolbar>
           <Link component={RouterLink} to='/'>
-            <Typography variant='h5' className={classes.title} noWrap>
+            <Typography variant='h5' noWrap>
               BlackOwned.in
             </Typography>
           </Link>
@@ -60,7 +52,6 @@ export const Navigation = ({ state, city, category }) => {
               aria-label='open drawer'
               edge='start'
               onClick={handleDrawerToggle}
-              className={classes.menuButton}
             >
               <MenuIcon />
             </IconButton>
