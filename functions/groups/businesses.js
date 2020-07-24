@@ -15,7 +15,11 @@ exports.getBusinesses = functions.https.onRequest(async (request, response) => {
             .where("state_key", "==", state).where("city_key", "==", city)
             .where("approved", "==", true).get();
 
-        response.send({ data: stores });
+        var result = [];
+
+        stores.forEach((store) => result.push(store.data()));
+
+        response.send({ data: result });
     } catch (e) {
         response.status(500).send(`Error: ${e}`);
     }
@@ -34,7 +38,7 @@ exports.addBusiness = functions.https.onRequest(async (request, response) => {
         // But we will have to think about that
         business.approved = false;
 
-        await db.collection(`businesses`).doc(uuid.uuidv4()).set(business);
+        await db.collection(`businesses`).doc(uuidv4()).set(business);
 
         response.status(200).send(business);
     } catch (e) {
@@ -44,15 +48,15 @@ exports.addBusiness = functions.https.onRequest(async (request, response) => {
 });
 
 exports.addApprovedKey = functions.https.onRequest(async (request, response) => {
-    // var preCheck = await helpers.PreFunctionChecks(request, response, false, false);
-    // if (preCheck.ret) return;
+    var preCheck = await helpers.PreFunctionChecks(request, response, false, false);
+    if (preCheck.ret) return;
 
     var defaultVal = request.body.data.defaultValue;
 
     try {
         var businesses = await db.collection(`businesses`).get();
-
-        businesses.foreach(async function (business) {
+        
+        businesses.forEach(async function (business) {
             if (business.data().approved === undefined) {
                 await business.ref.update({ approved: defaultVal });
             }

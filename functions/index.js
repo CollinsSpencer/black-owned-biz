@@ -3,7 +3,9 @@ global.admin = require("firebase-admin");
 admin.initializeApp();
 global.db = admin.firestore();
 
-global.uuid = require('uuid');
+const { v4: uuidv4 } = require('uuid');
+global.uuidv4 = uuidv4;
+
 
 global.helpers = require('./helpers');
 
