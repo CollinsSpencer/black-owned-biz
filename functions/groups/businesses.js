@@ -19,9 +19,10 @@ exports.getBusinesses = functions.https.onRequest(async (request, response) => {
     } catch (e) {
         response.status(500).send(`Error: ${e}`);
     }
+    return;
 });
 
-exports.addBusiness = functions.https.onRequest((request, response) => {
+exports.addBusiness = functions.https.onRequest(async (request, response) => {
     var preCheck = await helpers.PreFunctionChecks(request, response, false, false);
     if (preCheck.ret) return;
 
@@ -39,11 +40,12 @@ exports.addBusiness = functions.https.onRequest((request, response) => {
     } catch (e) {
         response.status(500).send(`Error: ${e}`);
     }
+    return;
 });
 
-exports.addApprovedKey = functions.https.onRequest((request, response) => {
-    var preCheck = await helpers.PreFunctionChecks(request, response, false, false);
-    if (preCheck.ret) return;
+exports.addApprovedKey = functions.https.onRequest(async (request, response) => {
+    // var preCheck = await helpers.PreFunctionChecks(request, response, false, false);
+    // if (preCheck.ret) return;
 
     var defaultVal = request.body.data.defaultValue;
 
@@ -60,4 +62,5 @@ exports.addApprovedKey = functions.https.onRequest((request, response) => {
     } catch (e) {
         response.status(500).send(`Error updating businesses: ${e}`);
     }
+    return;
 });
