@@ -48,7 +48,7 @@ exports.addBusiness = functions.https.onRequest(async (request, response) => {
 });
 
 exports.addApprovedKey = functions.https.onRequest(async (request, response) => {
-    var preCheck = await helpers.PreFunctionChecks(request, response, false, false);
+    var preCheck = await helpers.PreFunctionChecks(request, response, true, true);
     if (preCheck.ret) return;
 
     var defaultVal = request.body.data.defaultValue;
