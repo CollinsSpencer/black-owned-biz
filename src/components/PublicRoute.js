@@ -1,12 +1,10 @@
 import React from 'react';
 import { Redirect, Route, useLocation } from 'react-router-dom';
+import { useAuth } from '../helpers/auth';
 
-export const PublicRoute = ({
-  component: Component,
-  authenticated,
-  ...rest
-}) => {
+export const PublicRoute = ({ component: Component, ...rest }) => {
   let location = useLocation();
+  const { user } = useAuth();
 
   let { from } = location.state || { from: { pathname: '/' } };
 
@@ -14,11 +12,7 @@ export const PublicRoute = ({
     <Route
       {...rest}
       render={(props) =>
-        authenticated === false ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={from} />
-        )
+        !user ? <Component {...props} /> : <Redirect to={from} />
       }
     />
   );

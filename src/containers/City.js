@@ -1,37 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, useRouteMatch } from 'react-router-dom';
-import { getBusinessesInStateAndCity } from '../helpers/db';
+import { useParams } from 'react-router-dom';
+import { useBusinessesInStateAndCity } from '../helpers/db';
+import { CategorySelector, DiscoveryPage } from '../components';
+import { toDisplayName } from '../helpers/utils';
 
 export const City = () => {
   const { state, city } = useParams();
-  let { url } = useRouteMatch();
   const [categories, setCategories] = useState([]);
+  const { businesses, loading } = useBusinessesInStateAndCity(state, city);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const results = await getBusinessesInStateAndCity(state, city);
-      setCategories([...new Set(results.map((r) => r.category))]);
-    };
+    if (!loading) {
+      setCategories([...new Set(businesses.map((r) => r.category_key))]);
+    }
+  }, [businesses, loading]);
 
-    fetchData();
-  }, [state, city]);
-
-  const CategoriesList = categories.map((category) => (
-    <div>
-      <Link to={`${url}/${category}`}>{category}</Link>
-    </div>
-  ));
-
+  const title = `Explore ${toDisplayName(city)}`;
+  const subtitle = 'Check out Black-owned businesses near you';
   return (
-    <div>
-      <h2>State</h2>
-      <div>{state}</div>
-      <h2>City</h2>
-      <div>{city}</div>
-
-      <hr />
-
-      {CategoriesList}
-    </div>
+    <DiscoveryPage title={title} subtitle={subtitle}>
+      <CategorySelector availableCategories={categories} />
+    </DiscoveryPage>
   );
 };

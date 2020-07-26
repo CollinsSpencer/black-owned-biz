@@ -1,13 +1,18 @@
 import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { auth, uiConfig } from '../helpers/auth';
+import { firebase } from '../services/firebase';
+import { uiConfig } from '../services/firebaseConfig';
+import { Page } from '../components';
+import { Typography, Box } from '@material-ui/core';
 
 export const SignIn = () => {
   return (
-    <div>
-      <h2>Sign In to Add a Listing or Verify Black-Owned Businesses</h2>
+    <Page>
+      <Box display='flex' justifyContent='center' mt={12} mb={3}>
+        <Typography variant='h2'>Sign In</Typography>
+      </Box>
 
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
-    </div>
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+    </Page>
   );
 };

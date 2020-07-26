@@ -1,48 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import { getBusinessesInStateCityAndCategory } from '../helpers/db';
+import { useBusinessesInStateCityAndCategory } from '../helpers/db';
+import { DiscoveryPage, BusinessInfoCard } from '../components';
+import { Grid } from '@material-ui/core';
+import { categories } from '../helpers/constants';
 
 export const Category = () => {
   const { state, city, category } = useParams();
-  const [businesses, setBusinesses] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const results = await getBusinessesInStateCityAndCategory(
-        state,
-        city,
-        category
-      );
-      setBusinesses([...results]);
-    };
-
-    fetchData();
-  }, [state, city, category]);
-
-  const BusinessesList = businesses.map((business) => (
-    <div>
-      <h4>{business.name}</h4>
-      <p>{business.description}</p>
-      <div>{business.address}</div>
-      <div>{business.phone}</div>
-      <div>{business.email}</div>
-      <a href={business.website}>{business.website}</a>
-      <a href={business.facebook}>Facebook</a>
-    </div>
-  ));
+  const { businesses } = useBusinessesInStateCityAndCategory(
+    state,
+    city,
+    category
+  );
+  const businessList = businesses.sort((a, b) => a.name < b.name ? -1 : 1);
 
   return (
-    <div>
-      <h2>State</h2>
-      <div>{state}</div>
-      <h2>City</h2>
-      <div>{city}</div>
-      <h2>Category</h2>
-      <div>{category}</div>
-
-      <hr />
-
-      {BusinessesList}
-    </div>
+    <DiscoveryPage title={categories[category].name} subtitle={categories[category].description}>
+      <Grid container spacing={8}>
+        {businessList.map(business => (
+          <Grid item key={business.id} xs={12} md={6}><BusinessInfoCard business={business} /></Grid>
+        ))}
+      </Grid>
+    </DiscoveryPage>
   );
 };

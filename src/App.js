@@ -1,62 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import {
+  Redirect,
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { PrivateRoute, PublicRoute } from './components';
 import {
-  AddBizForm,
+  AddListing,
+  // Admin,
   Category,
   City,
-  Home,
+  Contact,
+  // Home,
   SignIn,
-  State,
+  // State,
   VerifySubmittedBiz,
 } from './containers';
-import { auth } from './services/firebase';
+import { useAuth } from './helpers/auth';
+import { Box, CircularProgress, Typography } from '@material-ui/core';
 
-import './App.css';
+const App = () => {
+  const { isAuthLoading } = useAuth();
 
-function App() {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() =>
-    auth.onAuthStateChanged((user) => {
-      setAuthenticated(!!user);
-      setLoading(false);
-    })
-  );
-
-  return loading === true ? (
-    <div className='App'>
-      <h2>Loading...</h2>
-    </div>
+  return isAuthLoading ? (
+    <Box display='flex' justifyContent='center' alignItems='center' m={12}>
+      <Box mr={3}>
+        <CircularProgress />
+      </Box>
+      <Typography variant='h2'>Loading...</Typography>
+    </Box>
   ) : (
-    <div className='App'>
-      {authenticated && (
-        <div>
-          <button onClick={() => auth.signOut()}>Sign-out</button>
-        </div>
-      )}
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Home}></Route>
-          <Route path='/add' component={AddBizForm}></Route>
-          <PrivateRoute
-            path='/verify'
-            authenticated={authenticated}
-            component={VerifySubmittedBiz}
-          ></PrivateRoute>
-          <PublicRoute
-            path='/signin'
-            authenticated={authenticated}
-            component={SignIn}
-          ></PublicRoute>
-          <Route path='/:state/:city/:category' component={Category}></Route>
-          <Route path='/:state/:city' component={City}></Route>
-          <Route path='/:state' component={State}></Route>
-        </Switch>
-      </Router>
-    </div>
+    <Router>
+      <Switch>
+        <Route
+          exact
+          path='/'
+          component={() => <Redirect to={'/NE/Lincoln'} />}
+        ></Route>
+        <Route path='/add' component={AddListing}></Route>
+        {/* <PrivateRoute path='/admin' component={Admin}></PrivateRoute> */}
+        <PrivateRoute
+          path='/verify'
+          component={VerifySubmittedBiz}
+        ></PrivateRoute>
+        <PublicRoute path='/signin' component={SignIn}></PublicRoute>
+        <Route path='/contact' component={Contact}></Route>
+        <Route path='/:state/:city/:category' component={Category}></Route>
+        <Route path='/:state/:city' component={City}></Route>
+        <Route
+          path='/:state'
+          component={() => <Redirect to={'/NE/Lincoln'} />}
+        ></Route>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;

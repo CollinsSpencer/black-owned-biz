@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
-import { getBusinessesInState } from '../helpers/db';
+import { useBusinessesInState } from '../helpers/db';
+import { Page } from '../components';
 
 export const State = () => {
   const { state } = useParams();
   let { url } = useRouteMatch();
   const [cities, setCities] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { businesses, loading } = useBusinessesInState(state);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const results = await getBusinessesInState(state);
-      setCities([...new Set(results.map((r) => r.city))]);
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [state]);
+    if (!loading) {
+      setCities([...new Set(businesses.map((r) => r.city_key))]);
+    }
+  }, [businesses, loading]);
 
   const CitiesList =
     cities.length > 0 ? (
@@ -34,14 +31,5 @@ export const State = () => {
       </div>
     );
 
-  return (
-    <div>
-      <h2>State</h2>
-      <div>{state}</div>
-
-      <hr />
-
-      {CitiesList}
-    </div>
-  );
+  return <Page>{CitiesList}</Page>;
 };
