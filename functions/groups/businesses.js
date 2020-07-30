@@ -5,19 +5,27 @@ exports.getBusinesses = functions.https.onRequest(async (request, response) => {
 
     var state = request.body.data.state;
     var city = request.body.data.city;
+    var category = request.body.data.category;
 
     try {
-        // TODO: We might want to do filtering of businesses here to only show approved ones
-        // NOTE: The shape of the data represented here is not what is actually in our database.
-        // This is from before we set it up based on what I thought it would be. This will need to 
-        // be changed to reflect our data
-        var stores = await db.collection(`businesses`)
-            .where("state_key", "==", state).where("city_key", "==", city)
-            .where("approved", "==", true).get();
+        var stores = db.collection(`businesses`);
+        if (state) {
+            stores = stores.where("state_key", "==", state);
+        }
+        if (city) {
+            stores = stores.where("city_key", "==", city);
+        }
+        if (category) {
+            stores = stores.where("category_key", "==", category);
+        }
 
+        stores = await stores.where("approved", "==", true).get();
         var result = [];
-
-        stores.forEach((store) => result.push(store.data()));
+        stores.forEach((store) => {
+            var storeWithId = store.data()
+            storeWithId.id = store.id;
+            result.push(storeWithId)
+        });
 
         response.send({ data: result });
     } catch (e) {
@@ -55,7 +63,7 @@ exports.addApprovedKey = functions.https.onRequest(async (request, response) => 
 
     try {
         var businesses = await db.collection(`businesses`).get();
-        
+
         businesses.forEach(async function (business) {
             if (business.data().approved === undefined) {
                 await business.ref.update({ approved: defaultVal });

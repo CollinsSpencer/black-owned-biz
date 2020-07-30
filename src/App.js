@@ -36,7 +36,7 @@ const App = () => {
         <Route
           exact
           path='/'
-          component={() => <Redirect to={'/NE/Lincoln'} />}
+          component={() => <Redirect to={'/ne/lincoln'} />}
         ></Route>
         <Route path='/add' component={AddListing}></Route>
         {/* <PrivateRoute path='/admin' component={Admin}></PrivateRoute> */}
@@ -50,7 +50,7 @@ const App = () => {
         <Route path='/:state/:city' component={City}></Route>
         <Route
           path='/:state'
-          component={() => <Redirect to={'/NE/Lincoln'} />}
+          component={() => <Redirect to={'/ne/lincoln'} />}
         ></Route>
       </Switch>
     </Router>

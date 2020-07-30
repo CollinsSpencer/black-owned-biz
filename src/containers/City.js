@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useBusinessesInStateAndCity } from '../helpers/db';
+import { useBusinesses } from '../helpers/functions';
 import { CategorySelector, DiscoveryPage } from '../components';
 import { toDisplayName } from '../helpers/utils';
 
 export const City = () => {
   const { state, city } = useParams();
   const [categories, setCategories] = useState([]);
-  const { businesses, loading } = useBusinessesInStateAndCity(state, city);
+  const { businesses, loading } = useBusinesses(state, city, undefined);
 
   useEffect(() => {
     if (!loading) {
