@@ -60,10 +60,14 @@ export const useAddBusiness = () => {
 
                 ...business,
             };
-            // await db
-            //     .collection('businesses')
-            //     .add(payload)
-            //     .then(() => setLoading(false));
+            
+            var addBusinessFunc = funcs.httpsCallable('addBusiness');
+            var business = (await addBusinessFunc({
+                business: payload
+            })
+            ).data
+
+            setLoading(false);
         }
     }, []);
     return useMemo(() => ({ loading, addBusiness }), [loading, addBusiness]);

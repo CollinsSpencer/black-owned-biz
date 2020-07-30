@@ -46,9 +46,9 @@ exports.addBusiness = functions.https.onRequest(async (request, response) => {
         // But we will have to think about that
         business.approved = false;
 
-        await db.collection(`businesses`).doc(uuidv4()).set(business);
+        await db.collection(`businesses`).add(business);
 
-        response.status(200).send(business);
+        response.status(200).send({data: business});
     } catch (e) {
         response.status(500).send(`Error: ${e}`);
     }
