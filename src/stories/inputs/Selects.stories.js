@@ -29,10 +29,10 @@ export const Selects = () => {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id='demo-simple-select-label'>Age</InputLabel>
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
         <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
           value={age}
           onChange={handleChange}
         >
@@ -42,14 +42,14 @@ export const Selects = () => {
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id='demo-simple-select-helper-label'>Age</InputLabel>
+        <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
         <Select
-          labelId='demo-simple-select-helper-label'
-          id='demo-simple-select-helper'
+          labelId="demo-simple-select-helper-label"
+          id="demo-simple-select-helper"
           value={age}
           onChange={handleChange}
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -66,7 +66,7 @@ export const Selects = () => {
           className={classes.selectEmpty}
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -76,18 +76,18 @@ export const Selects = () => {
         <FormHelperText>Without label</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel shrink id='demo-simple-select-placeholder-label-label'>
+        <InputLabel shrink id="demo-simple-select-placeholder-label-label">
           Age
         </InputLabel>
         <Select
-          labelId='demo-simple-select-placeholder-label-label'
-          id='demo-simple-select-placeholder-label'
+          labelId="demo-simple-select-placeholder-label-label"
+          id="demo-simple-select-placeholder-label"
           value={age}
           onChange={handleChange}
           displayEmpty
           className={classes.selectEmpty}
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -97,14 +97,14 @@ export const Selects = () => {
         <FormHelperText>Label + placeholder</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl} disabled>
-        <InputLabel id='demo-simple-select-disabled-label'>Name</InputLabel>
+        <InputLabel id="demo-simple-select-disabled-label">Name</InputLabel>
         <Select
-          labelId='demo-simple-select-disabled-label'
-          id='demo-simple-select-disabled'
+          labelId="demo-simple-select-disabled-label"
+          id="demo-simple-select-disabled"
           value={age}
           onChange={handleChange}
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -114,15 +114,15 @@ export const Selects = () => {
         <FormHelperText>Disabled</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl} error>
-        <InputLabel id='demo-simple-select-error-label'>Name</InputLabel>
+        <InputLabel id="demo-simple-select-error-label">Name</InputLabel>
         <Select
-          labelId='demo-simple-select-error-label'
-          id='demo-simple-select-error'
+          labelId="demo-simple-select-error-label"
+          id="demo-simple-select-error"
           value={age}
           onChange={handleChange}
           renderValue={(value) => `⚠️  - ${value}`}
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -132,15 +132,15 @@ export const Selects = () => {
         <FormHelperText>Error</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id='demo-simple-select-readonly-label'>Name</InputLabel>
+        <InputLabel id="demo-simple-select-readonly-label">Name</InputLabel>
         <Select
-          labelId='demo-simple-select-readonly-label'
-          id='demo-simple-select-readonly'
+          labelId="demo-simple-select-readonly-label"
+          id="demo-simple-select-readonly"
           value={age}
           onChange={handleChange}
           inputProps={{ readOnly: true }}
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -150,15 +150,15 @@ export const Selects = () => {
         <FormHelperText>Read only</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id='demo-simple-select-autowidth-label'>Age</InputLabel>
+        <InputLabel id="demo-simple-select-autowidth-label">Age</InputLabel>
         <Select
-          labelId='demo-simple-select-autowidth-label'
-          id='demo-simple-select-autowidth'
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
           value={age}
           onChange={handleChange}
           autoWidth
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -175,7 +175,7 @@ export const Selects = () => {
           className={classes.selectEmpty}
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          <MenuItem value='' disabled>
+          <MenuItem value="" disabled>
             Placeholder
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -185,15 +185,15 @@ export const Selects = () => {
         <FormHelperText>Placeholder</FormHelperText>
       </FormControl>
       <FormControl required className={classes.formControl}>
-        <InputLabel id='demo-simple-select-required-label'>Age</InputLabel>
+        <InputLabel id="demo-simple-select-required-label">Age</InputLabel>
         <Select
-          labelId='demo-simple-select-required-label'
-          id='demo-simple-select-required'
+          labelId="demo-simple-select-required-label"
+          id="demo-simple-select-required"
           value={age}
           onChange={handleChange}
           className={classes.selectEmpty}
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -202,16 +202,16 @@ export const Selects = () => {
         </Select>
         <FormHelperText>Required</FormHelperText>
       </FormControl>
-      <FormControl variant='outlined' className={classes.formControl}>
-        <InputLabel id='demo-simple-select-outlined-label'>Age</InputLabel>
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
         <Select
-          labelId='demo-simple-select-outlined-label'
-          id='demo-simple-select-outlined'
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
           value={age}
           onChange={handleChange}
-          label='Age'
+          label="Age"
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
@@ -219,15 +219,15 @@ export const Selects = () => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant='filled' className={classes.formControl}>
-        <InputLabel id='demo-simple-select-filled-label'>Age</InputLabel>
+      <FormControl variant="filled" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
         <Select
-          labelId='demo-simple-select-filled-label'
-          id='demo-simple-select-filled'
+          labelId="demo-simple-select-filled-label"
+          id="demo-simple-select-filled"
           value={age}
           onChange={handleChange}
         >
-          <MenuItem value=''>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>

@@ -1,18 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
-import { categories } from '../../helpers/constants';
-import { CategoryButton } from '../CategoryButton';
 
-export const CategorySelector = ({ availableCategories }) => {
-  const categoriesList = (availableCategories ?? []).sort().map(name => categories[name]);
+import CategoryButton from '../CategoryButton';
+import { categories } from '../../helpers/constants';
+
+const CategorySelector = ({ availableCategories }) => {
+  const categoriesList = (availableCategories ?? [])
+    .sort()
+    .map((name) => categories[name]);
 
   return (
     <Grid container spacing={1}>
-      {categoriesList.map(({ Icon, name, imagePath, key }) => (
+      {categoriesList.map(({ Icon, imagePath, key, name }) => (
         <Grid item key={key} xs={12} sm={6} md={4}>
-          <CategoryButton IconComponent={Icon} name={name} imagePath={imagePath} code={key} />
+          <CategoryButton
+            code={key}
+            IconComponent={Icon}
+            imagePath={imagePath}
+            name={name}
+          />
         </Grid>
       ))}
     </Grid>
   );
 };
+
+CategorySelector.propTypes = {
+  availableCategories: PropTypes.arrayOf(PropTypes.string),
+};
+CategorySelector.defaultProps = {
+  availableCategories: [],
+};
+
+export default CategorySelector;

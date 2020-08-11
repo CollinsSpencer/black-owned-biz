@@ -4,7 +4,7 @@ import { useBusinesses } from '../helpers/functions';
 import { CategorySelector, DiscoveryPage } from '../components';
 import { toDisplayName } from '../helpers/utils';
 
-export const City = () => {
+const City = () => {
   const { state, city } = useParams();
   const [categories, setCategories] = useState([]);
   const { businesses, loading } = useBusinesses(state, city, undefined);
@@ -23,3 +23,5 @@ export const City = () => {
     </DiscoveryPage>
   );
 };
+
+export default City;

@@ -1,6 +1,9 @@
 import { useContext } from 'react';
-import { AnalyticsContext } from '../services/analyticsContext';
 
-export const useAnalytics = () => {
+import AnalyticsContext from '../services/analyticsContext';
+
+const useAnalytics = () => {
   return useContext(AnalyticsContext);
 };
+
+export default useAnalytics;

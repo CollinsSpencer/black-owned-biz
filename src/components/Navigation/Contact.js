@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
 import { Box, Button } from '@material-ui/core';
-import { ListItemLink } from './ListItemLink';
+
+import ListItemLink from './ListItemLink';
 
 export const ContactButton = () => {
   const { url } = useRouteMatch();
@@ -13,10 +14,10 @@ export const ContactButton = () => {
   return (
     <Box ml={2}>
       <Button
-        color='inherit'
+        color="inherit"
         component={RouterLink}
-        to={`/contact`}
-        underline='none'
+        to="/contact"
+        underline="none"
       >
         Contact
       </Button>
@@ -31,5 +32,5 @@ export const ContactListItem = () => {
     return null;
   }
 
-  return <ListItemLink to='/contact' primary='Contact' />;
+  return <ListItemLink to="/contact" primary="Contact" />;
 };

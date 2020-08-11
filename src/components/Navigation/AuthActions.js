@@ -2,7 +2,8 @@ import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { Box, Button, ListItem, ListItemText } from '@material-ui/core';
 // import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { useAuth } from '../../helpers/auth';
+
+import useAuth from '../../helpers/auth';
 // import { ListItemLink } from './ListItemLink';
 
 export const AuthActionsButton = () => {
@@ -13,29 +14,28 @@ export const AuthActionsButton = () => {
     return null;
   }
 
-  if (!!user) {
+  if (user) {
     return (
       <Box ml={2}>
-        <Button onClick={() => signout()} underline='none'>
+        <Button onClick={() => signout()} underline="none">
           Sign-out
         </Button>
       </Box>
     );
-  } else {
-    return null;
-    // <Box ml={2}>
-    //   <Button color='inherit' startIcon={<AccountCircleIcon />}>
-    //     <Link
-    //       component={RouterLink}
-    //       to={`/signin`}
-    //       color='inherit'
-    //       underline='none'
-    //     >
-    //       Sign in
-    //     </Link>
-    //   </Button>
-    // </Box>
   }
+  return null;
+  // <Box ml={2}>
+  //   <Button color='inherit' startIcon={<AccountCircleIcon />}>
+  //     <Link
+  //       component={RouterLink}
+  //       to={`/signin`}
+  //       color='inherit'
+  //       underline='none'
+  //     >
+  //       Sign in
+  //     </Link>
+  //   </Button>
+  // </Box>
 };
 
 export const AuthActionsListItem = () => {
@@ -46,14 +46,13 @@ export const AuthActionsListItem = () => {
     return null;
   }
 
-  if (!!user) {
+  if (user) {
     return (
       <ListItem button onClick={() => signout()}>
-        <ListItemText primary='Sign out' />
+        <ListItemText primary="Sign out" />
       </ListItem>
     );
-  } else {
-    return null;
-    // return <ListItemLink to='/signin' primary='Sign in' />;
   }
+  return null;
+  // return <ListItemLink to='/signin' primary='Sign in' />;
 };

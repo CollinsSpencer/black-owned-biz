@@ -14,5 +14,5 @@ export default {
   categoryNonprofits,
   categoryRetail,
   contactBanner,
-  discoveryPageTitleBanner
+  discoveryPageTitleBanner,
 };

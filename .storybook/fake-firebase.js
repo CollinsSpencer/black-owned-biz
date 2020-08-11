@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { AuthContext } from '../src/services/authContext';
 import { select, boolean } from '@storybook/addon-knobs';
 
-export const FakeAuthProvider = ({ children }) => {
+import AuthContext from '../src/services/authContext';
+
+const FakeAuthProvider = ({ children }) => {
   const auth = useProvideAuth();
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
@@ -27,3 +28,5 @@ function useProvideAuth() {
     user,
   };
 }
+
+export default FakeAuthProvider;
