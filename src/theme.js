@@ -1,6 +1,6 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
-import { heatwood } from './fonts/Heatwood';
-import { geosansLight } from './fonts/GeosansLight';
+import heatwood from './fonts/Heatwood';
+import geosansLight from './fonts/GeosansLight';
 import 'fontsource-roboto';
 
 // A custom theme for this app
@@ -22,38 +22,38 @@ const theme = {
   typography: {
     h1: {
       fontFamily: 'Heatwood',
-      lineHeight: 2
+      lineHeight: 2,
     },
     h2: {
       fontFamily: 'Heatwood',
-      lineHeight: 2
+      lineHeight: 2,
     },
     h3: {
-      fontFamily: 'Geosans Light'
+      fontFamily: 'Geosans Light',
     },
     h4: {
-      fontFamily: 'Geosans Light'
+      fontFamily: 'Geosans Light',
     },
     h5: {
-      fontFamily: 'Geosans Light'
+      fontFamily: 'Geosans Light',
     },
     h6: {
-      fontFamily: 'Geosans Light'
+      fontFamily: 'Geosans Light',
     },
     subtitle1: {
       fontFamily: 'Roboto',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     subtitle2: {
       fontFamily: 'Roboto',
-      fontStyle: 'italic'
+      fontStyle: 'italic',
     },
     body1: {
-      fontFamily: 'Roboto'
-    }
+      fontFamily: 'Roboto',
+    },
   },
   shape: {
-    borderRadius: 8
+    borderRadius: 8,
   },
   overrides: {
     MuiCssBaseline: {
@@ -73,7 +73,7 @@ export const darkTheme = responsiveFontSizes(
       ...theme.palette,
       type: 'dark',
     },
-  })
+  }),
 );
 
 export const lightTheme = responsiveFontSizes(createMuiTheme(theme));

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { UnitedStatesMap, Page } from '../components';
 
-export const Home = () => {
+import { Page, UnitedStatesMap } from '../components';
+
+const Home = () => {
   const history = useHistory();
 
   const mapHandler = (event) => {
@@ -13,12 +14,14 @@ export const Home = () => {
     <Page>
       <h2>Home</h2>
       <div>
-        <Link to={`/add`}>Add a listing</Link>
+        <Link to="/add">Add a listing</Link>
       </div>
       <div>
-        <Link to={`/signin`}>Sign in</Link>
+        <Link to="/signin">Sign in</Link>
       </div>
       <UnitedStatesMap onClick={mapHandler} />
     </Page>
   );
 };
+
+export default Home;

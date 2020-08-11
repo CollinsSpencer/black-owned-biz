@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { Grid } from '@material-ui/core';
+
 import {
   AddListingForm,
   AddListingFormSubmittedDialog,
@@ -20,7 +22,7 @@ const businessInitialState = {
   website: '',
 };
 
-export const AddListing = () => {
+const AddListing = () => {
   const { addBusiness, loading } = useAddBusiness();
   const [business, setBusiness] = useState(businessInitialState);
   const [submitted, setSubmitted] = useState(false);
@@ -51,7 +53,7 @@ export const AddListing = () => {
 
   return (
     <Page>
-      <Grid container justify='center'>
+      <Grid container justify="center">
         <Grid item xs={12} md={8}>
           {submitted ? (
             <AddListingFormSubmittedDialog
@@ -60,8 +62,8 @@ export const AddListing = () => {
             />
           ) : (
             <AddListingForm
-              handleChange={handleChange}
               handleAutocompleteChange={handleAutocompleteChange}
+              handleChange={handleChange}
               handleSubmit={handleSubmit}
               loading={loading}
               {...business}
@@ -72,3 +74,5 @@ export const AddListing = () => {
     </Page>
   );
 };
+
+export default AddListing;

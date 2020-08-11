@@ -5,6 +5,8 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import { Box, CircularProgress, Typography } from '@material-ui/core';
+
 import { PrivateRoute, PublicRoute } from './components';
 import {
   AddListing,
@@ -17,41 +19,30 @@ import {
   // State,
   VerifySubmittedBiz,
 } from './containers';
-import { useAuth } from './helpers/auth';
-import { Box, CircularProgress, Typography } from '@material-ui/core';
+import useAuth from './helpers/auth';
 
 const App = () => {
   const { isAuthLoading } = useAuth();
 
   return isAuthLoading ? (
-    <Box display='flex' justifyContent='center' alignItems='center' m={12}>
+    <Box display="flex" justifyContent="center" alignItems="center" m={12}>
       <Box mr={3}>
         <CircularProgress />
       </Box>
-      <Typography variant='h2'>Loading...</Typography>
+      <Typography variant="h2">Loading...</Typography>
     </Box>
   ) : (
     <Router>
       <Switch>
-        <Route
-          exact
-          path='/'
-          component={() => <Redirect to={'/NE/Lincoln'} />}
-        ></Route>
-        <Route path='/add' component={AddListing}></Route>
+        <Route exact path="/" component={() => <Redirect to="/NE/Lincoln" />} />
+        <Route path="/add" component={AddListing} />
         {/* <PrivateRoute path='/admin' component={Admin}></PrivateRoute> */}
-        <PrivateRoute
-          path='/verify'
-          component={VerifySubmittedBiz}
-        ></PrivateRoute>
-        <PublicRoute path='/signin' component={SignIn}></PublicRoute>
-        <Route path='/contact' component={Contact}></Route>
-        <Route path='/:state/:city/:category' component={Category}></Route>
-        <Route path='/:state/:city' component={City}></Route>
-        <Route
-          path='/:state'
-          component={() => <Redirect to={'/NE/Lincoln'} />}
-        ></Route>
+        <PrivateRoute path="/verify" component={VerifySubmittedBiz} />
+        <PublicRoute path="/signin" component={SignIn} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/:state/:city/:category" component={Category} />
+        <Route path="/:state/:city" component={City} />
+        <Route path="/:state" component={() => <Redirect to="/NE/Lincoln" />} />
       </Switch>
     </Router>
   );

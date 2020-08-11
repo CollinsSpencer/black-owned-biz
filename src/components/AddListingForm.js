@@ -1,4 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Box,
   Typography,
@@ -8,17 +10,18 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+
 import { categories, states } from '../helpers/constants';
 
-export const AddListingForm = ({
+const AddListingForm = ({
   address,
   category,
   city,
   description,
   email,
   facebook,
-  handleChange,
   handleAutocompleteChange,
+  handleChange,
   handleSubmit,
   loading,
   name,
@@ -28,8 +31,8 @@ export const AddListingForm = ({
 }) => (
   <>
     <Box mt={12} mb={6}>
-      <Typography variant='h2'>Add a Listing</Typography>
-      <Typography variant='subtitle1'>
+      <Typography variant="h2">Add a Listing</Typography>
+      <Typography variant="subtitle1">
         Share information about a black-owned business, service, or nonprofit.
       </Typography>
     </Box>
@@ -37,45 +40,45 @@ export const AddListingForm = ({
       <Grid item xs={12} sm={6}>
         <TextField
           fullWidth
-          label='Business Name'
-          name='name'
+          label="Business Name"
+          name="name"
           onChange={handleChange('name')}
           value={name}
-          variant='outlined'
+          variant="outlined"
         />
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
           fullWidth
-          label='Description'
+          label="Description"
           onChange={handleChange('description')}
           value={description}
-          variant='outlined'
+          variant="outlined"
         />
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
           fullWidth
           helperText='e.g. "123 Sunny Lane" or "Food Truck"'
-          label='Location (Address Preferred)'
+          label="Location (Address Preferred)"
           onChange={handleChange('address')}
           value={address}
-          variant='outlined'
+          variant="outlined"
         />
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
           fullWidth
-          label='City'
+          label="City"
           onChange={handleChange('city')}
           value={city}
-          variant='outlined'
+          variant="outlined"
         />
       </Grid>
       <Grid item xs={12} sm={6}>
         <Autocomplete
           autoHighlight
-          id='state-combo-box'
+          id="state-combo-box"
           options={states}
           getOptionLabel={(option) => option.name}
           onChange={handleAutocompleteChange('state')}
@@ -91,12 +94,12 @@ export const AddListingForm = ({
           renderInput={(params) => (
             <TextField
               {...params}
-              label='State'
-              variant='outlined'
               inputProps={{
                 ...params.inputProps,
                 autoComplete: 'new-password', // disable autocomplete and autofill
               }}
+              label="State"
+              variant="outlined"
             />
           )}
         />
@@ -104,52 +107,52 @@ export const AddListingForm = ({
       <Grid item xs={12} sm={6}>
         <TextField
           fullWidth
-          label='Phone'
+          label="Phone"
           onChange={handleChange('phone')}
           value={phone}
-          variant='outlined'
+          variant="outlined"
         />
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
           fullWidth
-          label='Email'
+          label="Email"
           onChange={handleChange('email')}
           value={email}
-          variant='outlined'
+          variant="outlined"
         />
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
           fullWidth
-          label='Facebook URL'
+          label="Facebook URL"
           onChange={handleChange('facebook')}
           value={facebook}
-          variant='outlined'
+          variant="outlined"
         />
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
           fullWidth
-          label='Website URL'
+          label="Website URL"
           onChange={handleChange('website')}
           value={website}
-          variant='outlined'
+          variant="outlined"
         />
       </Grid>
       <Grid item xs={12} sm={6}>
         <Autocomplete
           autoHighlight
-          id='category-combo-box'
-          options={Object.values(categories)}
           getOptionLabel={(option) => option.name}
+          id="category-combo-box"
           onChange={handleAutocompleteChange('category')}
+          options={Object.values(categories)}
           value={category}
           renderInput={(params) => (
             <TextField
               {...params}
-              label='Category'
-              variant='outlined'
+              label="Category"
+              variant="outlined"
               inputProps={{
                 ...params.inputProps,
                 autoComplete: 'new-password', // disable autocomplete and autofill
@@ -160,14 +163,14 @@ export const AddListingForm = ({
       </Grid>
       <Grid item xs={12} sm={6}>
         <Button
-          onClick={handleSubmit}
-          variant='contained'
-          color='primary'
+          color="primary"
           disabled={loading}
+          onClick={handleSubmit}
+          variant="contained"
         >
           {loading && (
-            <Box display='flex' mr={2}>
-              <CircularProgress size='1.5rem' />
+            <Box display="flex" mr={2}>
+              <CircularProgress size="1.5rem" />
             </Box>
           )}
           Add Listing
@@ -176,3 +179,22 @@ export const AddListingForm = ({
     </Grid>
   </>
 );
+
+AddListingForm.propTypes = {
+  address: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  facebook: PropTypes.string.isRequired,
+  handleAutocompleteChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
+  website: PropTypes.string.isRequired,
+};
+
+export default AddListingForm;

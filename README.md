@@ -6,6 +6,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm start storybook`
+
+This command will run both the npm `start` script and the `storybook` script. These are the two main scripts used for local development.
+
 ### `npm start`
 
 Runs the app in the development mode.  

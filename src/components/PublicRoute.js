@@ -1,12 +1,15 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Redirect, Route, useLocation } from 'react-router-dom';
-import { useAuth } from '../helpers/auth';
 
-export const PublicRoute = ({ component: Component, ...rest }) => {
-  let location = useLocation();
+import useAuth from '../helpers/auth';
+
+const PublicRoute = ({ component: Component, ...rest }) => {
+  const location = useLocation();
   const { user } = useAuth();
 
-  let { from } = location.state || { from: { pathname: '/' } };
+  const { from } = location.state || { from: { pathname: '/' } };
 
   return (
     <Route
@@ -17,3 +20,9 @@ export const PublicRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
+
+PublicRoute.propTypes = {
+  component: PropTypes.func.isRequired,
+};
+
+export default PublicRoute;
