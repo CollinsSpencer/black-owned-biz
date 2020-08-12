@@ -1,9 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useBusinesses } from '../helpers/functions';
-import { DiscoveryPage, BusinessInfoCard } from '../components';
 import { Grid } from '@material-ui/core';
-
 import { BusinessInfoCard, DiscoveryPage } from '../components';
 import { categories } from '../helpers/constants';
 import { useBusinessesInStateCityAndCategory } from '../helpers/db';
