@@ -4,7 +4,6 @@ import { useBusinesses } from '../helpers/functions';
 import { Grid } from '@material-ui/core';
 import { BusinessInfoCard, DiscoveryPage } from '../components';
 import { categories } from '../helpers/constants';
-import { useBusinessesInStateCityAndCategory } from '../helpers/db';
 
 export const Category = () => {
   const { state, city, category } = useParams();

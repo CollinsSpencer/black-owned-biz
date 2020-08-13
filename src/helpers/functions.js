@@ -62,7 +62,7 @@ export const useAddBusiness = () => {
             };
             
             var addBusinessFunc = funcs.httpsCallable('addBusiness');
-            var business = (await addBusinessFunc({
+            business = (await addBusinessFunc({
                 business: payload
             })
             ).data
