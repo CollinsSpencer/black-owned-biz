@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
-
-import { useBusinessesInState } from '../helpers/db';
+import { useBusinesses } from '../helpers/functions';
 import { Page } from '../components';
 
 const State = () => {
   const { state } = useParams();
   const { url } = useRouteMatch();
   const [cities, setCities] = useState([]);
-  const { businesses, loading } = useBusinessesInState(state);
+  const { businesses, loading } = useBusinesses(state, undefined, undefined);
 
   useEffect(() => {
     if (!loading) {
+      console.log(`Businesses: ${businesses}`)
       setCities([...new Set(businesses.map((r) => r.city_key))]);
     }
   }, [businesses, loading]);

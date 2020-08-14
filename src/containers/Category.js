@@ -1,14 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useBusinesses } from '../helpers/functions';
 import { Grid } from '@material-ui/core';
-
 import { BusinessInfoCard, DiscoveryPage } from '../components';
 import { categories } from '../helpers/constants';
-import { useBusinessesInStateCityAndCategory } from '../helpers/db';
 
-const Category = () => {
-  const { category, city, state } = useParams();
-  const { businesses } = useBusinessesInStateCityAndCategory(
+export const Category = () => {
+  const { state, city, category } = useParams();
+  const { businesses } = useBusinesses(
     state,
     city,
     category,

@@ -7,7 +7,7 @@ import {
   AddListingFormSubmittedDialog,
   Page,
 } from '../components';
-import { useAddBusiness } from '../helpers/db';
+import { useAddBusiness } from '../helpers/functions';
 
 const businessInitialState = {
   address: '',

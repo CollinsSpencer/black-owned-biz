@@ -32,20 +32,20 @@ const App = () => {
       <Typography variant="h2">Loading...</Typography>
     </Box>
   ) : (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={() => <Redirect to="/NE/Lincoln" />} />
-        <Route path="/add" component={AddListing} />
-        {/* <PrivateRoute path='/admin' component={Admin}></PrivateRoute> */}
-        <PrivateRoute path="/verify" component={VerifySubmittedBiz} />
-        <PublicRoute path="/signin" component={SignIn} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/:state/:city/:category" component={Category} />
-        <Route path="/:state/:city" component={City} />
-        <Route path="/:state" component={() => <Redirect to="/NE/Lincoln" />} />
-      </Switch>
-    </Router>
-  );
+      <Router>
+        <Switch>
+          <Route exact path='/' component={() => <Redirect to={'/ne/lincoln'} />}></Route>
+          <Route path='/add' component={AddListing}></Route>
+          {/* <PrivateRoute path='/admin' component={Admin}></PrivateRoute> */}
+          <PrivateRoute path='/verify' component={VerifySubmittedBiz}></PrivateRoute>
+          <PublicRoute path='/signin' component={SignIn}></PublicRoute>
+          <Route path='/contact' component={Contact}></Route>
+          <Route path='/:state/:city/:category' component={Category}></Route>
+          <Route path='/:state/:city' component={City}></Route>
+          <Route path='/:state' component={() => <Redirect to={'/ne/lincoln'} />}></Route>
+        </Switch>
+      </Router>
+    );
 };
 
 export default App;

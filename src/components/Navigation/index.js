@@ -19,7 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { AuthActionsButton, AuthActionsListItem } from './AuthActions';
 import { ContactButton, ContactListItem } from './Contact';
 import { RouteBreadcrumbs, RouteBreadcrumbListItems } from './RouteBreadcrumbs';
-// import { AddListingButton } from './AddListingButton';
+import { AddListingButton } from './AddListingButton';
 
 const Navigation = ({ state, city, category }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -46,7 +46,7 @@ const Navigation = ({ state, city, category }) => {
           <Hidden smDown>
             <ContactButton />
             <AuthActionsButton />
-            {/* <AddListingButton ml={3} /> */}
+            <AddListingButton ml={3} />
           </Hidden>
           <Hidden mdUp>
             <IconButton
@@ -83,9 +83,9 @@ const Navigation = ({ state, city, category }) => {
               <Divider />
               <ContactListItem />
               <AuthActionsListItem />
-              {/* <ListItem>
+              <ListItem>
                 <AddListingButton width={1} />
-              </ListItem> */}
+              </ListItem>
             </List>
           </Box>
         </Drawer>

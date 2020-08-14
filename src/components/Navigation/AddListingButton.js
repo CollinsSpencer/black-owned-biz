@@ -4,7 +4,7 @@ import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
 import { Box, Button, Link } from '@material-ui/core';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-const AddListingButton = (props) => {
+export const AddListingButton = (props) => {
   const { url } = useRouteMatch();
 
   if (url === '/add') {
