@@ -11,7 +11,6 @@ const State = () => {
 
   useEffect(() => {
     if (!loading) {
-      console.log(`Businesses: ${businesses}`)
       setCities([...new Set(businesses.map((r) => r.city_key))]);
     }
   }, [businesses, loading]);
