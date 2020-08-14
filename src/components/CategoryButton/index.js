@@ -55,7 +55,7 @@ const CategoryButton = ({ code, IconComponent, imagePath, name }) => {
 
 CategoryButton.propTypes = {
   code: PropTypes.string.isRequired,
-  IconComponent: PropTypes.element.isRequired,
+  IconComponent: PropTypes.func.isRequired,
   imagePath: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };

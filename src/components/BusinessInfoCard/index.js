@@ -146,7 +146,7 @@ BusinessInfoCard.propTypes = {
     description: PropTypes.string,
     email: PropTypes.string,
     facebook: PropTypes.string,
-    lastUpdated: PropTypes.string,
+    lastUpdated: PropTypes.object,
     name: PropTypes.string,
     phone: PropTypes.string,
     state: PropTypes.string,
