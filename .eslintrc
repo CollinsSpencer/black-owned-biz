@@ -10,6 +10,7 @@
   "rules": {
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "react/jsx-props-no-spreading": ["warn"],
-    "react/prefer-es6-class": ["off"]
+    "react/prefer-es6-class": ["off"],
+    "no-underscore-dangle": ["off"]
   }
 }

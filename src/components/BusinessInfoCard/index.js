@@ -21,8 +21,6 @@ const BusinessInfoCard = ({ business }) => {
     website,
   } = business;
 
-  console.log(lastUpdated);
-
   const AddressButton = () => {
     const fullAddress = `${address} ${city}, ${state}`;
     const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -109,7 +107,7 @@ const BusinessInfoCard = ({ business }) => {
       <Grid item>
         <Typography variant="subtitle2">
           Last Updated:{' '}
-          {lastUpdated.toLocaleDateString()}
+          {new Date(lastUpdated._seconds * 1000).toLocaleDateString()}
         </Typography>
       </Grid>
       <Grid item>
