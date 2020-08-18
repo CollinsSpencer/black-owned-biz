@@ -1,17 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useBusinesses } from '../helpers/functions';
 import { Grid } from '@material-ui/core';
+import { useBusinesses } from '../helpers/functions';
 import { BusinessInfoCard, DiscoveryPage } from '../components';
 import { categories } from '../helpers/constants';
 
-export const Category = () => {
+const Category = () => {
   const { state, city, category } = useParams();
-  const { businesses } = useBusinesses(
-    state,
-    city,
-    category,
-  );
+  const { businesses } = useBusinesses(state, city, category);
   const businessList = businesses.sort((a, b) => (a.name < b.name ? -1 : 1));
 
   return (
