@@ -11,6 +11,7 @@ REACT_APP_MESSAGING_SENDER_ID=xxxxXXXX
 REACT_APP_ADD_ID=X:XXXXxxxx:web:XXXXxxxx
 REACT_APP_MEASUREMENT_ID=X-XXXXxxxx
 */
+
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,

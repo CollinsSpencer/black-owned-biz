@@ -107,7 +107,7 @@ const BusinessInfoCard = ({ business }) => {
       <Grid item>
         <Typography variant="subtitle2">
           Last Updated:{' '}
-          {new Date(lastUpdated.seconds * 1000).toLocaleDateString()}
+          {new Date(lastUpdated._seconds * 1000).toLocaleDateString()}
         </Typography>
       </Grid>
       <Grid item>
@@ -146,7 +146,7 @@ BusinessInfoCard.propTypes = {
     description: PropTypes.string,
     email: PropTypes.string,
     facebook: PropTypes.string,
-    lastUpdated: PropTypes.string,
+    lastUpdated: PropTypes.object,
     name: PropTypes.string,
     phone: PropTypes.string,
     state: PropTypes.string,
