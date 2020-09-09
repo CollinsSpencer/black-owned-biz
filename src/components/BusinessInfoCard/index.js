@@ -106,8 +106,11 @@ const BusinessInfoCard = ({ business }) => {
     <Grid container direction="column">
       <Grid item>
         <Typography variant="subtitle2">
-          Last Updated:{' '}
-          {new Date(lastUpdated._seconds * 1000).toLocaleDateString()}
+          {lastUpdated && lastUpdated._seconds
+            ? `Last Updated: ${new Date(
+                lastUpdated._seconds * 1000,
+              ).toLocaleDateString()}`
+            : ''}
         </Typography>
       </Grid>
       <Grid item>
