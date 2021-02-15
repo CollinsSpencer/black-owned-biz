@@ -1,6 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHandHoldingHeart,
+  faFirstAid,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import LocalDiningIcon from '@material-ui/icons/LocalDining';
@@ -44,6 +47,17 @@ export const categories = {
     imagePath: Assets.categoryServices,
     key: 'services',
     name: 'Services',
+  },
+  health: {
+    description: 'Find the best places for health care.',
+    Icon: (props) => (
+      <SvgIcon {...props}>
+        <FontAwesomeIcon icon={faFirstAid} />
+      </SvgIcon>
+    ),
+    imagePath: Assets.categoryServices,
+    key: 'health',
+    name: 'Medical Providers',
   },
 };
 
