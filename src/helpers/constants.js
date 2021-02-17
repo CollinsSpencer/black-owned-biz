@@ -55,7 +55,7 @@ export const categories = {
         <FontAwesomeIcon icon={faFirstAid} />
       </SvgIcon>
     ),
-    imagePath: Assets.categoryServices,
+    imagePath: Assets.categoryHealth,
     key: 'health',
     name: 'Medical Providers',
   },
