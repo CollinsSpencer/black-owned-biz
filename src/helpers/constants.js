@@ -49,7 +49,8 @@ export const categories = {
     name: 'Services',
   },
   health: {
-    description: 'Find the best places for health care.',
+    description:
+      'Find the qualified medical professionals who will be there when you need them most',
     Icon: (props) => (
       <SvgIcon {...props}>
         <FontAwesomeIcon icon={faFirstAid} />
