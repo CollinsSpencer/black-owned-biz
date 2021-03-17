@@ -19,7 +19,7 @@ import {
   // State,
   VerifySubmittedBiz,
 } from './containers';
-import useAuth from './helpers/auth';
+import { useAuth } from './contexts';
 
 const App = () => {
   const { isAuthLoading } = useAuth();

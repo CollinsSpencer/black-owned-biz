@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, useMemo } from 'react';
 
-import { firebase } from '../services/firebase';
+import { useFirestore } from '../contexts';
 import {
   categoryToDisplayName,
   stateToDisplayName,
@@ -8,23 +8,15 @@ import {
   toKeyValue,
 } from './utils';
 
-const db = firebase.firestore();
-if (window.location.hostname === 'localhost') {
-  db.settings({
-    host: 'localhost:8080',
-    ssl: false,
-  });
-}
-const timestamp = firebase.firestore.Timestamp;
-
 export const useBusinessesInState = (state) => {
+  const { firestore } = useFirestore();
   const [loading, setLoading] = useState(false);
   const [businesses, setBusinesses] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       if (state) {
         setLoading(true);
-        await db
+        await firestore
           .collection('businesses')
           .where('state_key', '==', state.toLowerCase())
           .get()
@@ -37,11 +29,12 @@ export const useBusinessesInState = (state) => {
       }
     };
     fetchData();
-  }, [state]);
+  }, [firestore, state]);
   return { loading, businesses };
 };
 
 export const useBusinessesInStateAndCity = (state, city) => {
+  const { firestore } = useFirestore();
   const [loading, setLoading] = useState(false);
   const [businesses, setBusinesses] = useState([]);
 
@@ -49,7 +42,7 @@ export const useBusinessesInStateAndCity = (state, city) => {
     const fetchData = async () => {
       if (state && city) {
         setLoading(true);
-        await db
+        await firestore
           .collection('businesses')
           .where('state_key', '==', state.toLowerCase())
           .where('city_key', '==', toKeyValue(city))
@@ -63,18 +56,19 @@ export const useBusinessesInStateAndCity = (state, city) => {
       }
     };
     fetchData();
-  }, [state, city]);
+  }, [firestore, state, city]);
   return { loading, businesses };
 };
 
 export const useBusinessesInStateCityAndCategory = (state, city, category) => {
+  const { firestore } = useFirestore();
   const [loading, setLoading] = useState(false);
   const [businesses, setBusinesses] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       if (state && city) {
         setLoading(true);
-        await db
+        await firestore
           .collection('businesses')
           .where('state_key', '==', state.toLowerCase())
           .where('city_key', '==', toKeyValue(city))
@@ -89,38 +83,43 @@ export const useBusinessesInStateCityAndCategory = (state, city, category) => {
       }
     };
     fetchData();
-  }, [state, city, category]);
+  }, [firestore, state, city, category]);
   return { loading, businesses };
 };
 
 export const useAddBusiness = () => {
+  const { firestore, timestamp } = useFirestore();
   const [loading, setLoading] = useState(false);
-  const addBusiness = useCallback(async (business) => {
-    if (business) {
-      setLoading(true);
-      // name, description, address, city, state, phone, email, facebook, website, category
-      const payload = {
-        category_key: toKeyValue(business.category),
-        category: categoryToDisplayName(business.category),
-        city_key: toKeyValue(business.city),
-        city: toDisplayName(business.city),
-        created: timestamp.now(),
-        lastUpdated: timestamp.now(),
-        state_key: business.state.toLowerCase(),
-        state: stateToDisplayName(business.state),
+  const addBusiness = useCallback(
+    async (business) => {
+      if (business) {
+        setLoading(true);
+        // name, description, address, city, state, phone, email, facebook, website, category
+        const payload = {
+          category_key: toKeyValue(business.category),
+          category: categoryToDisplayName(business.category),
+          city_key: toKeyValue(business.city),
+          city: toDisplayName(business.city),
+          created: timestamp.now(),
+          lastUpdated: timestamp.now(),
+          state_key: business.state.toLowerCase(),
+          state: stateToDisplayName(business.state),
 
-        ...business,
-      };
-      await db
-        .collection('businesses')
-        .add(payload)
-        .then(() => setLoading(false));
-    }
-  }, []);
+          ...business,
+        };
+        await firestore
+          .collection('businesses')
+          .add(payload)
+          .then(() => setLoading(false));
+      }
+    },
+    [firestore, timestamp],
+  );
   return useMemo(() => ({ loading, addBusiness }), [loading, addBusiness]);
 };
 
 export const useBulkUpdateCategory = () => {
+  const { firestore } = useFirestore();
   const [loading, setLoading] = useState(false);
   const bulkUpdateCategory = useCallback(
     (oldCategoryKey, newCategoryKey, newCategory) => {
@@ -129,8 +128,9 @@ export const useBulkUpdateCategory = () => {
           setLoading(true);
           // see https://firebase.google.com/docs/firestore/quotas#writes_and_transactions
           const writeBatchLimit = 500;
-          const batch = db.batch();
-          db.collection('businesses')
+          const batch = firestore.batch();
+          firestore
+            .collection('businesses')
             .where('category_key', '==', toKeyValue(oldCategoryKey))
             .limit(writeBatchLimit)
             .get()
@@ -147,7 +147,7 @@ export const useBulkUpdateCategory = () => {
       };
       sendData();
     },
-    [],
+    [firestore],
   );
   return useMemo(() => ({ loading, bulkUpdateCategory }), [
     loading,

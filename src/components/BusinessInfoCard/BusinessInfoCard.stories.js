@@ -20,6 +20,6 @@ const business = {
   website: 'https://72select-barber-shop.business.site/',
 };
 
-export const BusinessInfoCardDemo = () => {
-  return <BusinessInfoCard business={business} />;
-};
+export const BusinessInfoCardDemo = () => (
+  <BusinessInfoCard business={business} />
+);

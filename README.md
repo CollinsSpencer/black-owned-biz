@@ -2,6 +2,22 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and hosted with [Firebase](https://firebase.google.com/).
 
+## Setup
+
+### `npm i`
+
+Install Node modules.
+
+### `npm i -g firebase-tools`
+
+Install Firebase tools globally if not already installed.
+
+* Note that Firebase tools requires for Java to be installed on your development machine. You can get this through [adoptopenjdk.net](https://adoptopenjdk.net/) or by running the project in a Docker image with Node and Java `MSYS_NO_PATHCONV=1 docker run --rm -it -v "$(pwd):/root" node:15 bash -c "apt-get update && apt-get install -y openjdk-8-jdk && npm i && bash"` (prepended with `MSYS_NO_PATHCONV=1 ` for git bash).
+
+### `firebase login`
+
+Log into Firebase.
+
 ## Available Scripts
 
 In the project directory, you can run:
