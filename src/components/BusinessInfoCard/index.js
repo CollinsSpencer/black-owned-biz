@@ -150,7 +150,7 @@ BusinessInfoCard.propTypes = {
     email: PropTypes.string,
     facebook: PropTypes.string,
     lastUpdated: PropTypes.shape({
-      _seconds: PropTypes.string,
+      _seconds: PropTypes.number,
     }),
     name: PropTypes.string,
     phone: PropTypes.string,
