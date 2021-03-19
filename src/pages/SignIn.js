@@ -7,7 +7,7 @@ import { Page } from '../components';
 import { useAuth } from '../contexts';
 
 const SignIn = () => {
-  const auth = useAuth();
+  const { auth } = useAuth();
 
   return (
     <Page>

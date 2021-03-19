@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }) => {
   }, [firebase]);
 
   const auth = {
+    auth: firebase.auth(),
     isAuthLoading,
     signout,
     user,
