@@ -18,7 +18,7 @@ import {
   SignIn,
   // State,
   VerifySubmittedBiz,
-} from './containers';
+} from './pages';
 import { useAuth } from './contexts';
 
 const App = () => {

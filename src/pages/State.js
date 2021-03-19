@@ -24,7 +24,7 @@ const State = () => {
       ))
     ) : (
       <div>
-        No cities with black-owned businesses in this state have been added to
+        No cities with Black-owned businesses in this state have been added to
         the registry.
       </div>
     );
