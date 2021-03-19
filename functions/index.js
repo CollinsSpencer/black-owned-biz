@@ -1,5 +1,5 @@
 global.functions = require('firebase-functions');
-global.admin = require("firebase-admin");
+global.admin = require('firebase-admin');
 
 admin.initializeApp();
 global.db = admin.firestore();
