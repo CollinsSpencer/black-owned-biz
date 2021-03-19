@@ -12,19 +12,27 @@ Install Node modules.
 
 Install Firebase tools globally if not already installed.
 
-* Note that Firebase tools requires for Java to be installed on your development machine. You can get this through [adoptopenjdk.net](https://adoptopenjdk.net/) or by running the project in a Docker image with Node and Java `MSYS_NO_PATHCONV=1 docker run --rm -it -v "$(pwd):/root" node:15 bash -c "apt-get update && apt-get install -y openjdk-8-jdk && npm i && bash"` (prepended with `MSYS_NO_PATHCONV=1 ` for git bash).
+- _Note that Firebase tools requires for Java to be installed on your development machine. You can get this through [adoptopenjdk.net](https://adoptopenjdk.net/)._
 
 ### `firebase login`
 
-Log into Firebase.
+Log into Firebase with a Google account. You will need to be a registered developer on the project to make deployments.
 
-## Available Scripts
+## Development
+
+### Key development URLs
+
+|                   | URL                                            |
+| ----------------: | ---------------------------------------------- |
+|         React App | [http://localhost:3000](http://localhost:3000) |
+| Firebase Emulator | [http://localhost:4000](http://localhost:4000) |
+|         Storybook | [http://localhost:9009](http://localhost:9009) |
 
 In the project directory, you can run:
 
 ### `npm start storybook`
 
-This command will run both the npm `start` script and the `storybook` script. These are the two main scripts used for local development.
+This command will run both the npm `start` script and the `storybook` script. **These are the two main scripts used for local development.**
 
 ### `npm start`
 
