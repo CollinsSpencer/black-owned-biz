@@ -8,18 +8,16 @@ import * as serviceWorker from './serviceWorker';
 import { lightTheme } from './theme';
 import AppContextProvider from './contexts';
 
-const Index = () => {
-  return (
-    <ThemeProvider theme={lightTheme}>
-      <CssBaseline />
-      <React.StrictMode>
-        <AppContextProvider>
-          <App />
-        </AppContextProvider>
-      </React.StrictMode>
-    </ThemeProvider>
-  );
-};
+const Index = () => (
+  <ThemeProvider theme={lightTheme}>
+    <CssBaseline />
+    <React.StrictMode>
+      <AppContextProvider>
+        <App />
+      </AppContextProvider>
+    </React.StrictMode>
+  </ThemeProvider>
+);
 
 ReactDOM.render(<Index />, document.getElementById('root'));
 

@@ -4,9 +4,7 @@ import firebase from 'firebase/app';
 // Documentation: https://github.com/firebase/firebaseui-web#configuration
 export const uiConfig = {
   callbacks: {
-    signInSuccessWithAuthResult: () => {
-      return false;
-    },
+    signInSuccessWithAuthResult: () => false,
   },
   // Popup signin flow rather than redirect flow.
   signInFlow: 'popup',

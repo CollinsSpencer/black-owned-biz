@@ -57,8 +57,8 @@ const BusinessInfoCard = ({ business }) => {
     );
   };
 
-  const EmailButton = () => {
-    return email ? (
+  const EmailButton = () =>
+    email ? (
       <Button
         component={Link}
         href={`mailto:${email}`}
@@ -70,10 +70,9 @@ const BusinessInfoCard = ({ business }) => {
     ) : (
       <></>
     );
-  };
 
-  const FacebookButton = () => {
-    return facebook ? (
+  const FacebookButton = () =>
+    facebook ? (
       <Button
         component={Link}
         href={facebook}
@@ -85,10 +84,9 @@ const BusinessInfoCard = ({ business }) => {
     ) : (
       <></>
     );
-  };
 
-  const WebsiteButton = () => {
-    return website ? (
+  const WebsiteButton = () =>
+    website ? (
       <Button
         component={Link}
         href={website}
@@ -100,7 +98,6 @@ const BusinessInfoCard = ({ business }) => {
     ) : (
       <></>
     );
-  };
 
   return (
     <Grid container direction="column">

@@ -1,18 +1,16 @@
 import { categories, states } from './constants';
 
-export const toKeyValue = (phrase) => {
-  return phrase
+export const toKeyValue = (phrase) =>
+  phrase
     .split(' ')
     .map((word) => word.charAt(0).toLowerCase() + word.slice(1))
     .join('_');
-};
 
-export const toDisplayName = (key) => {
-  return key
+export const toDisplayName = (key) =>
+  key
     .split('_')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
-};
 
 export const stateToDisplayName = (stateAbbreviation) => {
   const abbreviation = stateAbbreviation ? stateAbbreviation.toUpperCase() : '';

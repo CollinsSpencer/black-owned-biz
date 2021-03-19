@@ -12,14 +12,13 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
 
-  const signout = () => {
-    return firebase
+  const signout = () =>
+    firebase
       .auth()
       .signOut()
       .then(() => {
         setUser(false);
       });
-  };
 
   // Subscribe to user on mount
   // Because this sets state in the callback it will cause any ...

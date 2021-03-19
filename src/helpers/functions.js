@@ -63,8 +63,8 @@ export const useAddBusiness = () => {
 
         const addBusinessFunc = functions.httpsCallable('addBusiness');
         // TODO: Would like to not have to disable this
-        business = // eslint-disable-line no-param-reassign
-        (
+        // eslint-disable-next-line no-param-reassign
+        business = (
           await addBusinessFunc({
             business: payload,
           })
