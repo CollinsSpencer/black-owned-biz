@@ -1,12 +1,14 @@
 exports.GetUserId = (auth) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     try {
-      const decodedIdToken = admin
+      console.log(auth.split('Bearer ')[1]);
+      const decodedIdToken = await admin
         .auth()
         .verifyIdToken(auth.split('Bearer ')[1]);
       resolve(decodedIdToken.user_id);
       return;
     } catch (err) {
+      console.error(err);
       resolve(undefined);
     }
   });
@@ -27,7 +29,7 @@ exports.SetCorsHeaders = (response) => {
 };
 
 exports.PreFunctionChecks = (request, response, checkAuth, checkAdmin) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     const result = { ret: false, userId: undefined };
 
     this.SetCorsHeaders(response);
@@ -48,7 +50,8 @@ exports.PreFunctionChecks = (request, response, checkAuth, checkAdmin) => {
       return;
     }
 
-    const userId = helpers.GetUserId(request.headers.authorization);
+    const userId = await helpers.GetUserId(request.headers.authorization);
+    console.log(`User Id: ${userId}`);
     result.userId = userId;
     if (checkAuth) {
       // Check to make sure user is authorized
@@ -62,7 +65,7 @@ exports.PreFunctionChecks = (request, response, checkAuth, checkAdmin) => {
     }
 
     if (checkAdmin) {
-      const user = db.collection('users').doc(userId).get();
+      const user = await db.collection('users').doc(userId).get();
       if (!user.exists || user.data().role !== 'admin') {
         response
           .status(500)

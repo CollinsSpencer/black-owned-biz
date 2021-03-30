@@ -14,11 +14,9 @@ exports.getBusinesses = functions.https.onRequest(async (request, response) => {
   try {
     let stores = db.collection(`businesses`);
     if (state) {
-      stores = stores.where('state_key', '==', state);
+      stores = stores.where('state_key', 'array-contains', state);
     }
-    if (city) {
-      stores = stores.where('city_key', '==', city);
-    }
+    // Since firebase does not allow multiple array-contains filters on a single call, we cannot filter for stores until later
     if (category) {
       stores = stores.where('category_key', '==', category);
     }
@@ -31,7 +29,13 @@ exports.getBusinesses = functions.https.onRequest(async (request, response) => {
       result.push(storeWithId);
     });
 
-    response.send({ data: result });
+    // Filter for city now
+    let returnStores = result;
+    if(city){
+      returnStores = result.filter(s => s.city_key.includes(city))
+    }
+
+    response.send({ data: returnStores });
   } catch (e) {
     response.status(500).send(`Error: ${e}`);
   }
@@ -88,6 +92,41 @@ exports.addApprovedKey = functions.https.onRequest(
         .status(200)
         .send(
           `Businesses successfully updated with approved tag and default val: ${defaultVal}`,
+        );
+    } catch (e) {
+      response.status(500).send(`Error updating businesses: ${e}`);
+    }
+  },
+);
+
+exports.updateCityAndStateKeys = functions.https.onRequest(
+  async (request, response) => {
+    const preCheck = await helpers.PreFunctionChecks(
+      request,
+      response,
+      false,
+      false,
+    );
+    if (preCheck.ret) return;
+
+    try {
+      const businesses = await db.collection(`businesses`).get();
+
+      businesses.forEach(async (business) => {
+        const businessObj = business.data();
+        if (typeof (businessObj.city_key) === "string") {
+          await business.ref.update({ city_key: [businessObj.city_key] });
+        }
+
+        if (typeof (businessObj.state_key) === "string") {
+          await business.ref.update({ state_key: [businessObj.state_key] });
+        }
+      });
+
+      response
+        .status(200)
+        .send(
+          `Businesses keys successfully changed to be arrays.`,
         );
     } catch (e) {
       response.status(500).send(`Error updating businesses: ${e}`);
