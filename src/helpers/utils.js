@@ -1,10 +1,6 @@
 import { categories, states } from './constants';
 
-export const toKeyValue = (phrase) =>
-  phrase
-    .split(' ')
-    .map((word) => word.charAt(0).toLowerCase() + word.slice(1))
-    .join('_');
+export const toKeyValue = (phrase) => phrase.replace(/\s/g, '_').toLowerCase();
 
 export const toDisplayName = (key) =>
   key
@@ -18,7 +14,18 @@ export const stateToDisplayName = (stateAbbreviation) => {
   return state ? state.name : abbreviation;
 };
 
+export const cityToDisplayName = (cityKey, businesses = []) => {
+  const cities = businesses.map((b) => b.city);
+  if (cities.some((c) => toKeyValue(c) === cityKey)) return cities.find((c) => toKeyValue(c) === cityKey);
+  return toDisplayName(cityKey);
+};
+
 export const categoryToDisplayName = (key) => {
   const category = categories[key];
   return category ? category.name : toDisplayName(key);
+};
+
+export const stateAbbreviation = (key) => {
+  const abbreviation = key ? key.toUpperCase() : '';
+  return states.some((s) => s.abbreviation === abbreviation) ? abbreviation : null;
 };

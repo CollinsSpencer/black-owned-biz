@@ -7,9 +7,7 @@ exports.getBusinesses = functions.https.onRequest(async (request, response) => {
   );
   if (preCheck.ret) return;
 
-  const { state } = request.body.data;
-  const { city } = request.body.data;
-  const { category } = request.body.data;
+  const { state, city, category } = request.body.data;
 
   try {
     let stores = db.collection(`businesses`);
@@ -31,8 +29,8 @@ exports.getBusinesses = functions.https.onRequest(async (request, response) => {
 
     // Filter for city now
     let returnStores = result;
-    if(city){
-      returnStores = result.filter(s => s.city_key.includes(city))
+    if (city) {
+      returnStores = result.filter((s) => s.city_key.includes(city));
     }
 
     response.send({ data: returnStores });
@@ -116,20 +114,18 @@ exports.updateCityAndStateKeys = functions.https.onRequest(
 
       businesses.forEach(async (business) => {
         const businessObj = business.data();
-        if (typeof (businessObj.city_key) === "string") {
+        if (typeof businessObj.city_key === 'string') {
           await business.ref.update({ city_key: [businessObj.city_key] });
         }
 
-        if (typeof (businessObj.state_key) === "string") {
+        if (typeof businessObj.state_key === 'string') {
           await business.ref.update({ state_key: [businessObj.state_key] });
         }
       });
 
       response
         .status(200)
-        .send(
-          `Businesses keys successfully changed to be arrays.`,
-        );
+        .send(`Businesses keys successfully changed to be arrays.`);
     } catch (e) {
       response.status(500).send(`Error updating businesses: ${e}`);
     }

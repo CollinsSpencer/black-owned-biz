@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   AppBar,
@@ -20,8 +19,10 @@ import { AuthActionsButton, AuthActionsListItem } from './AuthActions';
 import { ContactButton, ContactListItem } from './Contact';
 import { RouteBreadcrumbs, RouteBreadcrumbListItems } from './RouteBreadcrumbs';
 import { AddListingButton } from './AddListingButton';
+import { useGetBusinesses } from '../../api';
 
-const Navigation = ({ state, city, category }) => {
+const Navigation = () => {
+  const { state, city, category } = useGetBusinesses();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -49,12 +50,7 @@ const Navigation = ({ state, city, category }) => {
             <AddListingButton ml={3} />
           </Hidden>
           <Hidden mdUp>
-            <IconButton
-              aria-label="open drawer"
-              color="inherit"
-              edge="start"
-              onClick={handleDrawerToggle}
-            >
+            <IconButton aria-label="open drawer" color="inherit" edge="start" onClick={handleDrawerToggle}>
               <MenuIcon />
             </IconButton>
           </Hidden>
@@ -75,11 +71,7 @@ const Navigation = ({ state, city, category }) => {
                 <Typography variant="h6">BlackOwned.in</Typography>
               </ListItem>
               <Divider />
-              <RouteBreadcrumbListItems
-                state={state}
-                city={city}
-                category={category}
-              />
+              <RouteBreadcrumbListItems state={state} city={city} category={category} />
               <Divider />
               <ContactListItem />
               <AuthActionsListItem />
@@ -94,15 +86,5 @@ const Navigation = ({ state, city, category }) => {
   );
 };
 
-Navigation.propTypes = {
-  state: PropTypes.string,
-  city: PropTypes.string,
-  category: PropTypes.string,
-};
-Navigation.defaultProps = {
-  state: null,
-  city: null,
-  category: null,
-};
-
+Navigation.propTypes = {};
 export default Navigation;

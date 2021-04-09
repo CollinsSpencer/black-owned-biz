@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
-import { Box, Container, makeStyles, Typography } from '@material-ui/core';
+import { Box, makeStyles, Typography } from '@material-ui/core';
 
-import Navigation from './Navigation';
 import Assets from '../assets';
+import Page from './Page';
 
 const useStyles = makeStyles(() => ({
   discoveryPageTitle: {
@@ -17,8 +16,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const DiscoveryPage = ({ children, subtitle, title }) => {
-  const params = useParams();
+const DiscoveryPage = ({ children, subtitle, heading, title }) => {
   const style = useStyles();
 
   const flexColCC = {
@@ -29,27 +27,28 @@ const DiscoveryPage = ({ children, subtitle, title }) => {
   };
 
   return (
-    <>
-      <Navigation {...params} />
-      <Container>
-        <Box {...flexColCC} my={12} className={style.discoveryPageTitle}>
-          <Typography variant="h2" align="center">
-            {title}
-          </Typography>
-          <Typography variant="subtitle1" align="center">
-            {subtitle}
-          </Typography>
-        </Box>
-        {children}
-      </Container>
-    </>
+    <Page title={title}>
+      <Box {...flexColCC} my={12} className={style.discoveryPageTitle}>
+        <Typography component="h1" variant="h2" align="center">
+          {heading}
+        </Typography>
+        <Typography component="h2" variant="h4" align="center">
+          {subtitle}
+        </Typography>
+      </Box>
+      {children}
+    </Page>
   );
 };
 
 DiscoveryPage.propTypes = {
   children: PropTypes.element.isRequired,
-  subtitle: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
   title: PropTypes.string.isRequired,
+  heading: PropTypes.string.isRequired,
+};
+DiscoveryPage.defaultProps = {
+  subtitle: null,
 };
 
 export default DiscoveryPage;

@@ -2,11 +2,7 @@
 import React, { useState } from 'react';
 import { Grid } from '@material-ui/core';
 
-import {
-  AddListingForm,
-  AddListingFormSubmittedDialog,
-  Page,
-} from '../components';
+import { AddListingForm, AddListingFormSubmittedDialog, Page } from '../components';
 import { useAddBusiness } from '../helpers/functions';
 
 const businessInitialState = {
@@ -46,20 +42,15 @@ const AddListing = () => {
     setSubmitted(false);
   };
 
-  const handleChange = (key) => (event) =>
-    setBusiness({ ...business, [key]: event.target.value });
-  const handleAutocompleteChange = (key) => (event, newValue) =>
-    setBusiness({ ...business, [key]: newValue });
+  const handleChange = (key) => (event) => setBusiness({ ...business, [key]: event.target.value });
+  const handleAutocompleteChange = (key) => (event, newValue) => setBusiness({ ...business, [key]: newValue });
 
   return (
-    <Page>
+    <Page title="Add a Black-Owned Listing">
       <Grid container justify="center">
         <Grid item xs={12} md={8}>
           {submitted ? (
-            <AddListingFormSubmittedDialog
-              resetForm={resetForm}
-              {...business}
-            />
+            <AddListingFormSubmittedDialog resetForm={resetForm} {...business} />
           ) : (
             <AddListingForm
               handleAutocompleteChange={handleAutocompleteChange}

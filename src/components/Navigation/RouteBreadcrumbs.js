@@ -1,47 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
-import {
-  Breadcrumbs,
-  Link,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-} from '@material-ui/core';
+import { Breadcrumbs, Link, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 
-import {
-  categoryToDisplayName,
-  stateToDisplayName,
-  toDisplayName,
-} from '../../helpers/utils';
 import ListItemLink from './ListItemLink';
 
 const RouteBreadcrumbs = ({ state, city, category }) => {
   let StateBreadcrumb;
   let CityBreadcrumb;
   let CategoryBreadcrumb = null;
+
   if (state) {
-    StateBreadcrumb = <Typography>{stateToDisplayName(state)}</Typography>;
+    StateBreadcrumb = <Typography>{state.display}</Typography>;
   }
+
   if (city) {
     StateBreadcrumb = (
-      <Link component={RouterLink} to={`/${state}`}>
+      <Link component={RouterLink} to={`/${state.key}`}>
         {StateBreadcrumb}
       </Link>
     );
-    CityBreadcrumb = <Typography>{toDisplayName(city)}</Typography>;
+    CityBreadcrumb = <Typography>{city.display}</Typography>;
   }
+
   if (category) {
     CityBreadcrumb = (
-      <Link component={RouterLink} to={`/${state}/${city}`}>
+      <Link component={RouterLink} to={`/${state.key}/${city.key}`}>
         {CityBreadcrumb}
       </Link>
     );
-    CategoryBreadcrumb = (
-      <Typography>{categoryToDisplayName(category)}</Typography>
-    );
+    CategoryBreadcrumb = <Typography>{category.display}</Typography>;
   }
 
   return (
@@ -54,14 +43,14 @@ const RouteBreadcrumbs = ({ state, city, category }) => {
 };
 
 RouteBreadcrumbs.propTypes = {
-  category: PropTypes.string,
-  city: PropTypes.string,
-  state: PropTypes.string,
+  state: PropTypes.shape({ key: PropTypes.string, display: PropTypes.string }),
+  city: PropTypes.shape({ key: PropTypes.string, display: PropTypes.string }),
+  category: PropTypes.shape({ key: PropTypes.string, display: PropTypes.string }),
 };
 RouteBreadcrumbs.defaultProps = {
-  category: null,
-  city: null,
   state: null,
+  city: null,
+  category: null,
 };
 
 const RouteBreadcrumbListItems = ({ state, city, category }) => {
@@ -74,34 +63,28 @@ const RouteBreadcrumbListItems = ({ state, city, category }) => {
         <ListItemIcon>
           <ArrowRightAltIcon />
         </ListItemIcon>
-        <ListItemText primary={stateToDisplayName(state)} />
+        <ListItemText primary={state.display} />
       </ListItem>
     );
   } else if (state && city && !category) {
-    StateListItem = (
-      <ListItemLink to={`/${state}`} primary={stateToDisplayName(state)} />
-    );
+    StateListItem = <ListItemLink to={`/${state.key}`} primary={state.display} />;
     CityListItem = (
       <ListItem>
         <ListItemIcon>
           <ArrowRightAltIcon />
         </ListItemIcon>
-        <ListItemText primary={toDisplayName(city)} />
+        <ListItemText primary={city.display} />
       </ListItem>
     );
   } else if (state && city && category) {
-    StateListItem = (
-      <ListItemLink to={`/${state}`} primary={stateToDisplayName(state)} />
-    );
-    CityListItem = (
-      <ListItemLink to={`/${state}/${city}`} primary={toDisplayName(city)} />
-    );
+    StateListItem = <ListItemLink to={`/${state.key}`} primary={state.display} />;
+    CityListItem = <ListItemLink to={`/${state.key}/${city.key}`} primary={city.display} />;
     CategoryListItem = (
       <ListItem>
         <ListItemIcon>
           <ArrowRightAltIcon />
         </ListItemIcon>
-        <ListItemText primary={categoryToDisplayName(category)} />
+        <ListItemText primary={category.display} />
       </ListItem>
     );
   }
@@ -116,9 +99,9 @@ const RouteBreadcrumbListItems = ({ state, city, category }) => {
 };
 
 RouteBreadcrumbListItems.propTypes = {
-  state: PropTypes.string,
-  city: PropTypes.string,
-  category: PropTypes.string,
+  state: PropTypes.shape({ key: PropTypes.string, display: PropTypes.string }),
+  city: PropTypes.shape({ key: PropTypes.string, display: PropTypes.string }),
+  category: PropTypes.shape({ key: PropTypes.string, display: PropTypes.string }),
 };
 RouteBreadcrumbListItems.defaultProps = {
   state: null,

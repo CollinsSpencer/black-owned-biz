@@ -29,7 +29,7 @@ const Admin = () => {
   };
 
   return (
-    <Page>
+    <Page title="Admin">
       <Grid container justify="center">
         <Grid item xs={12} sm={6} md={4}>
           <Grid container spacing={3} direction="column" alignItems="stretch">
@@ -66,12 +66,7 @@ const Admin = () => {
               </Select>
             </Grid>
             <Grid item>
-              <Button
-                color="primary"
-                disabled={loading}
-                onClick={handleSubmit}
-                variant="contained"
-              >
+              <Button color="primary" disabled={loading} onClick={handleSubmit} variant="contained">
                 {loading && (
                   <Box display="flex" mr={2}>
                     <CircularProgress size="1.5rem" />
