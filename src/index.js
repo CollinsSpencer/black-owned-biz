@@ -6,22 +6,18 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { lightTheme } from './theme';
-import { AuthProvider, AnalyticsProvider } from './services/firebase';
+import AppContextProvider from './contexts';
 
-const Index = () => {
-  return (
-    <ThemeProvider theme={lightTheme}>
-      <CssBaseline />
-      <React.StrictMode>
-        <AnalyticsProvider>
-          <AuthProvider>
-            <App />
-          </AuthProvider>
-        </AnalyticsProvider>
-      </React.StrictMode>
-    </ThemeProvider>
-  );
-};
+const Index = () => (
+  <ThemeProvider theme={lightTheme}>
+    <CssBaseline />
+    <React.StrictMode>
+      <AppContextProvider>
+        <App />
+      </AppContextProvider>
+    </React.StrictMode>
+  </ThemeProvider>
+);
 
 ReactDOM.render(<Index />, document.getElementById('root'));
 

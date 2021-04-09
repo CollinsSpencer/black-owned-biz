@@ -2,13 +2,37 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and hosted with [Firebase](https://firebase.google.com/).
 
-## Available Scripts
+## Setup
+
+### `npm i`
+
+Install Node modules.
+
+### `npm i -g firebase-tools`
+
+Install Firebase tools globally if not already installed.
+
+- _Note that Firebase tools requires for Java to be installed on your development machine. You can get this through [adoptopenjdk.net](https://adoptopenjdk.net/)._
+
+### `firebase login`
+
+Log into Firebase with a Google account. You will need to be a registered developer on the project to make deployments.
+
+## Development
+
+### Key development URLs
+
+|                   | URL                                            |
+| ----------------: | ---------------------------------------------- |
+|         React App | [http://localhost:3000](http://localhost:3000) |
+| Firebase Emulator | [http://localhost:4000](http://localhost:4000) |
+|         Storybook | [http://localhost:9009](http://localhost:9009) |
 
 In the project directory, you can run:
 
 ### `npm start storybook`
 
-This command will run both the npm `start` script and the `storybook` script. These are the two main scripts used for local development.
+This command will run both the npm `start` script and the `storybook` script. **These are the two main scripts used for local development.**
 
 ### `npm start`
 

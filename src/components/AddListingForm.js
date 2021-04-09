@@ -33,7 +33,7 @@ const AddListingForm = ({
     <Box mt={12} mb={6}>
       <Typography variant="h2">Add a Listing</Typography>
       <Typography variant="subtitle1">
-        Share information about a black-owned business, service, or nonprofit.
+        Share information about a Black-owned business, service, or nonprofit.
       </Typography>
     </Box>
     <Grid container spacing={3}>
