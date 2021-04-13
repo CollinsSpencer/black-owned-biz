@@ -14,11 +14,15 @@ exports.getBusinesses = functions.https.onRequest(async (request, response) => {
   try {
     let stores = db.collection(`businesses`);
     if (state) {
-      stores = stores.where('state_key', 'array-contains', state);
+      stores = stores.where('state_key', '==', state);
     }
     // Since firebase does not allow multiple array-contains filters on a single call, we cannot filter for stores until later
     if (category) {
       stores = stores.where('category_key', '==', category);
+    }
+
+    if (city) {
+      stores = stores.where('appears_in', 'array-contains', city);
     }
 
     stores = await stores.where('approved', '==', true).get();
@@ -29,13 +33,36 @@ exports.getBusinesses = functions.https.onRequest(async (request, response) => {
       result.push(storeWithId);
     });
 
-    // Filter for city now
-    let returnStores = result;
-    if(city){
-      returnStores = result.filter(s => s.city_key.includes(city))
-    }
+    response.send({ data: result });
+  } catch (e) {
+    response.status(500).send(`Error: ${e}`);
+  }
+});
 
-    response.send({ data: returnStores });
+exports.getCities = functions.https.onRequest(async (request, response) => {
+  const preCheck = await helpers.PreFunctionChecks(
+    request,
+    response,
+    false,
+    false,
+  );
+  if (preCheck.ret) return;
+
+  try {
+    let stores = db.collection(`businesses`);
+
+    storesRef = await stores.where('approved', '==', true).get();
+    const cities = {};
+    storesRef.forEach((store) => {
+      const storeObj = store.data();
+      const cityStateKey = `${storeObj.city_key}-${storeObj.state_key}`;
+      const cityState = `${storeObj.city}, ${storeObj.state}`;
+      cities[cityStateKey] = cityState;
+    });
+
+    console.log(JSON.stringify(cities));
+
+    response.send({ data: Object.values(cities) });
   } catch (e) {
     response.status(500).send(`Error: ${e}`);
   }
@@ -114,12 +141,20 @@ exports.updateCityAndStateKeys = functions.https.onRequest(
 
       businesses.forEach(async (business) => {
         const businessObj = business.data();
-        if (typeof (businessObj.city_key) === "string") {
-          await business.ref.update({ city_key: [businessObj.city_key] });
+        // if (typeof (businessObj.city_key) === "string") {
+        //   await business.ref.update({ appears_in: [businessObj.city_key] });
+        // }
+
+        console.log(JSON.stringify(businessObj));
+
+        if (typeof (businessObj.city_key) === "object") {
+          await business.ref.update({ city_key: businessObj.city_key[0] });
+          await business.ref.update({ appears_in: [businessObj.city_key[0]] })
         }
 
-        if (typeof (businessObj.state_key) === "string") {
-          await business.ref.update({ state_key: [businessObj.state_key] });
+        console.log(`Type of State: ${typeof (businessObj.state_key)}`);
+        if (typeof (businessObj.state_key) === "object") {
+          await business.ref.update({ state_key: businessObj.state_key[0] });
         }
       });
 

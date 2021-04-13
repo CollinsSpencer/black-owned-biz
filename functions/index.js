@@ -12,3 +12,4 @@ exports.getBusinesses = businesses.getBusinesses;
 exports.addBusiness = businesses.addBusiness;
 exports.addApprovedKey = businesses.addApprovedKey;
 exports.updateCityStateKeys = businesses.updateCityAndStateKeys;
+exports.getCities = businesses.getCities;
