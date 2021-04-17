@@ -3,7 +3,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { Box, Button, ListItem, ListItemText } from '@material-ui/core';
 // import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-import useAuth from '../../helpers/auth';
+import { useAuth } from '../../contexts';
 // import { ListItemLink } from './ListItemLink';
 
 export const AuthActionsButton = () => {

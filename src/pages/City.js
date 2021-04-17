@@ -10,8 +10,10 @@ const City = () => {
   const { businesses, loading } = useBusinesses(state, city, undefined);
 
   useEffect(() => {
-    if (!loading) {
-      setCategories([...new Set(businesses.map((r) => r.category_key))]);
+    if (!loading && businesses) {
+      setCategories(
+        [...new Set(businesses.map((r) => r.category_key))].filter((c) => !!c),
+      );
     }
   }, [businesses, loading]);
 

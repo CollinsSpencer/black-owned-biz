@@ -4,9 +4,7 @@ import USAMap from 'react-usa-map';
 
 import './style.css';
 
-const UnitedStatesMap = ({ onClick }) => {
-  return <USAMap onClick={onClick} />;
-};
+const UnitedStatesMap = ({ onClick }) => <USAMap onClick={onClick} />;
 
 UnitedStatesMap.propTypes = {
   onClick: PropTypes.func,

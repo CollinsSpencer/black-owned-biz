@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route, useLocation } from 'react-router-dom';
 
-import useAuth from '../helpers/auth';
+import { useAuth } from '../contexts';
 
 const PublicRoute = ({ component: Component, ...rest }) => {
   const location = useLocation();

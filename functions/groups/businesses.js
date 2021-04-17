@@ -84,7 +84,9 @@ exports.addBusiness = functions.https.onRequest(async (request, response) => {
     // We might even change this to add a business to "Changes" not to businesses
     // But we will have to think about that
     business.approved = false;
-    business.lastUpdated = new Date(Date.now() + (new Date().getTimezoneOffset() * 60000));
+    business.lastUpdated = new Date(
+      Date.now() + new Date().getTimezoneOffset() * 60000,
+    );
 
     await db.collection(`businesses`).add(business);
 

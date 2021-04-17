@@ -18,8 +18,8 @@ import {
   SignIn,
   // State,
   VerifySubmittedBiz,
-} from './containers';
-import useAuth from './helpers/auth';
+} from './pages';
+import { useAuth } from './contexts';
 
 const App = () => {
   const { isAuthLoading } = useAuth();
