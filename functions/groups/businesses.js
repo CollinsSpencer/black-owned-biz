@@ -49,7 +49,7 @@ exports.getCities = functions.https.onRequest(async (request, response) => {
   if (preCheck.ret) return;
 
   try {
-    let stores = db.collection(`businesses`);
+    const stores = db.collection(`businesses`);
 
     storesRef = await stores.where('approved', '==', true).get();
     const cities = {};
