@@ -4,12 +4,11 @@ exports.GetUserId = async (auth) => {
     const decodedIdToken = await admin
       .auth()
       .verifyIdToken(auth.split('Bearer ')[1]);
-    resolve(decodedIdToken.user_id);
-    return;
+    return decodedIdToken.user_id;
   } catch (err) {
     console.error(err);
-    resolve(undefined);
-  } D
+    return undefined;
+  }
 };
 
 exports.SetCorsHeaders = (response) => {
@@ -33,8 +32,7 @@ exports.PreFunctionChecks = async (request, response, checkAuth, checkAdmin) => 
   if (request.method === 'OPTIONS') {
     response.status(204).send('');
     result.ret = true;
-    resolve(result);
-    return;
+    return result;
   }
   if (request.method !== 'POST') {
     response
@@ -43,20 +41,17 @@ exports.PreFunctionChecks = async (request, response, checkAuth, checkAdmin) => 
         `Request must be 'POST', but received request was of type ${request.method}`,
       );
     result.ret = true;
-    resolve(result);
-    return;
+    return result;
   }
 
   const userId = await helpers.GetUserId(request.headers.authorization);
-  console.log(`User Id: ${userId}`);
   result.userId = userId;
   if (checkAuth) {
     // Check to make sure user is authorized
     if (userId === undefined || userId === null) {
       response.status(403).send('Unauthorized');
       result.ret = true;
-      resolve(result);
-      return;
+      return result;
     }
     result.ret = false;
   }
@@ -68,11 +63,10 @@ exports.PreFunctionChecks = async (request, response, checkAuth, checkAdmin) => 
         .status(500)
         .send(`User is not admin and so can't perform this operation.`);
       result.ret = true;
-      resolve(result);
-      return;
+      return result;
     }
     result.ret = false;
   }
 
-  resolve(result);
+  return result;
 };
