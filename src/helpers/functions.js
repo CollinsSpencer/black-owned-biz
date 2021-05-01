@@ -1,43 +1,52 @@
-import { useCallback, useEffect, useState, useMemo } from 'react';
+import { useCallback, useState, useMemo } from 'react';
+// import { useQuery } from 'react-query';
 import { useFirestore, useFunctions } from '../contexts';
-import {
-  categoryToDisplayName,
-  stateToDisplayName,
-  toDisplayName,
-  toKeyValue,
-} from './utils';
+import { categoryToDisplayName, stateToDisplayName, toDisplayName, toKeyValue } from './utils';
 
-export const useBusinesses = (state, city, category) => {
-  const { functions } = useFunctions();
-  const [loading, setLoading] = useState(false);
-  const [businesses, setBusinesses] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      if (state) {
-        setLoading(true);
+// export const useBusinesses = ({ state }) => {
+//   const { functions } = useFunctions();
 
-        const payload = {};
-        if (state) payload.state = state;
-        if (city) payload.city = state;
-        if (category) payload.category = category;
+//   const getBusinesses = async ({ state: stateKey }) => {
+//     const { data } = await functions.httpsCallable('getBusinesses')({
+//       state: stateKey,
+//     });
+//     return data;
+//   };
 
-        const getBusinesses = functions.httpsCallable('getBusinesses');
-        const businessesList = (
-          await getBusinesses({
-            state,
-            city,
-            category,
-          })
-        ).data;
+//   return useQuery(['state', { state }], getBusinesses);
+// };
 
-        setBusinesses(businessesList);
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [functions, state, city, category]);
-  return { loading, businesses };
-};
+// export const useBusinesses = (state, city, category) => {
+//   const { functions } = useFunctions();
+//   const [loading, setLoading] = useState(false);
+//   const [businesses, setBusinesses] = useState([]);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       if (state) {
+//         setLoading(true);
+
+//         const payload = {};
+//         if (state) payload.state = state;
+//         if (city) payload.city = state;
+//         if (category) payload.category = category;
+
+//         const getBusinesses = functions.httpsCallable('getBusinesses');
+//         const businessesList = (
+//           await getBusinesses({
+//             state,
+//             city,
+//             category,
+//           })
+//         ).data;
+
+//         setBusinesses(businessesList);
+//         setLoading(false);
+//       }
+//     };
+//     fetchData();
+//   }, [functions, state, city, category]);
+//   return { loading, businesses };
+// };
 
 export const useAddBusiness = () => {
   const { functions } = useFunctions();

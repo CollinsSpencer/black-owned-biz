@@ -1,28 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useBusinesses } from '../helpers/functions';
-import { CategorySelector, DiscoveryPage } from '../components';
-import { toDisplayName } from '../helpers/utils';
+import React from 'react';
+import { Container } from '@material-ui/core';
+
+import { useGetBusinesses } from '../api';
+import { BadRoutePage, CategorySelector, DiscoveryPage, Loading } from '../components';
 
 const City = () => {
-  const { state, city } = useParams();
-  const [categories, setCategories] = useState([]);
-  const { businesses, loading } = useBusinesses(state, city, undefined);
+  const { data: businesses, isLoading, state, city } = useGetBusinesses();
 
-  useEffect(() => {
-    if (!loading && businesses) {
-      setCategories(
-        [...new Set(businesses.map((r) => r.category_key))].filter((c) => !!c),
-      );
-    }
-  }, [businesses, loading]);
+  const categories = [
+    ...new Set(businesses?.filter((b) => b.city_key.includes(city.key)).map((b) => b.category_key)),
+  ].filter((c) => !!c);
 
-  const title = `Explore ${toDisplayName(city)}`;
+  const heading = `Explore ${city.display}`;
   const subtitle = 'Check out Black-owned businesses near you';
-  return (
-    <DiscoveryPage title={title} subtitle={subtitle}>
-      <CategorySelector availableCategories={categories} />
+  return categories.length > 0 ? (
+    <DiscoveryPage heading={heading} subtitle={subtitle} title={`Black-Owned In ${city.display}, ${state.display}`}>
+      <Container maxWidth="md">
+        {isLoading ? <Loading /> : <CategorySelector availableCategories={categories} />}
+      </Container>
     </DiscoveryPage>
+  ) : (
+    <BadRoutePage
+      heading={<>No city named &ldquo;{city.display}&rdquo; found here.</>}
+      subtitle={
+        <>
+          There might just not be any listings in the city.
+          <br />
+          <br />
+          Think there should be?
+          <br />
+          You can add a listing to help someone else find a Black-owned organization.
+        </>
+      }
+    />
   );
 };
 
