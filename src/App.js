@@ -1,22 +1,17 @@
 import React from 'react';
-import {
-  Redirect,
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Box, CircularProgress, Typography } from '@material-ui/core';
 
-import { PrivateRoute, PublicRoute } from './components';
+import { BadRoutePage, PrivateRoute, PublicRoute } from './components';
 import {
   AddListing,
   // Admin,
   Category,
   City,
   Contact,
-  // Home,
+  Home,
   SignIn,
-  // State,
+  State,
   VerifySubmittedBiz,
 } from './pages';
 import { useAuth } from './contexts';
@@ -34,15 +29,16 @@ const App = () => {
   ) : (
     <Router>
       <Switch>
-        <Route exact path="/" component={() => <Redirect to="/ne/lincoln" />} />
+        <Route exact path="/" component={Home} />
         <Route path="/add" component={AddListing} />
         {/* <PrivateRoute path='/admin' component={Admin}></PrivateRoute> */}
         <PrivateRoute path="/verify" component={VerifySubmittedBiz} />
         <PublicRoute path="/signin" component={SignIn} />
         <Route path="/contact" component={Contact} />
-        <Route path="/:state/:city/:category" component={Category} />
-        <Route path="/:state/:city" component={City} />
-        <Route path="/:state" component={() => <Redirect to="/ne/lincoln" />} />
+        <Route path="/:stateParam(..)/:cityParam/:categoryParam" component={Category} />
+        <Route path="/:stateParam(..)/:cityParam" component={City} />
+        <Route path="/:stateParam(..)" component={State} />
+        <Route path="*" component={() => <BadRoutePage heading="It seems you have reached this page by mistake." />} />
       </Switch>
     </Router>
   );

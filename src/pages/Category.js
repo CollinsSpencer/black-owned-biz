@@ -1,28 +1,46 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { Grid } from '@material-ui/core';
-import { useBusinesses } from '../helpers/functions';
-import { BusinessInfoCard, DiscoveryPage } from '../components';
+import { Container, Grid } from '@material-ui/core';
+
+import { useGetBusinesses } from '../api';
+import { BadRoutePage, BusinessInfoCard, DiscoveryPage, Loading } from '../components';
 import { categories } from '../helpers/constants';
 
 const Category = () => {
-  const { state, city, category } = useParams();
-  const { businesses } = useBusinesses(state, city, category);
-  const businessList = businesses.sort((a, b) => (a.name < b.name ? -1 : 1));
+  const { data: businesses, isLoading, state, city, category } = useGetBusinesses();
 
-  return (
+  const businessList = businesses
+    ?.filter((b) => b.city_key.includes(city.key))
+    .filter((b) => b.category_key === category.key)
+    .sort((a, b) => (a.name < b.name ? -1 : 1));
+
+  return categories[category.key] ? (
     <DiscoveryPage
-      title={categories[category].name}
-      subtitle={categories[category].description}
+      heading={categories[category.key].name}
+      subtitle={categories[category.key].description}
+      title={`Black-Owned ${categories[category.key].name} In ${city.display}, ${state.display}`}
     >
-      <Grid container spacing={8}>
-        {businessList.map((business) => (
-          <Grid item key={business.id} xs={12} md={6}>
-            <BusinessInfoCard business={business} />
+      <Container maxWidth="md">
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <Grid container spacing={8}>
+            {businessList.map((business) => (
+              <Grid item key={business.id} xs={12} md={6}>
+                <BusinessInfoCard business={business} />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
+        )}
+      </Container>
     </DiscoveryPage>
+  ) : (
+    <BadRoutePage
+      title={
+        <>
+          Category <code>{category.display}</code> not found
+        </>
+      }
+    />
   );
 };
 

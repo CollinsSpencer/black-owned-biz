@@ -10,8 +10,8 @@ const SignIn = () => {
   const { auth } = useAuth();
 
   return (
-    <Page>
-      <Box display="flex" justifyContent="center" mt={12} mb={3}>
+    <Page title="Sign In">
+      <Box display="flex" justifyContent="center" my={12}>
         <Typography variant="h2">Sign In</Typography>
       </Box>
 

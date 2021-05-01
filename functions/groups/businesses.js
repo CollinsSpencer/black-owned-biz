@@ -1,15 +1,8 @@
 exports.getBusinesses = functions.https.onRequest(async (request, response) => {
-  const preCheck = await helpers.PreFunctionChecks(
-    request,
-    response,
-    false,
-    false,
-  );
+  const preCheck = await helpers.PreFunctionChecks(request, response, false, false);
   if (preCheck.ret) return;
 
-  const { state } = request.body.data;
-  const { city } = request.body.data;
-  const { category } = request.body.data;
+  const { state, city, category } = request.body.data;
 
   try {
     let stores = db.collection(`businesses`);
@@ -40,12 +33,7 @@ exports.getBusinesses = functions.https.onRequest(async (request, response) => {
 });
 
 exports.getCities = functions.https.onRequest(async (request, response) => {
-  const preCheck = await helpers.PreFunctionChecks(
-    request,
-    response,
-    false,
-    false,
-  );
+  const preCheck = await helpers.PreFunctionChecks(request, response, false, false);
   if (preCheck.ret) return;
 
   try {
@@ -69,12 +57,7 @@ exports.getCities = functions.https.onRequest(async (request, response) => {
 });
 
 exports.addBusiness = functions.https.onRequest(async (request, response) => {
-  const preCheck = await helpers.PreFunctionChecks(
-    request,
-    response,
-    false,
-    false,
-  );
+  const preCheck = await helpers.PreFunctionChecks(request, response, false, false);
   if (preCheck.ret) return;
 
   const { business } = request.body.data;
@@ -85,9 +68,7 @@ exports.addBusiness = functions.https.onRequest(async (request, response) => {
     // But we will have to think about that
     business.approved = false;
     business.appears_in = business.city;
-    business.lastUpdated = new Date(
-      Date.now() + new Date().getTimezoneOffset() * 60000,
-    );
+    business.lastUpdated = new Date(Date.now() + new Date().getTimezoneOffset() * 60000);
 
     await db.collection(`businesses`).add(business);
 
@@ -97,77 +78,55 @@ exports.addBusiness = functions.https.onRequest(async (request, response) => {
   }
 });
 
-exports.addApprovedKey = functions.https.onRequest(
-  async (request, response) => {
-    const preCheck = await helpers.PreFunctionChecks(
-      request,
-      response,
-      true,
-      true,
-    );
-    if (preCheck.ret) return;
+exports.addApprovedKey = functions.https.onRequest(async (request, response) => {
+  const preCheck = await helpers.PreFunctionChecks(request, response, true, true);
+  if (preCheck.ret) return;
 
-    const defaultVal = request.body.data.defaultValue;
+  const defaultVal = request.body.data.defaultValue;
 
-    try {
-      const businesses = await db.collection(`businesses`).get();
+  try {
+    const businesses = await db.collection(`businesses`).get();
 
-      businesses.forEach(async (business) => {
-        if (business.data().approved === undefined) {
-          await business.ref.update({ approved: defaultVal });
-        }
-      });
+    businesses.forEach(async (business) => {
+      if (business.data().approved === undefined) {
+        await business.ref.update({ approved: defaultVal });
+      }
+    });
 
-      response
-        .status(200)
-        .send(
-          `Businesses successfully updated with approved tag and default val: ${defaultVal}`,
-        );
-    } catch (e) {
-      response.status(500).send(`Error updating businesses: ${e}`);
-    }
-  },
-);
+    response.status(200).send(`Businesses successfully updated with approved tag and default val: ${defaultVal}`);
+  } catch (e) {
+    response.status(500).send(`Error updating businesses: ${e}`);
+  }
+});
 
-exports.updateCityAndStateKeys = functions.https.onRequest(
-  async (request, response) => {
-    const preCheck = await helpers.PreFunctionChecks(
-      request,
-      response,
-      false,
-      false,
-    );
-    if (preCheck.ret) return;
+exports.updateCityAndStateKeys = functions.https.onRequest(async (request, response) => {
+  const preCheck = await helpers.PreFunctionChecks(request, response, false, false);
+  if (preCheck.ret) return;
 
-    try {
-      const businesses = await db.collection(`businesses`).get();
+  try {
+    const businesses = await db.collection(`businesses`).get();
 
-      businesses.forEach(async (business) => {
-        const businessObj = business.data();
-        // if (typeof (businessObj.city_key) === "string") {
-        //   await business.ref.update({ appears_in: [businessObj.city_key] });
-        // }
+    businesses.forEach(async (business) => {
+      const businessObj = business.data();
+      // if (typeof (businessObj.city_key) === "string") {
+      //   await business.ref.update({ appears_in: [businessObj.city_key] });
+      // }
 
-        console.log(JSON.stringify(businessObj));
+      console.log(JSON.stringify(businessObj));
 
-        if (typeof (businessObj.city_key) === "object") {
-          await business.ref.update({ city_key: businessObj.city_key[0] });
-          await business.ref.update({ appears_in: [businessObj.city_key[0]] })
-        }
+      if (typeof businessObj.city_key === 'object') {
+        await business.ref.update({ city_key: businessObj.city_key[0] });
+        await business.ref.update({ appears_in: [businessObj.city_key[0]] });
+      }
 
-        console.log(`Type of State: ${typeof (businessObj.state_key)}`);
-        if (typeof (businessObj.state_key) === "object") {
-          await business.ref.update({ state_key: businessObj.state_key[0] });
-        }
-      });
+      console.log(`Type of State: ${typeof businessObj.state_key}`);
+      if (typeof businessObj.state_key === 'object') {
+        await business.ref.update({ state_key: businessObj.state_key[0] });
+      }
+    });
 
-      response
-        .status(200)
-        .send(
-          `Businesses keys successfully changed to be arrays.`,
-        );
-    } catch (e) {
-      response.status(500).send(`Error updating businesses: ${e}`);
-    }
-  },
-);
+    response.status(200).send(`Businesses keys successfully changed to be arrays.`);
+  } catch (e) {
+    response.status(500).send(`Error updating businesses: ${e}`);
+  }
+});
