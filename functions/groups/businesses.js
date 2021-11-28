@@ -117,6 +117,9 @@ exports.updateCityAndStateKeys = functions.https.onRequest(async (request, respo
       if (typeof businessObj.city_key === 'object') {
         await business.ref.update({ city_key: businessObj.city_key[0] });
         await business.ref.update({ appears_in: [businessObj.city_key[0]] });
+      } else {
+        if (businessObj.appears_in === undefined)
+          await business.ref.update({ appears_in: [businessObj.city_key] });
       }
 
       console.log(`Type of State: ${typeof businessObj.state_key}`);
